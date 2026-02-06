@@ -120,3 +120,45 @@ a {
   white-space: nowrap;
   border: 0;
 }
+
+/* Legal pages: zelfde kaart, maar leesbaar en strak uitgelijnd */
+.legal-container {
+  justify-content: flex-start;  /* niet verticaal centreren */
+  align-items: stretch;         /* kinderen nemen volle breedte */
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  gap: 1.25rem;
+}
+
+/* Zorg dat alle blokken dezelfde linkerrand gebruiken */
+.legal-container > * {
+  width: 100%;
+}
+
+/* Typografie: consistente marges */
+.legal-container h1,
+.legal-container h2,
+.legal-container p,
+.legal-container ul {
+  margin: 0;
+}
+
+/* Ruimte tussen alinea’s/secties */
+.legal-container p {
+  margin-top: 0.5rem;
+}
+
+/* Lijsten: consistent inspringen */
+.legal-container ul {
+  padding-left: 1.25rem; /* bepaal zelf: 1rem/1.5rem */
+  margin-top: 0.5rem;
+}
+
+/* Optioneel: horizontale lijn netjes */
+.legal-container hr {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  margin: 1rem 0;
+}
