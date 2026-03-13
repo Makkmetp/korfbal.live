@@ -85,7 +85,7 @@ a{ color: var(--color-link); }
 
 /* legal-container zit als main op dezelfde node; deze class blijft werken */
 .home-container.legal-container{
-  --inner-pad: 2rem; /* ✅ bepaalt de afstand van tekst tot de rand (pas aan naar wens) */
+  --inner-pad: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -93,15 +93,15 @@ a{ color: var(--color-link); }
   justify-content: flex-start;
   gap: 1.25rem;
 
-  background: transparent; /* gradient blijft zichtbaar */
-  position: relative;      /* nodig voor ::before */
+  background: transparent;
+  position: relative;
 }
 
 /* de echte contentkaart binnenin (inner card via pseudo-element) */
 .home-container.legal-container::before{
   content:"";
   position: absolute;
-  inset: 0.5rem; /* binnenruimte voor gekleurde rand */
+  inset: 0.5rem;
   background: var(--color-bg);
   border-radius: 0.75rem;
   z-index: 0;
@@ -112,13 +112,11 @@ a{ color: var(--color-link); }
   position: relative;
   z-index: 1;
   width: 100%;
-
-  /* ✅ OPLOSSING: echte padding voor de content (tekst niet meer tegen de rand) */
   padding-left: var(--inner-pad);
   padding-right: var(--inner-pad);
 }
 
-/* ✅ extra ruimte boven/onder zodat de eerste/laatste content ook niet “plakt” */
+/* extra ruimte boven/onder */
 .home-container.legal-container > :first-child{
   padding-top: var(--inner-pad);
 }
@@ -168,7 +166,6 @@ a{ color: var(--color-link); }
 
 /* =========================
    Handleiding layout
-   (menu altijd in beeld op tablet/desktop)
    ========================= */
 
 .help-layout{
@@ -195,7 +192,6 @@ a{ color: var(--color-link); }
     align-items: start;
   }
 
-  /* ✅ dit is de kern: menu blijft altijd in beeld */
   .help-menu{
     position: sticky;
     top: 2rem;
@@ -205,8 +201,6 @@ a{ color: var(--color-link); }
 
 /* =========================
    Menu (details/accordion)
-   - mobiel: accordion sticky bovenaan
-   - desktop: summary verbergen, nav altijd zichtbaar
    ========================= */
 
 .help-accordion{
@@ -258,7 +252,7 @@ a{ color: var(--color-link); }
 /* Desktop: accordion “kaart” uit, maar nav blijft */
 @media (min-width: 700px){
   .help-accordion{
-    position: static; /* aside is sticky */
+    position: static;
     top: auto;
     box-shadow: none;
     border: none;
@@ -387,10 +381,8 @@ mark.help-hit{
   max-width: 100%;
   height: auto;
   vertical-align: middle;
-
-  border: 2px solid rgba(0,0,0,0.12); /* subtiel donkerder dan bg */
+  border: 2px solid rgba(0,0,0,0.12);
   border-radius: 12px;
-
   margin: 0.75rem 0;
 }
 
@@ -412,7 +404,7 @@ mark.help-hit{
 }
 .icon-lijst .afbeelding{
   width: 30px;
-  margin: 0; /* niet extra ruimte in flex-rij */
+  margin: 0;
 }
 
 /* =========================
@@ -543,14 +535,12 @@ mark.help-hit{
 @media (max-width: 600px){
   .home-page-wrapper{ padding: 0.75rem; }
 
-  .home-container{ padding: 0.5rem; } /* rand blijft zichtbaar */
+  .home-container{ padding: 0.5rem; }
 
-  /* ✅ FIX: geen padding op ::before; inset is voldoende */
   .home-container.legal-container::before{
     inset: 0.5rem;
   }
 
-  /* ✅ Optioneel: minder binnenruimte op mobiel */
   .home-container.legal-container{
     --inner-pad: 1.25rem;
   }
@@ -585,7 +575,12 @@ mark.help-hit{
 
 .home-hero{ text-align: center; }
 .home-title{ margin: 0.5rem 0 0; font-size: 2.2rem; line-height: 1.15; }
-.home-subtitle{ margin: 0.75rem auto 0; max-width: 60ch; color: var(--color-text-muted); }
+.home-subtitle{
+  margin: 0.75rem auto 0;
+  max-width: 60ch;
+  color: var(--color-text-muted);
+  text-align: center;
+}
 
 .home-cta{
   display: flex;
@@ -670,7 +665,7 @@ mark.help-hit{
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* ✅ niet croppen, wel netjes in verhouding */
+  object-fit: contain;
 }
 
 /* Specifieke verhoudingen per type */
@@ -680,12 +675,12 @@ mark.help-hit{
 }
 
 .home-media.media--shotmap .media-frame{
-  aspect-ratio: 4 / 3; /* shotmap is bijna vierkant/landschap */
+  aspect-ratio: 4 / 3;
   max-height: 620px;
 }
 
 .home-media.media--dashboard .media-frame{
-  aspect-ratio: 16 / 10; /* dashboard is breed */
+  aspect-ratio: 16 / 10;
   max-height: 600px;
 }
 
@@ -714,43 +709,87 @@ mark.help-hit{
    CSS-only Lightbox via :target
    ========================= */
 
+body:has(.lightbox:target){
+  overflow: hidden;
+}
+
 .lightbox{
   position: fixed;
   inset: 0;
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  background: rgba(0,0,0,0.78);
-  z-index: 9999;
+  padding: 2rem;
+  background: rgba(0,0,0,0.92);
+  z-index: 99999;
+  isolation: isolate;
+  overflow: auto;
 }
 
 .lightbox:target{
   display: flex;
 }
 
-.lightbox img{
-  max-width: min(1100px, 96vw);
-  max-height: 92vh;
-  width: auto;
-  height: auto;
-  border-radius: 0.75rem;
-  background: #fff;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-}
-
-/* Klik buiten de afbeelding om te sluiten */
 .lightbox-close{
-  position: absolute;
+  position: fixed;
   inset: 0;
   display: block;
+  background: transparent;
+  z-index: 1;
+  cursor: zoom-out;
+}
+
+.lightbox img{
+  position: relative;
+  z-index: 2;
+  display: block;
+  max-width: min(92vw, 1200px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 1rem;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+  background: #fff;
+}
+
+.lightbox figcaption,
+.lightbox .caption{
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+
+/* voorkom dat andere elementen per ongeluk erboven komen */
+.home-card,
+.pricing-card,
+.home-media,
+.media-frame,
+.home-grid-3,
+.pricing-grid{
+  z-index: auto;
+}
+
+@media (max-width: 700px){
+  .lightbox{
+    padding: 1rem;
+  }
+
+  .lightbox img{
+    max-width: 96vw;
+    max-height: 86vh;
+    border-radius: 0.75rem;
+  }
 }
 
 /* =========================
    75/25 layout voor secties met tekst + afbeelding
+   - afbeelding vult de breedte van het rechter vak
+   - afbeelding blijft lager dan het tekstblok
+   - geen sticky gedrag
    ========================= */
 
-/* standaard: 1 kolom op mobiel (tekst boven, afbeelding onder) */
+/* standaard: 1 kolom op mobiel */
 .home-grid-2.text-media-75{
   display: grid;
   grid-template-columns: 1fr;
@@ -758,148 +797,168 @@ mark.help-hit{
   align-items: start;
 }
 
-/* tablet: 60/40 zodat afbeelding nog bruikbaar blijft */
-@media (min-width: 700px){
-  .home-grid-2.text-media-75{
-    grid-template-columns: 3fr 2fr; /* 60/40 */
-    gap: 1.25rem;
-  }
-}
-
-/* desktop: 75/25 */
-@media (min-width: 1100px){
-  .home-grid-2.text-media-75{
-    grid-template-columns: 3fr 1fr; /* 75/25 */
-    gap: 1.5rem;
-  }
-}
-
-/* optioneel: afbeelding iets “stickier” zodat je minder scroll-ruis krijgt */
-@media (min-width: 1100px){
-  .home-grid-2.text-media-75 .home-media{
-    position: sticky;
-    top: 1.25rem;
-    align-self: start;
-  }
-}
-
-/* In smalle kolom: beperk hoogte van portret screenshot (tijdlijn) */
-@media (min-width: 1100px){
-  .text-media-75 .home-media.media--portrait .media-frame{
-    max-height: 520px;
-  }
-}
-
-/* =========================
-   Homepage media hoogte fix
-   Tekst + afbeelding naast elkaar
-   ========================= */
-
-/* Zorg dat tekst- en mediakolom netjes naast elkaar staan */
-.home-grid-2.text-media-75{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  align-items: stretch; /* kolommen mogen even hoog worden */
-}
-
-/* Tablet: iets bredere afbeelding */
+/* tablet */
 @media (min-width: 700px){
   .home-grid-2.text-media-75{
     grid-template-columns: 3fr 2fr;
     gap: 1.25rem;
+    align-items: start;
   }
 }
 
-/* Desktop: duidelijke tekst/media-verhouding */
+/* desktop */
 @media (min-width: 1100px){
   .home-grid-2.text-media-75{
     grid-template-columns: 3fr 1fr;
     gap: 1.5rem;
+    align-items: start;
   }
 }
 
-/* Linkerkolom kaart volledig laten meedoen in hoogte */
+/* tekst en afbeelding boven uitlijnen */
+.home-grid-2.text-media-75 > .home-card,
+.home-grid-2.text-media-75 > .home-media{
+  align-self: start;
+}
+
 .home-grid-2.text-media-75 .home-card{
-  height: 100%;
+  height: auto;
 }
 
-/* Rechterkolom: volledige hoogte benutten */
-.home-media.media--fill-height{
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  align-self: stretch;
+.home-grid-2.text-media-75 .home-media{
   margin: 0;
-}
-
-/* De klikbare link vult het vak */
-.media--fill-height .media-link{
   display: block;
-  flex: 1;
+  height: auto;
+}
+
+.home-grid-2.text-media-75 .media-link{
+  display: block;
+}
+
+/*
+  In deze 75/25-sectie moet de afbeelding het vak visueel vullen.
+  Daarom krijgt het frame weer een portretverhouding en vult de afbeelding
+  het frame volledig. De hoogte blijft begrensd zodat de afbeelding niet
+  hoger oogt dan het tekstblok.
+*/
+.home-grid-2.text-media-75 .media-frame{
+  width: 100%;
   min-height: 0;
-}
-
-/* Afbeeldingsframe vult de ruimte */
-.media--fill-height .media-frame{
-  height: 100%;
-  min-height: 100%;
-  max-height: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 460px;
   overflow: hidden;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(0,0,0,0.12);
-  background: rgba(255,255,255,0.55);
-  aspect-ratio: auto; /* vaste verhouding uitzetten zodat hoogte kan meebewegen */
 }
 
-/* Afbeelding vult het hele vak zonder vervorming */
-.media--fill-height .media-frame img{
+.home-grid-2.text-media-75 .media-frame img{
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
   object-position: top center;
 }
 
-/* Bijschrift compact houden */
-.media--fill-height figcaption{
-  margin-top: 0.5rem;
-  color: var(--color-text-muted);
-  font-size: 0.95rem;
-}
-
-/* Desktop: zorg dat afbeelding niet hoger wordt dan de tekstkolom */
 @media (min-width: 1100px){
-  .home-grid-2.text-media-75{
-    align-items: stretch;
-  }
-
-  .home-grid-2.text-media-75 > .home-card,
-  .home-grid-2.text-media-75 > .home-media{
-    align-self: stretch;
+  .text-media-75 .home-media.media--portrait .media-frame{
+    max-height: 440px;
   }
 }
 
-/* Mobiel: weer natuurlijke afbeeldingshoogte gebruiken */
+/* mobiel: natuurlijke verhouding */
 @media (max-width: 899px){
-  .home-media.media--fill-height{
-    height: auto;
-  }
-
-  .media--fill-height .media-link{
-    flex: initial;
-  }
-
-  .media--fill-height .media-frame{
-    height: auto;
-    min-height: auto;
+  .home-grid-2.text-media-75 .media-frame{
     max-height: none;
-    aspect-ratio: 9 / 16;
   }
 
-  .media--fill-height .media-frame img{
+  .home-grid-2.text-media-75 .media-frame img{
     height: 100%;
-    object-fit: contain;
   }
+}
+
+/* =========================
+   Shotmap vult volledig vak
+   ========================= */
+.home-media.media--shotmap{
+  margin: 0;
+}
+
+.home-media.media--shotmap .media-link{
+  display: block;
+  width: 100%;
+}
+
+.home-media.media--shotmap .media-frame{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.home-media.media--shotmap .media-frame img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.home-grid-3 .home-card{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.home-card-title{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.65rem 0;
+  line-height: 1.15;
+}
+
+.home-card-title img{
+  width: 0.95em;
+  height: 0.95em;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.home-card-title span{
+  display: inline-block;
+}
+
+.home-grid-3 .home-card p{
+  margin: 0;
+}
+
+.home-grid-3 .home-card p + p{
+  margin-top: 0.35rem;
+}
+
+/* =========================
+   Bullets als kleine ballen
+   In alle home-cards
+   ========================= */
+.home-card ul{
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.home-card ul li{
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.45rem;
+}
+
+.home-card ul li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.7em;
+  height: 0.7em;
+  background-image: url("/images/bal.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }

@@ -1,0 +1,88 @@
+/* === Abonnementen pagina === */
+
+.pricing-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 900px){
+  .pricing-grid{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pricing-card{
+  border: var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.pricing-card.featured{
+  border: 2px solid var(--color-link);
+}
+
+.pricing-price{
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.pricing-cta{
+  margin-top: auto;
+}
+
+.pricing-cta a{
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-link);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.pricing-cta a.secondary{
+  background: transparent;
+  color: var(--color-link);
+  border: 1px solid var(--color-link);
+}
+
+.faq-item{
+  margin-bottom: var(--space-md);
+}
+
+.pricing-table-wrapper{
+  width: 100%;
+  overflow-x: auto;
+}
+
+.pricing-table{
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-bg);
+  font-size: 0.95rem;
+}
+
+.pricing-table th,
+.pricing-table td{
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  text-align: center;
+}
+
+.pricing-table th:first-child,
+.pricing-table td:first-child{
+  text-align: left;
+}
+
+.pricing-table thead th{
+  font-weight: 700;
+}
+
+.pricing-table tbody tr:hover{
+  background-color: rgba(0,0,0,0.03);
+}

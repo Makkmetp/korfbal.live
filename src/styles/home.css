@@ -1,0 +1,212 @@
+/* === Home pagina === */
+
+.home-hero{
+  text-align: center;
+}
+
+.home-title{
+  margin: 0.5rem 0 0;
+  font-size: 2.2rem;
+  line-height: 1.15;
+}
+
+.home-hero .home-subtitle,
+.legal-container p.home-subtitle{
+  margin: 0.75rem auto 0;
+  max-width: 60ch;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.home-cta{
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--space-md);
+}
+
+.home-highlights{
+  list-style: none;
+  padding: 0;
+  margin: var(--space-md) auto 0;
+  display: grid;
+  gap: var(--space-xs);
+  max-width: 60ch;
+  text-align: left;
+}
+
+.home-section{
+  margin-top: var(--space-md);
+}
+
+.home-timeline{
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.home-note{
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-top: var(--space-xs);
+}
+
+.home-offer{
+  margin-top: var(--space-md);
+}
+
+/* media varianten */
+.home-media.media--portrait .media-frame{
+  aspect-ratio: 9 / 16;
+  max-height: 640px;
+}
+
+.home-media.media--shotmap .media-frame{
+  aspect-ratio: 1 / 1;
+  max-height: 620px;
+}
+
+.home-media.media--dashboard .media-frame{
+  aspect-ratio: 16 / 10;
+  max-height: 600px;
+}
+
+.home-media.wide .media-frame{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* 75/25 layout */
+.home-grid-2.text-media-75{
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 700px){
+  .home-grid-2.text-media-75{
+    grid-template-columns: 3fr 2fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1100px){
+  .home-grid-2.text-media-75{
+    grid-template-columns: 3fr 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+.home-grid-2.text-media-75 > .home-card,
+.home-grid-2.text-media-75 > .home-media{
+  align-self: start;
+}
+
+.home-grid-2.text-media-75 .home-media{
+  margin: 0;
+  display: block;
+  height: auto;
+}
+
+.home-grid-2.text-media-75 .media-link{
+  display: block;
+}
+
+.home-grid-2.text-media-75 .media-frame{
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 9 / 16;
+  max-height: 460px;
+  overflow: hidden;
+}
+
+.home-grid-2.text-media-75 .media-frame img{
+  object-fit: cover;
+  object-position: top center;
+}
+
+@media (min-width: 1100px){
+  .text-media-75 .home-media.media--portrait .media-frame{
+    max-height: 440px;
+  }
+}
+
+@media (max-width: 899px){
+  .home-grid-2.text-media-75 .media-frame{
+    max-height: none;
+  }
+
+  .home-grid-2.text-media-75 .media-frame img{
+    height: 100%;
+  }
+}
+
+/* shotmap vullen */
+.home-media.media--shotmap .media-link{
+  width: 100%;
+}
+
+.home-media.media--shotmap .media-frame img{
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* kaarten met icoon in titel */
+.home-grid-3 .home-card{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.home-card-title{
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin: 0 0 0.65rem 0;
+  line-height: 1.15;
+}
+
+.home-card-title img{
+  width: 0.95em;
+  height: 0.95em;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.home-card-title span{
+  display: inline-block;
+}
+
+.home-grid-3 .home-card p{
+  margin: 0;
+}
+
+.home-grid-3 .home-card p + p{
+  margin-top: 0.35rem;
+}
+
+/* bullets als kleine ballen */
+.home-card ul{
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.home-card ul li{
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.45rem;
+}
+
+.home-card ul li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.7em;
+  height: 0.7em;
+  background-image: url('/images/bal.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}

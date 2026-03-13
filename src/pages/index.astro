@@ -1,29 +1,300 @@
 ---
-import '../styles/global.css';
+import '../styles/base.css';
+import '../styles/abonnementen.css';
+import '../styles/home.css';
+const pageTitle = "Korfbal.live";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Korfbal.live - Live wedstrijdregistratie en statistieken voor coaches, spelers en fans.</title>
-	</head>
-	<body>
-		<div class="home-page-wrapper">
-			<main class="home-container">
-      <img src="/images/kl-logo-vertical.svg" alt="Logo Korfbal.live" class="home-logo" />
-			<hgroup class="home-hero">
-				<h1 class="visually-hidden">Korfbal.live</h1>
-				<p>Live wedstrijdregistratie en statistieken voor coaches, spelers en fans.</p>
-			</hgroup>
-			<p class="home-beta-note">
-				Korfbal.live is momenteel in besloten bèta. Geïnteresseerd of vragen?
-				Neem contact op via <a href="mailto:info@korfbal.live">info@korfbal.live</a>
-			</p>
-			</main>
-		</div>
-	</body>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle} – Liveverslag, statistieken & coaching voor korfbalclubs</title>
+    <meta
+      name="description"
+      content="Korfbal.live helpt trainers en verenigingen om wedstrijden te volgen, te analyseren en te delen. Liveverslag, statistieken en coachdashboard in één app."
+    />
+  </head>
+
+  <body>
+    <div class="home-page-wrapper">
+      <main class="home-container legal-container">
+
+        <!-- Hero -->
+        <header class="home-hero">
+          <img src="/images/kl-logo-vertical.svg" alt="Logo Korfbal.live" class="home-logo" />
+
+          <h1 class="home-title">
+            Maak van elke wedstrijd een verhaal – en krijg inzicht dat je kunt delen.
+          </h1>
+
+          <p class="home-subtitle">
+            Korfbal.live helpt trainers en verenigingen om wedstrijden beter te volgen,
+            te analyseren en te delen met de mensen langs de lijn.
+          </p>
+
+          <div class="home-cta">
+            <a class="btn primary" href="/contact">Vraag toegang (bèta)</a>
+            <a class="btn secondary" href="/handleiding">Bekijk voorbeeld liveverslag</a>
+          </div>
+        </header>
+
+        <hr />
+
+        <!-- Liveverslag dat verbindt -->
+<section class="home-section">
+
+
+  <div class="home-grid-2 text-media-75">
+    <div class="home-card">
+		  <h2>Volgen, beleven en verbinden in één liveverslag</h2>
+  <p>
+    Met het liveverslag van korfbal.live krijgt elke wedstrijd een eigen verhaal.
+    Ouders, supporters, opa’s en oma’s kunnen de wedstrijd eenvoudig volgen via
+    één openbare link, zonder dat ze in een aparte WhatsApp-groep hoeven te zitten.
+    Dat maakt het volgen van een wedstrijd laagdrempelig, leuk en voor iedereen bereikbaar.
+  </p>
+      <p>
+        Vanaf de start van de wedstrijd neem je volgers mee in het verloop van de wedstrijd.
+        Je begint met de opstelling, laat zien wie er scoort en maakt zichtbaar hoeveel
+        kansen er zijn geweest. Zo ontstaat er stap voor stap een compleet en levendig
+        wedstrijdverhaal dat de betrokkenheid rond het team vergroot en de beleving versterkt.
+      </p>
+
+      <p>
+        Ook na afloop blijft het liveverslag waardevol. Supporters kunnen alles rustig
+        teruglezen en trainers, spelers en ouders kijken eenvoudig terug op de belangrijkste
+        momenten uit de wedstrijd.
+      </p>
+	  <br>
+      <h3>Daarom wil je dit gebruiken</h3>
+      <ul>
+        <li>Ouders en supporters volgen de wedstrijd live via één openbare link</li>
+        <li>Je maakt van elke wedstrijd een zichtbaar en deelbaar verhaal</li>
+        <li>Je vergroot de betrokkenheid rond team en club</li>
+        <li>Voor verenigingen biedt het liveverslag extra ruimte voor sponsoruitingen en nieuws</li>
+      </ul>
+    </div>
+
+<figure class="home-media media--portrait media--fill-height">
+  <a class="media-link" href="#img-tijdlijn">
+    <div class="media-frame">
+      <img
+        src="/images/liveverslag.png"
+        alt="Voorbeeld van het liveverslag met tijdlijn in korfbal.live"
+        loading="lazy"
+      />
+    </div>
+  </a>
+  <figcaption>Klik om te vergroten: live tijdlijn met acties en highlights.</figcaption>
+</figure>
+  </div>
+
+  <div id="img-tijdlijn" class="lightbox" aria-label="Vergrote weergave tijdlijn">
+    <a class="lightbox-close" href="#" aria-label="Sluiten"></a>
+    <img src="/images/liveverslag.png" alt="" />
+  </div>
+</section>
+
+        <hr />
+
+        <!-- Statistieken die je coaching beter maken -->
+<section class="home-section">
+  <div class="home-grid-2">
+    <figure class="home-media media--shotmap">
+      <a class="media-link" href="#img-shotmap">
+        <div class="media-frame">
+          <img
+            src="/images/live_dashbord.png"
+            alt="Veldweergave met doelpogingen in korfbal.live"
+            loading="lazy"
+          />
+        </div>
+      </a>
+      <figcaption>Klik om te vergroten: doelpogingen op het veld.</figcaption>
+    </figure>
+
+    <div class="home-card">
+		  <h2>Statistieken die je coaching beter maken</h2>
+  <p>
+    Krijg inzicht in wat er écht gebeurt tijdens een wedstrijd — ontdek waar kansen ontstaan en van welke posities doelpogingen worden genomen.
+    Zo ontdek je als trainer of coach beter waar je team gevaarlijk is, waar kansen onbenut blijven en welke keuzes het meeste rendement opleveren.
+  </p>
+      <p>
+        Met deze inzichten kijk je verder dan alleen raak of mis. Je ziet of doelpogingen
+        vooral van dichtbij, van ver, aan de voorkant, zijkant of achter de paal worden genomen.
+        Dat geeft houvast om per team, per vak en per speler te begrijpen waar kansen ontstaan
+        en waar nog winst te behalen is. Zo kun je ook beter beoordelen of het spel van je team
+        aansluit bij het DNA van de club.
+      </p>
+
+      <p>
+        De kracht van dit inzicht zit vooral in wat je er daarna mee doet. Je maakt trainingen
+        gerichter, bespreekt concreet met spelers waar kansen vandaan kwamen. Daardoor ontstaat er niet alleen meer begrip van het spel,
+        maar ook een duidelijker basis om gericht te verbeteren.
+      </p>
+	  <br>
+      <h3>Wat levert dit op?</h3>
+      <ul>
+        <li>Je ziet van welke posities een team of speler het vaakst schiet</li>
+        <li>Je ontdekt welke doelpogingen de grootste kans op succes hebben</li>
+        <li>Je krijgt inzicht per team, per vak en per speler</li>
+        <li>Je maakt de nabespreking concreter en gerichter</li>
+        <li>Je vertaalt wedstrijdinzichten eenvoudiger naar training en ontwikkeling</li>
+        <li>Je toetst of het spel past bij de speelstijl en visie van de club</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="img-shotmap" class="lightbox" aria-label="Vergrote weergave shotmap">
+    <a class="lightbox-close" href="#" aria-label="Sluiten"></a>
+    <img src="/images/live_dashbord.png" alt="" />
+  </div>
+</section>
+
+        <hr />
+
+        <!-- Dashboard voor coaches -->
+<div class="home-grid-3">
+  <div class="home-card">
+    <h3 class="home-card-title">
+      <img src="/images/bal.jpg" alt="" aria-hidden="true" />
+      <span>Snel evalueren</span>
+    </h3>
+    <p>Zie tijdens de wedstrijd direct wat werkt en wat beter kan.
+    Zo stuur je sneller bij en maak je keuzes met meer vertrouwen.</p>
+  </div>
+
+  <div class="home-card">
+    <h3 class="home-card-title">
+      <img src="/images/bal.jpg" alt="" aria-hidden="true" />
+      <span>Gericht verbeteren</span>
+    </h3>
+    <p>Zet inzichten uit de wedstrijd om in concrete trainingskeuzes.
+    Zo train je doelgerichter en werk je aan echte wedstrijdsituaties.</p>
+  </div>
+
+  <div class="home-card">
+    <h3 class="home-card-title">
+      <img src="/images/bal.jpg" alt="" aria-hidden="true" />
+      <span>Samen groeien</span>
+    </h3>
+    <p>Bespreek na afloop samen de cijfers en de belangrijkste momenten.
+    Zo maak je inzicht onderdeel van samenwerking en teamontwikkeling.</p>
+  </div>
+</div>
+
+        <!-- Abonnementsvormen -->
+        <section class="home-section" aria-labelledby="prijzen">
+          <h2 id="prijzen">Abonnementsvormen</h2>
+          <p>
+            Start gratis en kies het abonnement dat past bij jouw team of vereniging.
+            Opschalen kan op elk moment.
+          </p>
+
+          <div class="pricing-grid">
+            <div class="pricing-card">
+              <h3>Gratis</h3>
+              <p><em>Voor trainers die willen kennismaken</em></p>
+              <p class="pricing-price">€0</p>
+
+              <ul>
+                <li>Live wedstrijdregistratie</li>
+                <li>Basis tijdlijn</li>
+                <li>Live wedstrijd delen</li>
+                <li>1 team</li>
+                <li>Basis statistieken</li>
+				<li>Maximaal 12 spelers</li>
+				<li>Max 3 wedstrijden</li>
+              </ul>
+
+              <div class="pricing-cta">
+                <a href="https://app.korfbal.live">Start gratis</a>
+              </div>
+            </div>
+
+            <div class="pricing-card featured">
+              <h3>Pro ⭐</h3>
+              <p><em>Meest gekozen door trainers</em></p>
+              <p class="pricing-price">€7,99 <small>/ team / maand</small></p>
+              
+              <ul>
+                <li>Alles uit Gratis</li>
+				<li>Onbeperkt aantal spelers</li>
+                <li>Uitgebreide statistieken per speler</li>
+                <li>Wedstrijdhistorie</li>
+				<li>Filters per speler</li>
+                <li>Meerdere wedstrijden per team</li>
+                <li>E-mail support</li>
+              </ul>
+
+              <div class="pricing-cta">
+                <a href="https://app.korfbal.live">Upgrade naar Pro</a>
+              </div>
+            </div>
+
+            <div class="pricing-card">
+              <h3>Club</h3>
+              <p><em>Voor verenigingen</em></p>
+              <p class="pricing-price">Op aanvraag</p>
+
+              <ul>
+                <li>Alles uit Pro</li>
+                <li>Alle teams binnen de club</li>
+                <li>Tijdlijnen in clubkleuren</li>
+                <li>Ruimte voor sponsors</li>
+                <li>Prioriteit support</li>
+              </ul>
+
+              <div class="pricing-cta">
+                <a href="/contact" class="secondary">Neem contact op</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr />
+
+        <!-- Veelgestelde vragen -->
+        <section class="home-section" aria-labelledby="faq">
+          <h2 id="faq">Veelgestelde vragen</h2>
+
+          <div class="faq-item">
+            <strong>Kan ik later upgraden?</strong>
+            <p>
+              Ja. Je kunt op elk moment overstappen van Gratis naar Pro.
+              Overstappen van Pro naar Club is op aanvraag.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <strong>Is Pro per trainer of per team?</strong>
+            <p>
+              Pro wordt afgerekend per team. Trainers kunnen samen werken binnen één team.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <strong>Kunnen ouders meekijken?</strong>
+            <p>
+              Ja. Via een live link kunnen ouders en supporters de wedstrijd volgen
+              en de highlights van het liveverslag bekijken.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <strong>Is korfbal.live een officieel bondsysteem?</strong>
+            <p>
+              Nee. Korfbal.live is een hulpmiddel voor registratie en analyse,
+              niet voor officiële uitslagen in Sportlink.
+            </p>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </body>
 </html>

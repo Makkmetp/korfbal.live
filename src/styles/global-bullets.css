@@ -748,9 +748,12 @@ mark.help-hit{
 
 /* =========================
    75/25 layout voor secties met tekst + afbeelding
+   - afbeelding vult de breedte van het rechter vak
+   - afbeelding blijft lager dan het tekstblok
+   - geen sticky gedrag
    ========================= */
 
-/* standaard: 1 kolom op mobiel (tekst boven, afbeelding onder) */
+/* standaard: 1 kolom op mobiel */
 .home-grid-2.text-media-75{
   display: grid;
   grid-template-columns: 1fr;
@@ -758,148 +761,158 @@ mark.help-hit{
   align-items: start;
 }
 
-/* tablet: 60/40 zodat afbeelding nog bruikbaar blijft */
-@media (min-width: 700px){
-  .home-grid-2.text-media-75{
-    grid-template-columns: 3fr 2fr; /* 60/40 */
-    gap: 1.25rem;
-  }
-}
-
-/* desktop: 75/25 */
-@media (min-width: 1100px){
-  .home-grid-2.text-media-75{
-    grid-template-columns: 3fr 1fr; /* 75/25 */
-    gap: 1.5rem;
-  }
-}
-
-/* optioneel: afbeelding iets “stickier” zodat je minder scroll-ruis krijgt */
-@media (min-width: 1100px){
-  .home-grid-2.text-media-75 .home-media{
-    position: sticky;
-    top: 1.25rem;
-    align-self: start;
-  }
-}
-
-/* In smalle kolom: beperk hoogte van portret screenshot (tijdlijn) */
-@media (min-width: 1100px){
-  .text-media-75 .home-media.media--portrait .media-frame{
-    max-height: 520px;
-  }
-}
-
-/* =========================
-   Homepage media hoogte fix
-   Tekst + afbeelding naast elkaar
-   ========================= */
-
-/* Zorg dat tekst- en mediakolom netjes naast elkaar staan */
-.home-grid-2.text-media-75{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  align-items: stretch; /* kolommen mogen even hoog worden */
-}
-
-/* Tablet: iets bredere afbeelding */
+/* tablet */
 @media (min-width: 700px){
   .home-grid-2.text-media-75{
     grid-template-columns: 3fr 2fr;
     gap: 1.25rem;
+    align-items: start;
   }
 }
 
-/* Desktop: duidelijke tekst/media-verhouding */
+/* desktop */
 @media (min-width: 1100px){
   .home-grid-2.text-media-75{
     grid-template-columns: 3fr 1fr;
     gap: 1.5rem;
+    align-items: start;
   }
 }
 
-/* Linkerkolom kaart volledig laten meedoen in hoogte */
+/* tekst en afbeelding boven uitlijnen */
+.home-grid-2.text-media-75 > .home-card,
+.home-grid-2.text-media-75 > .home-media{
+  align-self: start;
+}
+
 .home-grid-2.text-media-75 .home-card{
-  height: 100%;
+  height: auto;
 }
 
-/* Rechterkolom: volledige hoogte benutten */
-.home-media.media--fill-height{
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  align-self: stretch;
+.home-grid-2.text-media-75 .home-media{
   margin: 0;
-}
-
-/* De klikbare link vult het vak */
-.media--fill-height .media-link{
   display: block;
-  flex: 1;
-  min-height: 0;
+  height: auto;
 }
 
-/* Afbeeldingsframe vult de ruimte */
-.media--fill-height .media-frame{
-  height: 100%;
-  min-height: 100%;
-  max-height: 100%;
-  overflow: hidden;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(0,0,0,0.12);
-  background: rgba(255,255,255,0.55);
-  aspect-ratio: auto; /* vaste verhouding uitzetten zodat hoogte kan meebewegen */
+.home-grid-2.text-media-75 .media-link{
+  display: block;
 }
 
-/* Afbeelding vult het hele vak zonder vervorming */
-.media--fill-height .media-frame img{
+.home-grid-2.text-media-75 .media-frame{
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: 460px;
+  aspect-ratio: auto;
+  overflow: hidden;
+}
+
+.home-grid-2.text-media-75 .media-frame img{
   display: block;
-  object-fit: cover;
+  width: 100%;
+  height: auto;
+  max-height: 460px;
+  margin: 0 auto;
+  object-fit: contain;
   object-position: top center;
 }
 
-/* Bijschrift compact houden */
-.media--fill-height figcaption{
-  margin-top: 0.5rem;
-  color: var(--color-text-muted);
-  font-size: 0.95rem;
-}
-
-/* Desktop: zorg dat afbeelding niet hoger wordt dan de tekstkolom */
 @media (min-width: 1100px){
-  .home-grid-2.text-media-75{
-    align-items: stretch;
-  }
-
-  .home-grid-2.text-media-75 > .home-card,
-  .home-grid-2.text-media-75 > .home-media{
-    align-self: stretch;
+  .text-media-75 .home-media.media--portrait .media-frame,
+  .text-media-75 .home-media.media--portrait .media-frame img{
+    max-height: 440px;
   }
 }
 
-/* Mobiel: weer natuurlijke afbeeldingshoogte gebruiken */
+/* mobiel: natuurlijke verhouding */
 @media (max-width: 899px){
-  .home-media.media--fill-height{
-    height: auto;
-  }
-
-  .media--fill-height .media-link{
-    flex: initial;
-  }
-
-  .media--fill-height .media-frame{
-    height: auto;
-    min-height: auto;
+  .home-grid-2.text-media-75 .media-frame,
+  .home-grid-2.text-media-75 .media-frame img{
     max-height: none;
-    aspect-ratio: 9 / 16;
   }
+}
 
-  .media--fill-height .media-frame img{
-    height: 100%;
-    object-fit: contain;
+/* =========================
+   Drie voordeelkaarten met bal-icoon
+   ========================= */
+.home-grid-3{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+@media (min-width: 900px){
+  .home-grid-3{
+    grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.home-grid-3 .home-card{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.home-card-title{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.65rem 0;
+  line-height: 1.15;
+}
+
+.home-card-title img{
+  width: 0.95em;
+  height: 0.95em;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.home-card-title span{
+  display: inline-block;
+}
+
+.home-grid-3 .home-card p{
+  margin: 0;
+}
+
+.home-grid-3 .home-card p + p{
+  margin-top: 0.35rem;
+}
+
+/* =========================
+   Bullets als kleine ballen
+   In alle home-cards
+   ========================= */
+.home-card ul{
+  list-style: none;
+    margin-top: 0.75rem;
+  margin: 0;
+  padding: 0;
+}
+
+.home-card ul li{
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.45rem;
+}
+
+.home-card ul li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.7em;
+  height: 0.7em;
+  background-image: url("/images/bal.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.home-card ul{
+
 }
