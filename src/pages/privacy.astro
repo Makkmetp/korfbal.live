@@ -1,7 +1,6 @@
 ---
 import '../styles/base.css';
-import '../styles/legal.css';
-import '../styles/privacy.css';
+import '../styles/home.css';
 ---
 
 <html lang="nl">
@@ -17,6 +16,15 @@ import '../styles/privacy.css';
   <body>
     <div class="home-page-wrapper">
       <main class="home-container legal-container">
+                      <nav class="site-menu" aria-label="Hoofdmenu">
+          <div class="site-menu-label">Menu</div>
+          <div class="site-menu-links">
+            <a href="/">Home</a>
+            <a href="/handleiding">Handleiding</a>
+            <a href="/contact">Contact</a>
+            <a href="/abonnementen">Abonnementen</a>
+          </div>
+        </nav>
         <img src="/images/kl-logo-vertical.svg" alt="Logo Korfbal.live" class="home-logo" />
 
         <h1>Privacyverklaring korfbal.live</h1>
@@ -214,7 +222,13 @@ import '../styles/privacy.css';
           </p>
         </section>
 
-        <p><a href="/">← Terug naar home</a></p>
+        <footer class="site-footer" aria-label="Juridische links">
+  <p>
+    <a href="/privacy">Privacy</a>
+    <span aria-hidden="true"> · </span>
+    <a href="/voorwaarden">Voorwaarden</a>
+  </p>
+</footer>
       </main>
     </div>
   </body>
