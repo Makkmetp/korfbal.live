@@ -1,0 +1,85 @@
+/* Basis CSS reset / modern normalize voor Korfbal.live */
+
+/* Box sizing en layout basis */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Verwijder standaard marges op typografische elementen */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Lijsten zonder bullets wanneer expliciet als list gebruikt */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+}
+
+/* Afbeeldingen en media responsief maken */
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Formulierelementen laten erven van font-instellingen */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+/* Verwijder default underlines op links; styling komt uit global tokens */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Sterke en emphasized tekst volgt het font-weight van het design system */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/* Tabelbasis */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+

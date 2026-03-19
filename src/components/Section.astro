@@ -1,0 +1,168 @@
+---
+interface Props {
+  /**
+   * Theme van de section:
+   * - "inherit": gebruikt de huidige CSS-variabelen (default)
+   * - "light": forceert het light section theme
+   * - "dark": forceert het dark section theme
+   */
+  theme?: 'inherit' | 'light' | 'dark';
+
+  /**
+   * HTML element type, standaard <section>.
+   */
+  as?: 'section' | 'div';
+
+  /**
+   * Verticale spacing boven de section (CSS padding-block-start).
+   * Verticale spacing-opties:
+   * - "none" | "small" | "main" | "large" | "page-top"
+   */
+  paddingBlockStart?: 'none' | 'small' | 'main' | 'large' | 'page-top';
+
+  /**
+   * Verticale spacing onder de section (CSS padding-block-end).
+   * Zelfde opties als paddingBlockStart.
+   */
+  paddingBlockEnd?: 'none' | 'small' | 'main' | 'large' | 'page-top';
+}
+
+const {
+  theme = 'inherit',
+  as = 'section',
+  paddingBlockStart,
+  paddingBlockEnd,
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & {
+  class?: unknown;
+  style?: unknown;
+} & Record<string, unknown>;
+
+const Tag = as;
+const themeAttr = theme === 'inherit' ? undefined : theme;
+const sectionClasses = ['section', typeof userClass === 'string' ? userClass : undefined]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Tag
+  {...forwardedProps}
+  class={sectionClasses}
+  data-theme={themeAttr}
+  data-padding-top={paddingBlockStart}
+  data-padding-bottom={paddingBlockEnd}
+  style={typeof userStyle === 'string' ? userStyle : undefined}
+>
+  {Astro.slots.has("background") && (
+    <div class="section__background" aria-hidden="true">
+      <slot name="background" />
+    </div>
+  )}
+  <div class="section__inner">
+    <slot />
+  </div>
+</Tag>
+
+<style>
+  .section {
+    background: var(--theme-color-bg);
+    color: var(--theme-color-text);
+    flex-flow: column;
+    justify-content: center;
+    align-items: stretch;
+    display: flex;
+    position: relative;
+    isolation: isolate;
+    padding-block-start: var(--section-padding-y);
+    padding-block-end: var(--section-padding-y);
+  }
+
+  /* Verticale spacing varianten - top */
+  .section[data-padding-top='none'] {
+    padding-block-start: var(--space-section-none);
+  }
+
+  .section[data-padding-top='small'] {
+    padding-block-start: var(--space-section-sm);
+  }
+
+  .section[data-padding-top='main'] {
+    padding-block-start: var(--space-section-md, var(--section-padding-y));
+  }
+
+  .section[data-padding-top='large'] {
+    padding-block-start: var(--space-section-lg);
+  }
+
+  .section[data-padding-top='page-top'] {
+    padding-block-start: var(--space-section-page-top);
+  }
+
+  /* Verticale spacing varianten - bottom */
+  .section[data-padding-bottom='none'] {
+    padding-block-end: var(--space-section-none);
+  }
+
+  .section[data-padding-bottom='small'] {
+    padding-block-end: var(--space-section-sm);
+  }
+
+  .section[data-padding-bottom='main'] {
+    padding-block-end: var(--space-section-md, var(--section-padding-y));
+  }
+
+  .section[data-padding-bottom='large'] {
+    padding-block-end: var(--space-section-lg);
+  }
+
+  .section[data-padding-bottom='page-top'] {
+    padding-block-end: var(--space-section-page-top);
+  }
+
+  .section__background {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .section__background > :global(*) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: unset !important;
+  }
+
+  .section__background > :global(img),
+  .section__background > :global(video),
+  .section__background > :global(picture) {
+    object-fit: cover;
+  }
+
+  .section__inner {
+    z-index: 1;
+    margin-inline: auto;
+    max-width: var(--layout-max-width);
+    width: calc(100% - (var(--section-padding-x, var(--layout-page-margin)) * 2));
+    flex-flow: column;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    gap: var(--space-8);
+  }
+
+  /* Margin-trim voor content-flow binnen sections */
+  .section__inner > :first-child {
+    margin-top: 0;
+  }
+
+  .section__inner > :last-child {
+    margin-bottom: 0;
+  }
+</style>
+

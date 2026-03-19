@@ -1,0 +1,161 @@
+---
+/**
+ * Button component met primary en secondary varianten.
+ * Gebruikt theme-tokens voor kleuren; reset en focus/hover/disabled states volgens best practices.
+ *
+ * Gebruik:
+ * - <Button variant="primary">Label</Button>
+ * - <Button variant="secondary" href="/page">Link als button</Button>
+ */
+
+type ButtonVariant = 'primary' | 'secondary';
+
+interface Props {
+  /**
+   * Visuele variant: primary (gevuld) of secondary (outline/ghost).
+   */
+  variant?: ButtonVariant;
+
+  /**
+   * Als href is gezet, wordt een <a> gerenderd met role="button" (zelfde styling).
+   */
+  href?: string;
+
+  /**
+   * type voor <button> (genegeerd bij href).
+   */
+  type?: 'button' | 'submit' | 'reset';
+
+  /**
+   * Disabled state: vermindert opacity en blokkeert interactie.
+   */
+  disabled?: boolean;
+
+  /**
+   * Optioneel size token (default: md).
+   */
+  size?: 'md' | 'lg';
+}
+
+const {
+  variant = 'primary',
+  href,
+  type = 'button',
+  disabled = false,
+  size = 'md',
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & {
+  class?: string;
+  style?: string | Record<string, string>;
+} & Record<string, unknown>;
+
+const isLink = typeof href === 'string' && href.length > 0 && !disabled;
+const Tag = isLink ? 'a' : 'button';
+
+const buttonClasses = [
+  'button',
+  `button--${variant}`,
+  `button--${size}`,
+  disabled ? 'is-disabled' : undefined,
+  typeof userClass === 'string' ? userClass : undefined,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Tag
+  {...forwardedProps}
+  class={buttonClasses}
+  data-variant={variant}
+  data-size={size}
+  aria-disabled={disabled ? 'true' : undefined}
+  style={typeof userStyle === 'string' ? userStyle : undefined}
+  {...(isLink
+    ? { href, role: 'button' }
+    : { type, disabled: disabled || undefined })}
+>
+  <span class="button__label">
+    <slot />
+  </span>
+</Tag>
+
+<style>
+  /* Base: reset + layout */
+  .button {
+    --btn-bg: var(--theme-button-primary-bg);
+    --btn-text: var(--theme-button-primary-text);
+    --btn-border: var(--theme-button-primary-border);
+    --btn-bg-hover: var(--theme-button-primary-bg-hover);
+    --btn-text-hover: var(--theme-button-primary-text-hover);
+    --btn-border-hover: var(--theme-button-primary-bg-hover);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: var(--button-height-md);
+    padding-inline: var(--button-padding-x);
+    padding-block: var(--button-padding-y);
+    border-radius: var(--button-radius);
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-body);
+    font-weight: var(--button-font-weight);
+    line-height: var(--line-height-normal);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      outline-color 0.2s ease;
+    outline-offset: var(--focus-ring-offset-outer);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .button:not(:disabled):hover {
+    background-color: var(--btn-bg-hover);
+    color: var(--btn-text-hover);
+    border-color: var(--btn-border-hover);
+  }
+
+  .button:focus-visible {
+    outline: var(--focus-ring-width) solid var(--theme-button-focus-color);
+    outline-offset: var(--focus-ring-offset-outer);
+  }
+
+  .button:disabled,
+  .button.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Secondary variant */
+  .button--secondary {
+    --btn-bg: var(--theme-button-secondary-bg);
+    --btn-text: var(--theme-button-secondary-text);
+    --btn-border: var(--theme-button-secondary-border);
+    --btn-bg-hover: var(--theme-button-secondary-bg-hover);
+    --btn-text-hover: var(--theme-button-secondary-text-hover);
+    --btn-border-hover: var(--theme-button-secondary-border-hover);
+  }
+
+  /* Size: large */
+  .button--lg {
+    min-height: var(--button-height-lg);
+    padding-inline: var(--space-5);
+    padding-block: var(--space-3);
+    font-size: var(--font-size-body-lg);
+  }
+
+  .button__label {
+    display: inline-flex;
+    align-items: center;
+    gap: inherit;
+  }
+</style>
