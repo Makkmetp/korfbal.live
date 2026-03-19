@@ -5,13 +5,15 @@ import Heading from "../components/Heading.astro";
 import Layout from "../components/Layout.astro";
 import Text from "../components/Text.astro";
 import Button from "../components/Button.astro";
+import Background from "../components/Background.astro";
 
 const pageTitle = "Korfbal.live";
 ---
 
 <BaseLayout title={pageTitle}>
   <main>
-    <Section paddingBlockStart="page-top" paddingBlockEnd="large">
+    <Section id="overzicht" paddingBlockStart="page-top" paddingBlockEnd="large">
+      <Background slot="background" />
       <Layout variant="columns-7-5">
         <Fragment slot="content-primary">
           <Heading as="h1" variant="h1">
@@ -33,7 +35,7 @@ const pageTitle = "Korfbal.live";
       </Layout>
     </Section>
 
-    <Section theme="dark" paddingBlockStart="page-top" paddingBlockEnd="large">
+    <Section id="liveverslag" theme="dark" paddingBlockStart="main" paddingBlockEnd="large">
       <Layout variant="columns" reversed>
         <Fragment slot="content-primary">
           <Heading as="h2" variant="h2">
@@ -55,7 +57,7 @@ const pageTitle = "Korfbal.live";
       </Layout>
     </Section>
 
-    <Section theme="light" paddingBlockStart="none" paddingBlockEnd="small">
+    <Section id="styles" theme="light" paddingBlockStart="none" paddingBlockEnd="small">
       <Heading as="h2" variant="h3">Buttons</Heading>
       <div class="button-group">
         <Button variant="primary">Primary</Button>

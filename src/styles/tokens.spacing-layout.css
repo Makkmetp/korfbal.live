@@ -39,9 +39,9 @@
 
   /* Navigatie */
   --nav-height: 4rem;
-  --nav-padding-x: var(--layout-page-margin);
-  --nav-padding-y: var(--layout-page-margin);
-  --nav-radius: 0.5rem;
+  --nav-padding-x: 1rem;
+  --nav-padding-y: 1rem;
+  --nav-radius: 1rem;
   --nav-banner-height: 2.4rem;
 }
 

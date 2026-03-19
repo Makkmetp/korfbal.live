@@ -1,6 +1,11 @@
 ---
 interface Props {
   /**
+   * Optionele id voor ankerlinks (bijv. vanuit een navbar).
+   */
+  id?: string;
+
+  /**
    * Theme van de section:
    * - "inherit": gebruikt de huidige CSS-variabelen (default)
    * - "light": forceert het light section theme
@@ -80,6 +85,7 @@ const sectionClasses = ['section', typeof userClass === 'string' ? userClass : u
     isolation: isolate;
     padding-block-start: var(--_section-padding-block-start);
     padding-block-end: var(--_section-padding-block-end);
+    container-type: inline-size;
   }
 
   /* Verticale spacing varianten - top */

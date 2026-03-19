@@ -1,0 +1,56 @@
+---
+type BackgroundColor = "primary" | "secondary";
+
+interface Props {
+  color?: BackgroundColor;
+}
+
+const { color = "primary" } = Astro.props as Props;
+---
+
+<div class="background" data-color={color} aria-hidden="true">
+  <svg viewBox="0 0 1025 1352" class="background__svg">
+    <path
+      d="M518.486 80.252C634.314 -26.7507 820.508 -26.7507 936.335 80.252C1054.55 189.466 1054.55 368.392 936.335 477.606L721.579 676L936.335 874.394C1054.55 983.608 1054.55 1162.53 936.335 1271.75C820.508 1378.75 634.314 1378.75 518.486 1271.75L88.6658 874.68C-29.5553 765.465 -29.5553 586.535 88.6658 477.32L518.486 80.252ZM862.857 159.476C788.495 90.7801 666.327 90.7806 591.965 159.476L162.144 556.544C90.1761 623.029 90.1761 728.971 162.144 795.456L591.965 1192.52C666.327 1261.22 788.495 1261.22 862.857 1192.52C934.825 1126.04 934.825 1020.1 862.857 953.617L605.224 715.614C594.166 705.399 587.881 691.039 587.881 676C587.881 660.961 594.166 646.601 605.224 636.385L862.857 398.383C934.825 331.898 934.825 225.961 862.857 159.476Z"
+      fill="currentColor"></path>
+  </svg>
+</div>
+
+<style>
+  .background {
+    --_background-color: var(--color-primary-500);
+    color: var(--_background-color);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .background[data-color="secondary"] {
+    --_background-color: var(--color-secondary-500);
+  }
+
+  .background__svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: min(68vw, 90rem);
+    height: auto;
+    transform: translate(20%, -42%);
+    transform-origin: top right;
+  }
+
+  @container style(--responsive-medium) {
+    .background__svg {
+      top: auto;
+      bottom: 0;
+      right: 0;
+      width: 120vw;
+      max-width: none;
+      height: auto;
+      transform: translate(20%, 20%);
+      transform-origin: bottom right;
+    }
+  }
+</style>
