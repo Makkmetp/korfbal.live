@@ -1,0 +1,57 @@
+---
+description: Architectuurregels voor breakpointless responsive design met container queries
+globs: **/*.{astro,css}
+alwaysApply: false
+---
+
+# Style Architectuur
+
+## Doel
+
+Maak componenten flexibel en herbruikbaar door responsive gedrag te baseren op container grootte in plaats van viewport breakpoints.
+
+## Richtlijnen
+
+- Gebruik container-query-driven responsive design.
+- Gebruik geen viewport media queries binnen componenten.
+- Laat componenten reageren op hun eigen container.
+- Gebruik container queries om custom properties te zetten.
+- Gebruik deze variabelen in component styling.
+- Vermijd het dupliceren van layout logic per breakpoint.
+- Gebruik variabelen om gedrag centraal aan te sturen.
+
+## Vermijden
+
+- Mixen van viewport media queries en container queries binnen componenten.
+- Hardcoded responsive waarden in component CSS.
+- Herhalen van layout regels per breakpoint.
+
+## Voorbeelden
+
+```astro
+<!-- ❌ Slecht: viewport-based responsive -->
+<style>
+  @media (min-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+```
+
+```astro
+<!-- ✅ Goed: container query + variables -->
+<style>
+  .grid {
+    --grid_columns: 1;
+    display: grid;
+    grid-template-columns: repeat(var(--grid_columns), 1fr);
+  }
+
+  @container (min-width: 40rem) {
+    .grid {
+      --grid_columns: 2;
+    }
+  }
+</style>
+```
