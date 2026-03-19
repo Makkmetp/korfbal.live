@@ -86,6 +86,11 @@ const { className: headingClasses, style: headingStyle } = buildTypographyRoot({
     max-inline-size: calc(var(--heading-max-chars, var(--heading-max-chars-default, 20)) * 1ch);
     --heading-trim-top: var(--font-trim-top);
     --heading-trim-bottom: var(--font-trim-bottom);
+
+    em {
+      font-style: normal;
+      color: var(--theme-color-accent);
+    }
   }
 
   .heading[data-max-chars='none'] {

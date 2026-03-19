@@ -18,7 +18,7 @@
   --font-size-h4: clamp(1.75rem, calc((1.75 - ((2 - 1.75) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((2 - 1.75) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 2rem);
   --font-size-h3: clamp(2.25rem, calc((2.25 - ((3 - 2.25) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((3 - 2.25) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 3rem);
   --font-size-h2: clamp(2.5rem, calc((2.5 - ((4 - 2.5) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((4 - 2.5) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 4rem);
-  --font-size-h1: clamp(3rem, calc((3 - ((5 - 3) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((5 - 3) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 5rem);
+  --font-size-h1: clamp(3rem, calc((3 - ((4.5 - 3) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((4.5 - 3) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 4.5rem);
   --font-size-display: clamp(4rem, calc((4 - ((7 - 4) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((7 - 4) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 7rem);
 
   --line-height-tight: 1;

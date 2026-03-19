@@ -28,7 +28,6 @@
 
   /* Buttons & focus */
   --button-height-md: 3rem;
-  --button-height-lg: 5rem;
   --button-padding-x: var(--space-4);
   --button-padding-y: var(--space-2);
   --button-radius: .75em;
@@ -44,9 +43,5 @@
   --nav-padding-y: var(--layout-page-margin);
   --nav-radius: 0.5rem;
   --nav-banner-height: 2.4rem;
-
-  /* Section layout tokens */
-  --section-padding-y: var(--space-section-md);
-  --section-padding-x: var(--layout-page-margin);
 }
 

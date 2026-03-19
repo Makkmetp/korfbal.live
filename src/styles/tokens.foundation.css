@@ -3,6 +3,6 @@
 :root {
   /* Viewport range voor fluid scaling (in rem-berekening) */
   --viewport-min: 20;
-  --viewport-max: 90;
+  --viewport-max: 98;
 }
 

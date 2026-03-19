@@ -11,21 +11,48 @@ const pageTitle = "Korfbal.live";
 
 <BaseLayout title={pageTitle}>
   <main>
-    <Section theme="dark">
-      <Heading as="h1" variant="display">
-        {pageTitle}
-      </Heading>
-      <Text variant="body-lg">
-        <p>Nieuwe restyling in uitvoering.</p>
-      </Text>
-      <div class="button-group">
-        <Button variant="primary" href="#">
-          Bekijk live
-        </Button>
-        <Button variant="secondary">
-          Meer info
-        </Button>
-      </div>
+    <Section paddingBlockStart="page-top" paddingBlockEnd="large">
+      <Layout variant="columns-7-5">
+        <Fragment slot="content-primary">
+          <Heading as="h1" variant="h1">
+            Maak van elke wedstrijd een verhaal <em>en krijg inzicht dat je kunt
+            delen</em>
+          </Heading>
+          <div class="button-group">
+            <Button variant="primary" href="#"> Start gratis! </Button>
+            <Button variant="secondary"> Meer over Korfbal.live </Button>
+          </div>
+        </Fragment>
+        <Fragment slot="content-secondary">
+          <img
+            src="images/screenshot-1.png"
+            alt="Korfbal.live"
+            style="max-width: 28rem; margin-inline: auto; width: 100%;"
+          />
+        </Fragment>
+      </Layout>
+    </Section>
+
+    <Section theme="dark" paddingBlockStart="page-top" paddingBlockEnd="large">
+      <Layout variant="columns" reversed>
+        <Fragment slot="content-primary">
+          <Heading as="h2" variant="h2">
+            Volgen, beleven en verbinden in <em>één liveverslag</em>
+          </Heading>
+          <Text maxChars={46}><p>Met het liveverslag van korfbal.live krijgt elke wedstrijd een
+            eigen verhaal. Ouders, supporters, opa’s en oma’s kunnen de
+            wedstrijd eenvoudig volgen via één openbare link, zonder dat ze in
+            een aparte WhatsApp-groep hoeven te zitten. Dat maakt het volgen van
+            een wedstrijd laagdrempelig, leuk en voor iedereen bereikbaar.</p></Text>
+        </Fragment>
+        <Fragment slot="content-secondary">
+          <img
+            src="images/screenshot-2.png"
+            alt="Korfbal.live"
+            style="max-width: 28rem; margin-inline: auto; width: 100%;"
+          />
+        </Fragment>
+      </Layout>
     </Section>
 
     <Section theme="light" paddingBlockStart="none" paddingBlockEnd="small">
@@ -33,7 +60,7 @@ const pageTitle = "Korfbal.live";
       <div class="button-group">
         <Button variant="primary">Primary</Button>
         <Button variant="secondary">Secondary</Button>
-        <Button variant="primary" size="lg">Primary large</Button>
+
         <Button variant="secondary" disabled>Disabled</Button>
       </div>
       <Heading as="h2" variant="h3"> Zonder background slot </Heading>
@@ -83,8 +110,8 @@ const pageTitle = "Korfbal.live";
     </Section>
 
     <Section theme="light" paddingBlockStart="main" paddingBlockEnd="main">
-      <Layout variant="stack" gap="lg">
-        <Fragment slot="column-1">
+      <Layout variant="stack">
+        <Fragment slot="content-primary">
           <Heading as="h2" variant="h2">
             Overzicht heading varianten moet over meerdere regels uitlopen
           </Heading>
@@ -94,13 +121,13 @@ const pageTitle = "Korfbal.live";
               elkaar gebruiken.
             </p>
             <p>
-              In een tekstblok kunnen meerdere paragrafen staan zonder
-              ongeldige nested p-structuur.
+              In een tekstblok kunnen meerdere paragrafen staan zonder ongeldige
+              nested p-structuur.
             </p>
           </Text>
         </Fragment>
 
-        <Fragment slot="column-2">
+        <Fragment slot="content-secondary">
           <Heading as="h2" variant="display"> Variant: display </Heading>
           <Heading as="h1" variant="h1"> Variant: h1 </Heading>
           <Heading as="h2" variant="h2"> Variant: h2 </Heading>
@@ -113,11 +140,9 @@ const pageTitle = "Korfbal.live";
     </Section>
 
     <Section theme="dark" paddingBlockStart="main" paddingBlockEnd="main">
-      <Layout variant="columns" gap="lg">
-        <Fragment slot="column-1">
-          <Heading as="h2" variant="h2">
-            Layout variant: columns
-          </Heading>
+      <Layout variant="columns">
+        <Fragment slot="content-primary">
+          <Heading as="h2" variant="h2"> Layout variant: columns </Heading>
           <Text variant="body">
             <p>
               Deze kolom bevat de tekstuele content. Op kleinere schermen valt
@@ -126,10 +151,8 @@ const pageTitle = "Korfbal.live";
           </Text>
         </Fragment>
 
-        <Fragment slot="column-2">
-          <Heading as="h3" variant="h4">
-            Tweede kolom
-          </Heading>
+        <Fragment slot="content-secondary">
+          <Heading as="h3" variant="h4"> Tweede kolom </Heading>
           <Text variant="body-sm">
             <p>
               Hier kan bijvoorbeeld media, een card-lijst of extra context
@@ -142,29 +165,41 @@ const pageTitle = "Korfbal.live";
 
     <!-- Tijdelijk: color swatches -->
     <Section theme="light" paddingBlockStart="main" paddingBlockEnd="main">
-      <Heading as="h2" variant="h3">
-        Color swatches (tijdelijk)
-      </Heading>
+      <Heading as="h2" variant="h3"> Color swatches (tijdelijk) </Heading>
       <div class="swatches-group">
-        <Heading as="h3" variant="h5" class="swatches-group__title">Primary</Heading>
+        <Heading as="h3" variant="h5" class="swatches-group__title"
+          >Primary</Heading
+        >
         <div class="swatches">
-          {[100, 200, 300, 400, 500, 600, 700, 800, 900].map((n) => (
-            <div class="swatch" style={`--swatch-color: var(--color-primary-${n});`}>
-              <span class="swatch__patch" />
-              <span class="swatch__label">primary-{n}</span>
-            </div>
-          ))}
+          {
+            [100, 200, 300, 400, 500, 600, 700, 800, 900].map((n) => (
+              <div
+                class="swatch"
+                style={`--swatch-color: var(--color-primary-${n});`}
+              >
+                <span class="swatch__patch" />
+                <span class="swatch__label">primary-{n}</span>
+              </div>
+            ))
+          }
         </div>
       </div>
       <div class="swatches-group">
-        <Heading as="h3" variant="h5" class="swatches-group__title">Secondary</Heading>
+        <Heading as="h3" variant="h5" class="swatches-group__title"
+          >Secondary</Heading
+        >
         <div class="swatches">
-          {[100, 200, 300, 400, 500, 600, 700, 800, 900].map((n) => (
-            <div class="swatch" style={`--swatch-color: var(--color-secondary-${n});`}>
-              <span class="swatch__patch" />
-              <span class="swatch__label">secondary-{n}</span>
-            </div>
-          ))}
+          {
+            [100, 200, 300, 400, 500, 600, 700, 800, 900].map((n) => (
+              <div
+                class="swatch"
+                style={`--swatch-color: var(--color-secondary-${n});`}
+              >
+                <span class="swatch__patch" />
+                <span class="swatch__label">secondary-{n}</span>
+              </div>
+            ))
+          }
         </div>
       </div>
     </Section>

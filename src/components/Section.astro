@@ -67,6 +67,9 @@ const sectionClasses = ['section', typeof userClass === 'string' ? userClass : u
 
 <style>
   .section {
+    --_section-padding-block-start: var(--space-section-md);
+    --_section-padding-block-end: var(--space-section-md);
+
     background: var(--theme-color-bg);
     color: var(--theme-color-text);
     flex-flow: column;
@@ -75,50 +78,50 @@ const sectionClasses = ['section', typeof userClass === 'string' ? userClass : u
     display: flex;
     position: relative;
     isolation: isolate;
-    padding-block-start: var(--section-padding-y);
-    padding-block-end: var(--section-padding-y);
+    padding-block-start: var(--_section-padding-block-start);
+    padding-block-end: var(--_section-padding-block-end);
   }
 
   /* Verticale spacing varianten - top */
   .section[data-padding-top='none'] {
-    padding-block-start: var(--space-section-none);
+    --_section-padding-block-start: var(--space-section-none);
   }
 
   .section[data-padding-top='small'] {
-    padding-block-start: var(--space-section-sm);
+    --_section-padding-block-start: var(--space-section-sm);
   }
 
   .section[data-padding-top='main'] {
-    padding-block-start: var(--space-section-md, var(--section-padding-y));
+    --_section-padding-block-start: var(--space-section-md);
   }
 
   .section[data-padding-top='large'] {
-    padding-block-start: var(--space-section-lg);
+    --_section-padding-block-start: var(--space-section-lg);
   }
 
   .section[data-padding-top='page-top'] {
-    padding-block-start: var(--space-section-page-top);
+    --_section-padding-block-start: var(--space-section-page-top);
   }
 
   /* Verticale spacing varianten - bottom */
   .section[data-padding-bottom='none'] {
-    padding-block-end: var(--space-section-none);
+    --_section-padding-block-end: var(--space-section-none);
   }
 
   .section[data-padding-bottom='small'] {
-    padding-block-end: var(--space-section-sm);
+    --_section-padding-block-end: var(--space-section-sm);
   }
 
   .section[data-padding-bottom='main'] {
-    padding-block-end: var(--space-section-md, var(--section-padding-y));
+    --_section-padding-block-end: var(--space-section-md);
   }
 
   .section[data-padding-bottom='large'] {
-    padding-block-end: var(--space-section-lg);
+    --_section-padding-block-end: var(--space-section-lg);
   }
 
   .section[data-padding-bottom='page-top'] {
-    padding-block-end: var(--space-section-page-top);
+    --_section-padding-block-end: var(--space-section-page-top);
   }
 
   .section__background {

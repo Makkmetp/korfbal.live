@@ -31,10 +31,6 @@ interface Props {
    */
   disabled?: boolean;
 
-  /**
-   * Optioneel size token (default: md).
-   */
-  size?: 'md' | 'lg';
 }
 
 const {
@@ -42,7 +38,6 @@ const {
   href,
   type = 'button',
   disabled = false,
-  size = 'md',
   class: userClass,
   style: userStyle,
   ...forwardedProps
@@ -57,7 +52,6 @@ const Tag = isLink ? 'a' : 'button';
 const buttonClasses = [
   'button',
   `button--${variant}`,
-  `button--${size}`,
   disabled ? 'is-disabled' : undefined,
   typeof userClass === 'string' ? userClass : undefined,
 ]
@@ -69,7 +63,6 @@ const buttonClasses = [
   {...forwardedProps}
   class={buttonClasses}
   data-variant={variant}
-  data-size={size}
   aria-disabled={disabled ? 'true' : undefined}
   style={typeof userStyle === 'string' ? userStyle : undefined}
   {...(isLink
@@ -143,14 +136,6 @@ const buttonClasses = [
     --btn-bg-hover: var(--theme-button-secondary-bg-hover);
     --btn-text-hover: var(--theme-button-secondary-text-hover);
     --btn-border-hover: var(--theme-button-secondary-border-hover);
-  }
-
-  /* Size: large */
-  .button--lg {
-    min-height: var(--button-height-lg);
-    padding-inline: var(--space-5);
-    padding-block: var(--space-3);
-    font-size: var(--font-size-body-lg);
   }
 
   .button__label {
