@@ -13,13 +13,17 @@ const pageTitle = "Korfbal.live";
 
 <BaseLayout title={pageTitle}>
   <main>
-    <Section id="overzicht" paddingBlockStart="page-top" paddingBlockEnd="large">
-      <Background slot="background" />
+    <Section
+      id="overzicht"
+      paddingBlockStart="page-top"
+      paddingBlockEnd="large"
+    >
       <Layout variant="columns-7-5">
         <Fragment slot="content-primary">
           <Heading as="h1" variant="h1">
-            Maak van elke wedstrijd een verhaal <em>en krijg inzicht dat je kunt
-            delen</em>
+            Maak van elke wedstrijd een verhaal <em
+              >en krijg inzicht dat je kunt delen</em
+            >
           </Heading>
           <div class="button-group">
             <Button variant="primary" href="#"> Start gratis! </Button>
@@ -34,19 +38,32 @@ const pageTitle = "Korfbal.live";
           />
         </Fragment>
       </Layout>
+      <Background slot="background" />
     </Section>
 
-    <Section id="liveverslag" theme="dark" paddingBlockStart="main" paddingBlockEnd="large">
+    <Section
+      id="liveverslag"
+      theme="dark"
+      paddingBlockStart="main"
+      paddingBlockEnd="large"
+    >
       <Layout variant="columns" reversed>
         <Fragment slot="content-primary">
           <Heading as="h2" variant="h2">
             Volgen, beleven en verbinden in <em>één liveverslag</em>
           </Heading>
-          <Text maxChars={46}><p>Met het liveverslag van korfbal.live krijgt elke wedstrijd een
-            eigen verhaal. Ouders, supporters, opa’s en oma’s kunnen de
-            wedstrijd eenvoudig volgen via één openbare link, zonder dat ze in
-            een aparte WhatsApp-groep hoeven te zitten. Dat maakt het volgen van
-            een wedstrijd laagdrempelig, leuk en voor iedereen bereikbaar.</p></Text>
+          <Text maxChars={46}
+            ><p>
+              Met het liveverslag van korfbal.live krijgt elke wedstrijd een
+              eigen verhaal. Ouders, supporters, opa’s en oma’s kunnen de
+              wedstrijd eenvoudig volgen via één openbare link, zonder dat ze in
+              een aparte WhatsApp-groep hoeven te zitten. Dat maakt het volgen
+              van een wedstrijd laagdrempelig, leuk en voor iedereen bereikbaar.
+            </p></Text
+          >
+          <Button variant="secondary" href="meer-over-live-stream">
+            Meer over de Live Stream
+          </Button>
         </Fragment>
         <Fragment slot="content-secondary">
           <img
@@ -56,9 +73,40 @@ const pageTitle = "Korfbal.live";
           />
         </Fragment>
       </Layout>
+      <Background slot="background" color="secondary" location="bottom-left" />
     </Section>
 
-    <Section id="styles" theme="light" paddingBlockStart="none" paddingBlockEnd="small">
+    <Section id="statistieken" theme="light">
+      <Layout variant="columns">
+        <Fragment slot="content-primary">
+          <Heading as="h2" variant="h2">
+            Statistieken die je <em>team beter maken</em>
+          </Heading>
+          <Text maxChars={46}
+            ><p>
+              Krijg inzicht in wat er écht gebeurt tijdens een wedstrijd. Ontdek
+              waar kansen ontstaan en van welke posities doelpogingen worden
+              genomen. Zo ontdek je als trainer of coach beter waar je team
+              gevaarlijk is, waar kansen onbenut blijven en welke keuzes het
+              meeste rendement opleveren.
+            </p></Text
+          >
+          <Button variant="secondary" href="meer-over-live-stream">
+            Meer over de Live Stream
+          </Button>
+        </Fragment>
+        <Fragment slot="content-secondary">
+          <div style="width: 100%; height: 100%; background: var(--theme-color-surface);"></div>
+        </Fragment>
+      </Layout>
+    </Section>
+
+    <Section
+      id="styles"
+      theme="light"
+      paddingBlockStart="none"
+      paddingBlockEnd="small"
+    >
       <Heading as="h2" variant="h3">Buttons</Heading>
       <div class="button-group">
         <Button variant="primary">Primary</Button>
@@ -172,19 +220,28 @@ const pageTitle = "Korfbal.live";
         <Card>
           <Heading as="h3" variant="h4">Default card</Heading>
           <Text variant="body-sm">
-            <p>Dit is de standaard card-variant met een subtiele border en surface achtergrond.</p>
+            <p>
+              Dit is de standaard card-variant met een subtiele border en
+              surface achtergrond.
+            </p>
           </Text>
         </Card>
         <Card variant="featured">
           <Heading as="h3" variant="h4">Featured card</Heading>
           <Text variant="body-sm">
-            <p>De featured variant valt meer op met een accent-tint als achtergrond en dikkere border.</p>
+            <p>
+              De featured variant valt meer op met een accent-tint als
+              achtergrond en dikkere border.
+            </p>
           </Text>
         </Card>
         <Card>
           <Heading as="h3" variant="h4">Nog een default</Heading>
           <Text variant="body-sm">
-            <p>Cards kunnen naast elkaar in een grid staan en passen zich aan de beschikbare ruimte aan.</p>
+            <p>
+              Cards kunnen naast elkaar in een grid staan en passen zich aan de
+              beschikbare ruimte aan.
+            </p>
           </Text>
         </Card>
       </div>
