@@ -27,19 +27,33 @@
   }
 
   .navbar__element {
+    --_navbar-wrap: nowrap;
+    --_navbar-justify: space-between;
+    --_navbar-row-gap: 0;
+    --_navbar-padding-block: 0;
+    --_navbar-nav-order: 0;
+    --_navbar-nav-width: auto;
+    --_navbar-nav-margin-inline: auto;
+    --_navbar-list-justify: flex-start;
+    --_navbar-list-wrap: nowrap;
+
     width: calc(100% - (var(--nav-padding-x) * 2));
     max-width: 64rem;
     min-height: var(--nav-height);
     margin-inline: auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: var(--_navbar-justify);
     gap: var(--space-3);
+    flex-wrap: var(--_navbar-wrap);
+    row-gap: var(--_navbar-row-gap);
     container-type: inline-size;
     background-color: white;
     border-radius: var(--nav-radius);
+    box-shadow: var(--theme-shadow-subtle);
     margin-top: 3rem;
     padding-inline: var(--nav-padding-x);
+    padding-block: var(--_navbar-padding-block);
   }
 
   .navbar__brand {
@@ -53,13 +67,17 @@
   }
 
   .navbar__nav {
-    margin-inline: auto;
+    order: var(--_navbar-nav-order);
+    width: var(--_navbar-nav-width);
+    margin-inline: var(--_navbar-nav-margin-inline);
   }
 
   .navbar__list {
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    justify-content: var(--_navbar-list-justify);
+    flex-wrap: var(--_navbar-list-wrap);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -109,22 +127,16 @@
   }
 
   @container (width < 50em) {
-    .navbar__inner {
-      flex-wrap: wrap;
-      justify-content: center;
-      row-gap: var(--space-2);
-      padding-block: var(--space-2);
-    }
-
-    .navbar__nav {
-      order: 3;
-      width: 100%;
-      margin-inline: 0;
-    }
-
-    .navbar__list {
-      justify-content: center;
-      flex-wrap: wrap;
+    .navbar__element {
+      --_navbar-wrap: wrap;
+      --_navbar-justify: center;
+      --_navbar-row-gap: var(--space-2);
+      --_navbar-padding-block: var(--space-2);
+      --_navbar-nav-order: 3;
+      --_navbar-nav-width: 100%;
+      --_navbar-nav-margin-inline: 0;
+      --_navbar-list-justify: center;
+      --_navbar-list-wrap: wrap;
     }
   }
 </style>

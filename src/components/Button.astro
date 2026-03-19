@@ -51,8 +51,6 @@ const Tag = isLink ? 'a' : 'button';
 
 const buttonClasses = [
   'button',
-  `button--${variant}`,
-  disabled ? 'is-disabled' : undefined,
   typeof userClass === 'string' ? userClass : undefined,
 ]
   .filter(Boolean)
@@ -63,6 +61,7 @@ const buttonClasses = [
   {...forwardedProps}
   class={buttonClasses}
   data-variant={variant}
+  data-disabled={disabled ? 'true' : undefined}
   aria-disabled={disabled ? 'true' : undefined}
   style={typeof userStyle === 'string' ? userStyle : undefined}
   {...(isLink
@@ -77,13 +76,13 @@ const buttonClasses = [
 <style>
   /* Base: reset + layout */
   .button {
-    --btn-bg: var(--theme-button-primary-bg);
-    --btn-text: var(--theme-button-primary-text);
-    --btn-border: var(--theme-button-primary-border);
-    --btn-bg-hover: var(--theme-button-primary-bg-hover);
-    --btn-text-hover: var(--theme-button-primary-text-hover);
-    --btn-border-hover: var(--theme-button-primary-bg-hover);
+    --_button-bg: var(--theme-button-primary-bg);
+    --_button-text: var(--theme-button-primary-text);
+    --_button-bg-hover: var(--theme-button-primary-bg-hover);
+    --_button-text-hover: var(--theme-button-primary-text-hover);
 
+    appearance: none;
+    -webkit-appearance: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -91,9 +90,11 @@ const buttonClasses = [
     min-height: var(--button-height-md);
     padding-inline: var(--button-padding-x);
     padding-block: var(--button-padding-y);
+    border: none;
     border-radius: var(--button-radius);
-    background-color: var(--btn-bg);
-    color: var(--btn-text);
+    background-color: var(--_button-bg);
+    color: var(--_button-text);
+    font: inherit;
     font-family: var(--font-family-base);
     font-size: var(--font-size-body);
     font-weight: var(--button-font-weight);
@@ -104,16 +105,14 @@ const buttonClasses = [
     transition:
       background-color 0.2s ease,
       color 0.2s ease,
-      border-color 0.2s ease,
       outline-color 0.2s ease;
     outline-offset: var(--focus-ring-offset-outer);
     -webkit-tap-highlight-color: transparent;
   }
 
   .button:not(:disabled):hover {
-    background-color: var(--btn-bg-hover);
-    color: var(--btn-text-hover);
-    border-color: var(--btn-border-hover);
+    background-color: var(--_button-bg-hover);
+    color: var(--_button-text-hover);
   }
 
   .button:focus-visible {
@@ -122,20 +121,18 @@ const buttonClasses = [
   }
 
   .button:disabled,
-  .button.is-disabled {
+  .button[data-disabled='true'] {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
   }
 
   /* Secondary variant */
-  .button--secondary {
-    --btn-bg: var(--theme-button-secondary-bg);
-    --btn-text: var(--theme-button-secondary-text);
-    --btn-border: var(--theme-button-secondary-border);
-    --btn-bg-hover: var(--theme-button-secondary-bg-hover);
-    --btn-text-hover: var(--theme-button-secondary-text-hover);
-    --btn-border-hover: var(--theme-button-secondary-border-hover);
+  .button[data-variant='secondary'] {
+    --_button-bg: var(--theme-button-secondary-bg);
+    --_button-text: var(--theme-button-secondary-text);
+    --_button-bg-hover: var(--theme-button-secondary-bg-hover);
+    --_button-text-hover: var(--theme-button-secondary-text-hover);
   }
 
   .button__label {

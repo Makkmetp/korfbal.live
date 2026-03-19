@@ -19,6 +19,14 @@ const { color = "primary" } = Astro.props as Props;
 <style>
   .background {
     --_background-color: var(--color-primary-500);
+    --_background-svg-top: 0;
+    --_background-svg-right: 0;
+    --_background-svg-bottom: auto;
+    --_background-svg-width: min(68vw, 90rem);
+    --_background-svg-max-width: initial;
+    --_background-svg-transform: translate(20%, -42%);
+    --_background-svg-origin: top right;
+
     color: var(--_background-color);
     position: relative;
     width: 100%;
@@ -33,24 +41,24 @@ const { color = "primary" } = Astro.props as Props;
 
   .background__svg {
     position: absolute;
-    top: 0;
-    right: 0;
-    width: min(68vw, 90rem);
+    top: var(--_background-svg-top);
+    right: var(--_background-svg-right);
+    bottom: var(--_background-svg-bottom);
+    width: var(--_background-svg-width);
+    max-width: var(--_background-svg-max-width);
     height: auto;
-    transform: translate(20%, -42%);
-    transform-origin: top right;
+    transform: var(--_background-svg-transform);
+    transform-origin: var(--_background-svg-origin);
   }
 
   @container style(--responsive-medium) {
-    .background__svg {
-      top: auto;
-      bottom: 0;
-      right: 0;
-      width: 120vw;
-      max-width: none;
-      height: auto;
-      transform: translate(20%, 20%);
-      transform-origin: bottom right;
+    .background {
+      --_background-svg-top: auto;
+      --_background-svg-bottom: 0;
+      --_background-svg-width: 120vw;
+      --_background-svg-max-width: none;
+      --_background-svg-transform: translate(20%, 20%);
+      --_background-svg-origin: bottom right;
     }
   }
 </style>

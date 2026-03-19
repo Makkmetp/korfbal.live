@@ -17,8 +17,8 @@
   --theme-button-secondary-bg: white;
   --theme-button-secondary-text: var(--theme-color-text);
   --theme-button-secondary-border: var(--theme-color-border);
-  --theme-button-secondary-bg-hover: var(--color-primary-100);
-  --theme-button-secondary-text-hover: var(--theme-color-text);
+  --theme-button-secondary-bg-hover: var(--theme-button-primary-bg-hover);
+  --theme-button-secondary-text-hover: white;
   --theme-button-secondary-border-hover: var(--color-primary-400);
 
   --theme-button-focus-color: var(--color-focus);
@@ -26,6 +26,7 @@
   --theme-link-border: var(--theme-color-border);
   --theme-link-text-hover: var(--theme-link-text);
   --theme-link-border-hover: var(--theme-color-accent);
+  --theme-shadow-subtle: 0 4px 12px color-mix(in srgb, var(--theme-color-text) 8%, transparent);
 }
 
 /* Light theme */
@@ -54,8 +55,8 @@
   --theme-button-secondary-bg: var(--theme-color-surface);
   --theme-button-secondary-text: var(--theme-color-text);
   --theme-button-secondary-border: var(--theme-color-border);
-  --theme-button-secondary-bg-hover: var(--color-primary-200);
-  --theme-button-secondary-text-hover: var(--theme-color-text);
+  --theme-button-secondary-bg-hover: var(--theme-button-primary-bg-hover);
+  --theme-button-secondary-text-hover: white;
   --theme-button-secondary-border-hover: var(--color-primary-400);
 
   --theme-link-text: var(--theme-color-text);
