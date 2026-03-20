@@ -77,7 +77,7 @@ const pageTitle = "Korfbal.live";
     </Section>
 
     <Section id="statistieken" theme="light">
-      <Layout variant="columns">
+      <Layout variant="breakout">
         <Fragment slot="content-primary">
           <Heading as="h2" variant="h2">
             Statistieken die je <em>team beter maken</em>
@@ -96,7 +96,11 @@ const pageTitle = "Korfbal.live";
           </Button>
         </Fragment>
         <Fragment slot="content-secondary">
-          <div style="width: 100%; height: 100%; background: var(--theme-color-surface);"></div>
+          <img
+            src="images/screenshot-3.png"
+            alt="Korfbal.live"
+            style="margin-inline: auto; width: 100%;"
+          />
         </Fragment>
       </Layout>
     </Section>
@@ -111,8 +115,6 @@ const pageTitle = "Korfbal.live";
       <div class="button-group">
         <Button variant="primary">Primary</Button>
         <Button variant="secondary">Secondary</Button>
-
-        <Button variant="secondary" disabled>Disabled</Button>
       </div>
       <Heading as="h2" variant="h3"> Zonder background slot </Heading>
       <Text>

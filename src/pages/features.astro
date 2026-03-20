@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Heading from "../components/Heading.astro";
+import Layout from "../components/Layout.astro";
+import Text from "../components/Text.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button.astro";
+
+const pageTitle = "Features | Korfbal.live";
+---
+
+<BaseLayout title={pageTitle}>
+  <main>
+    <Section id="features-overview" paddingBlockStart="page-top" paddingBlockEnd="large">
+      <Layout variant="stack">
+        <Fragment slot="content-primary">
+          <Heading as="h1" variant="h1">
+            Alles wat je nodig hebt om wedstrijden <em>live te volgen en analyseren</em>
+          </Heading>
+          <Text maxChars={58}>
+            <p>
+              Met Korfbal.live geef je supporters een live wedstrijdverhaal en geef je
+              trainers direct inzicht in het verloop van de wedstrijd.
+            </p>
+          </Text>
+          <div class="button-group">
+            <Button variant="primary" href="/">Terug naar home</Button>
+            <Button variant="secondary">Plan een demo</Button>
+          </div>
+        </Fragment>
+      </Layout>
+    </Section>
+
+    <Section id="features-list" theme="light">
+      <Heading as="h2" variant="h3">Belangrijkste features</Heading>
+      <div class="card-grid">
+        <Card>
+          <Heading as="h3" variant="h4">Live wedstrijdverslag</Heading>
+          <Text variant="body-sm">
+            <p>
+              Houd acties, scores en momentum realtime bij via een gedeelde link
+              die iedereen direct kan openen.
+            </p>
+          </Text>
+        </Card>
+
+        <Card variant="featured">
+          <Heading as="h3" variant="h4">Wedstrijdstatistieken</Heading>
+          <Text variant="body-sm">
+            <p>
+              Analyseer doelpogingen, kansen en scoreverloop om direct na de
+              wedstrijd beter te evalueren.
+            </p>
+          </Text>
+        </Card>
+
+        <Card>
+          <Heading as="h3" variant="h4">Teamgerichte inzichten</Heading>
+          <Text variant="body-sm">
+            <p>
+              Vergelijk prestaties over meerdere wedstrijden en zie waar je team
+              consistent sterk of kwetsbaar is.
+            </p>
+          </Text>
+        </Card>
+      </div>
+    </Section>
+  </main>
+</BaseLayout>
+
+<style>
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: var(--space-4);
+  }
+</style>

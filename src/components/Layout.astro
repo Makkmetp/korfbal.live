@@ -1,15 +1,16 @@
 ---
-type LayoutVariant = 'stack' | 'columns' | 'columns-7-5';
+type LayoutVariant = 'stack' | 'columns' | 'columns-7-5' | 'breakout';
 
 interface Props {
   /**
    * Layout variant.
-   * Ondersteunt "stack", "columns" en "columns-7-5".
+   * Ondersteunt "stack", "columns", "columns-7-5" en "breakout".
    */
   variant?: LayoutVariant;
 
   /**
    * Keer de visuele volgorde van primary en secondary om.
+   * Bij variant "breakout": spiegelt de grid (breakout links/rechts); op small/medium stack blijft `order` de volgorde sturen.
    */
   reversed?: boolean;
 }
@@ -59,14 +60,19 @@ const layoutClasses = ['layout', typeof userClass === 'string' ? userClass : und
   .layout {
     --_layout-display: flex;
     --_layout-grid-template-columns: 1fr;
-    
+    --_layout-inner-width: 100%;
+    --_layout-inner-margin-inline: 0;
+    --_layout-primary-grid-column: span var(--_layout-primary-columns, 1);
+    --_layout-secondary-grid-column: span var(--_layout-secondary-columns, 1);
+    --_layout-primary-grid-row: auto;
+    --_layout-secondary-grid-row: auto;
+
     column-gap: var(--layout-gutter);
     row-gap: var(--space-8);
     justify-content: center;
     align-items: stretch;
     width: 100%;
     display: flex;
-    /* container-type: inline-size; */
   }
 
   .layout[data-variant='columns'] {
@@ -81,6 +87,32 @@ const layoutClasses = ['layout', typeof userClass === 'string' ? userClass : und
     --_layout-secondary-columns: 5;
   }
 
+  .layout[data-variant='breakout'] {
+    --_layout-display: grid;
+    --_layout-content-column-width: calc(
+      (
+        min(var(--layout-max-width), calc(100vw - (var(--layout-page-margin) * 2)))
+        - (var(--layout-gutter) * (var(--layout-column-count) - 1))
+      ) / var(--layout-column-count)
+    );
+    --_layout-grid-template-columns:
+      [full-start] minmax(0, 1fr)
+      [content-start] repeat(var(--layout-column-count), minmax(0, var(--_layout-content-column-width)))
+      [content-end] minmax(0, 1fr)
+      [full-end];
+    --_layout-inner-width: calc(100% + ((100vw - 100%) * var(--responsive-large, 0)));
+    --_layout-inner-margin-inline: calc((50% - 50vw) * var(--responsive-large, 0));
+    --_layout-primary-grid-column: content-start / span 6;
+    --_layout-secondary-grid-column: 8 / full-end;
+    --_layout-primary-grid-row: 1;
+    --_layout-secondary-grid-row: 1;
+  }
+
+  .layout[data-variant='breakout'][data-reversed='true'] {
+    --_layout-primary-grid-column: 8 / content-end;
+    --_layout-secondary-grid-column: full-start / 8;
+  }
+
   .layout[data-reversed='true'] {
     --_layout-secondary-order: -1
   }
@@ -91,12 +123,14 @@ const layoutClasses = ['layout', typeof userClass === 'string' ? userClass : und
     flex-flow: column;
     align-items: stretch;
     grid-template-columns: var(--_layout-grid-template-columns);
-    width: 100%;
+    width: var(--_layout-inner-width);
+    margin-inline: var(--_layout-inner-margin-inline);
     display: var(--flex-medium, var(--_layout-display));
   }
 
   .layout__content--primary {
-    grid-column: span var(--_layout-primary-columns, 1);
+    grid-column: var(--_layout-primary-grid-column);
+    grid-row: var(--_layout-primary-grid-row);
     align-self: center;
     display: flex;
     flex-flow: column;
@@ -104,7 +138,8 @@ const layoutClasses = ['layout', typeof userClass === 'string' ? userClass : und
   }
 
   .layout__content--secondary {
-    grid-column: span var(--_layout-secondary-columns, 1);
+    grid-column: var(--_layout-secondary-grid-column);
+    grid-row: var(--_layout-secondary-grid-row);
     text-align: center;
     order: calc(var(--_layout-secondary-order, 0) * var(--responsive-large, 0));
   }

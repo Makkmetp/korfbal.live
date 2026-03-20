@@ -1,7 +1,7 @@
 ---
 /**
  * Button component met primary en secondary varianten.
- * Gebruikt theme-tokens voor kleuren; reset en focus/hover/disabled states volgens best practices.
+ * Gebruikt theme-tokens voor kleuren; reset en focus/hover states volgens best practices.
  *
  * Gebruik:
  * - <Button variant="primary">Label</Button>
@@ -26,18 +26,12 @@ interface Props {
    */
   type?: 'button' | 'submit' | 'reset';
 
-  /**
-   * Disabled state: vermindert opacity en blokkeert interactie.
-   */
-  disabled?: boolean;
-
 }
 
 const {
   variant = 'primary',
   href,
   type = 'button',
-  disabled = false,
   class: userClass,
   style: userStyle,
   ...forwardedProps
@@ -46,7 +40,7 @@ const {
   style?: string | Record<string, string>;
 } & Record<string, unknown>;
 
-const isLink = typeof href === 'string' && href.length > 0 && !disabled;
+const isLink = typeof href === 'string' && href.length > 0;
 const Tag = isLink ? 'a' : 'button';
 
 const buttonClasses = [
@@ -61,12 +55,10 @@ const buttonClasses = [
   {...forwardedProps}
   class={buttonClasses}
   data-variant={variant}
-  data-disabled={disabled ? 'true' : undefined}
-  aria-disabled={disabled ? 'true' : undefined}
   style={typeof userStyle === 'string' ? userStyle : undefined}
   {...(isLink
     ? { href, role: 'button' }
-    : { type, disabled: disabled || undefined })}
+    : { type })}
 >
   <span class="button__label">
     <slot />
@@ -110,7 +102,7 @@ const buttonClasses = [
     -webkit-tap-highlight-color: transparent;
   }
 
-  .button:not(:disabled):hover {
+  .button:hover {
     background-color: var(--_button-bg-hover);
     color: var(--_button-text-hover);
   }
@@ -118,13 +110,6 @@ const buttonClasses = [
   .button:focus-visible {
     outline: var(--focus-ring-width) solid var(--theme-button-focus-color);
     outline-offset: var(--focus-ring-offset-outer);
-  }
-
-  .button:disabled,
-  .button[data-disabled='true'] {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
   }
 
   /* Secondary variant */
