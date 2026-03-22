@@ -56,7 +56,7 @@
   --text-style-body-font-weight: var(--font-weight-regular);
   --text-style-body-text-transform: var(--text-transform-none);
   --text-style-body-text-wrap: pretty;
-  --text-style-body-margin-bottom: var(--space-3);
+  --text-style-body-margin-bottom: var(--space-5);
   --text-style-body-max-chars: 66;
   --text-style-body-trim-top: var(--font-trim-top);
   --text-style-body-trim-bottom: var(--font-trim-bottom);
@@ -79,7 +79,7 @@
   --text-style-h6-font-weight: var(--font-weight-bold);
   --text-style-h6-text-transform: var(--text-transform-uppercase);
   --text-style-h6-text-wrap: balance;
-  --text-style-h6-margin-bottom: var(--space-2);
+  --text-style-h6-margin-bottom: var(--space-4);
   --text-style-h6-max-chars: 36;
   --text-style-h6-trim-top: var(--font-trim-top);
   --text-style-h6-trim-bottom: var(--font-trim-bottom);
@@ -90,7 +90,7 @@
   --text-style-h5-font-weight: var(--font-weight-bold);
   --text-style-h5-text-transform: var(--text-transform-none);
   --text-style-h5-text-wrap: balance;
-  --text-style-h5-margin-bottom: var(--space-2);
+  --text-style-h5-margin-bottom: var(--space-4);
   --text-style-h5-max-chars: 32;
   --text-style-h5-trim-top: var(--font-trim-top);
   --text-style-h5-trim-bottom: var(--font-trim-bottom);
@@ -101,7 +101,7 @@
   --text-style-h4-font-weight: var(--font-weight-bold);
   --text-style-h4-text-transform: var(--text-transform-none);
   --text-style-h4-text-wrap: balance;
-  --text-style-h4-margin-bottom: var(--space-3);
+  --text-style-h4-margin-bottom: var(--space-5);
   --text-style-h4-max-chars: 28;
   --text-style-h4-trim-top: var(--font-trim-top);
   --text-style-h4-trim-bottom: var(--font-trim-bottom);
@@ -112,7 +112,7 @@
   --text-style-h3-font-weight: var(--font-weight-bold);
   --text-style-h3-text-transform: var(--text-transform-none);
   --text-style-h3-text-wrap: balance;
-  --text-style-h3-margin-bottom: var(--space-3);
+  --text-style-h3-margin-bottom: var(--space-5);
   --text-style-h3-max-chars: 24;
   --text-style-h3-trim-top: var(--font-trim-top);
   --text-style-h3-trim-bottom: var(--font-trim-bottom);
@@ -123,7 +123,7 @@
   --text-style-h2-font-weight: var(--font-weight-bold);
   --text-style-h2-text-transform: var(--text-transform-none);
   --text-style-h2-text-wrap: balance;
-  --text-style-h2-margin-bottom: var(--space-4);
+  --text-style-h2-margin-bottom: var(--space-6);
   --text-style-h2-max-chars: 20;
   --text-style-h2-trim-top: var(--font-trim-top);
   --text-style-h2-trim-bottom: var(--font-trim-bottom);
@@ -134,7 +134,7 @@
   --text-style-h1-font-weight: var(--font-weight-bold);
   --text-style-h1-text-transform: var(--text-transform-none);
   --text-style-h1-text-wrap: balance;
-  --text-style-h1-margin-bottom: var(--space-4);
+  --text-style-h1-margin-bottom: var(--space-6);
   --text-style-h1-max-chars: 18;
   --text-style-h1-trim-top: var(--font-trim-top);
   --text-style-h1-trim-bottom: var(--font-trim-bottom);
@@ -145,7 +145,7 @@
   --text-style-display-font-weight: var(--font-weight-bold);
   --text-style-display-text-transform: var(--text-transform-none);
   --text-style-display-text-wrap: balance;
-  --text-style-display-margin-bottom: var(--space-4);
+  --text-style-display-margin-bottom: var(--space-6);
   --text-style-display-max-chars: 16;
   --text-style-display-trim-top: var(--font-trim-top);
   --text-style-display-trim-bottom: var(--font-trim-bottom);

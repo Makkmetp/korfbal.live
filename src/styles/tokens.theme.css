@@ -56,7 +56,7 @@
   --theme-button-secondary-text: var(--theme-color-text);
   --theme-button-secondary-border: var(--theme-color-border);
   --theme-button-secondary-bg-hover: var(--theme-button-primary-bg-hover);
-  --theme-button-secondary-text-hover: white;
+  --theme-button-secondary-text-hover: var(--theme-color-bg);
   --theme-button-secondary-border-hover: var(--color-primary-400);
 
   --theme-link-text: var(--theme-color-text);

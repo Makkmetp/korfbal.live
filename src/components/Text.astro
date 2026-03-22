@@ -78,6 +78,7 @@ const { className: textClasses, style: textStyle } = buildTypographyRoot({
 <style>
   .text {
     margin: 0;
+    --text-flow-space: var(--space-5);
     font-family: var(--font-family-base);
     color: inherit;
     font-size: var(--text-font-size, var(--text-style-body-font-size));
@@ -153,6 +154,7 @@ const { className: textClasses, style: textStyle } = buildTypographyRoot({
   }
 
   .text > :global(p),
+  .text :global(p),
   .text > :global(blockquote),
   .text > :global(label),
   .text > :global(ul),
@@ -207,11 +209,17 @@ const { className: textClasses, style: textStyle } = buildTypographyRoot({
     margin-top: var(--text-flow-space, var(--space-3));
   }
 
+  .text > :global(p + p),
+  .text :global(p + p) {
+    margin-top: var(--text-flow-space, var(--space-3));
+  }
+
   .text > :first-child {
     margin-top: 0;
   }
 
-  .text > :last-child {
+  .text > :last-child,
+  .text :global(:is(p, blockquote, ul, ol, figure, pre, table, h1, h2, h3, h4, h5, h6):last-child) {
     margin-bottom: 0;
   }
 </style>
