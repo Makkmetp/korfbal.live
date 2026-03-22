@@ -6,6 +6,7 @@ import Layout from "../components/Layout.astro";
 import Text from "../components/Text.astro";
 import Card from "../components/Card.astro";
 import Button from "../components/Button.astro";
+import ButtonWrapper from "../components/ButtonWrapper.astro";
 
 const pageTitle = "Features | Korfbal.live";
 ---
@@ -24,10 +25,10 @@ const pageTitle = "Features | Korfbal.live";
               trainers direct inzicht in het verloop van de wedstrijd.
             </p>
           </Text>
-          <div class="button-group">
+          <ButtonWrapper gap="md" marginTop="md">
             <Button variant="primary" href="/">Terug naar home</Button>
             <Button variant="secondary">Plan een demo</Button>
-          </div>
+          </ButtonWrapper>
         </Fragment>
       </Layout>
     </Section>
@@ -70,13 +71,6 @@ const pageTitle = "Features | Korfbal.live";
 </BaseLayout>
 
 <style>
-  .button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    margin-top: var(--space-4);
-  }
-
   .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));

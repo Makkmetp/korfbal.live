@@ -5,6 +5,7 @@ import Heading from "../components/Heading.astro";
 import Layout from "../components/Layout.astro";
 import Text from "../components/Text.astro";
 import Button from "../components/Button.astro";
+import ButtonWrapper from "../components/ButtonWrapper.astro";
 import Background from "../components/Background.astro";
 import Card from "../components/Card.astro";
 
@@ -25,10 +26,10 @@ const pageTitle = "Korfbal.live";
               >en krijg inzicht dat je kunt delen</em
             >
           </Heading>
-          <div class="button-group">
+          <ButtonWrapper>
             <Button variant="primary" href="#"> Start gratis! </Button>
             <Button variant="secondary"> Meer over Korfbal.live </Button>
-          </div>
+          </ButtonWrapper>
         </Fragment>
         <Fragment slot="content-secondary">
           <img
@@ -112,10 +113,10 @@ const pageTitle = "Korfbal.live";
       paddingBlockEnd="small"
     >
       <Heading as="h2" variant="h3">Buttons</Heading>
-      <div class="button-group">
+      <ButtonWrapper gap="md" marginTop="sm" marginBottom="md">
         <Button variant="primary">Primary</Button>
         <Button variant="secondary">Secondary</Button>
-      </div>
+      </ButtonWrapper>
       <Heading as="h2" variant="h3"> Zonder background slot </Heading>
       <Text>
         <p>
@@ -293,13 +294,6 @@ const pageTitle = "Korfbal.live";
 </BaseLayout>
 
 <style>
-  .button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    margin-top: var(--space-3);
-    margin-bottom: var(--space-4);
-  }
   .swatches-group {
     background: var(--theme-color-surface);
     border-radius: 0.5rem;
