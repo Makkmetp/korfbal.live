@@ -1,4 +1,5 @@
 ---
+import { blockMarginCssValue, type BlockMarginLevel } from '../utils/marginBlock';
 import { normalizeMaxChars, type MaxCharsInput } from '../utils/normalizeMaxChars';
 import { buildTypographyRoot } from '../utils/typographyRoot';
 
@@ -35,6 +36,16 @@ interface Props {
    * Overschrijf text-wrap gedrag per tekstblok.
    */
   wrap?: TextWrap;
+
+  /**
+   * Extra marge boven het tekstblok (spacing-schaal, zelfde als ButtonWrapper).
+   */
+  marginTop?: BlockMarginLevel;
+
+  /**
+   * Ondermarge; overschrijft de variant-default als gezet (spacing-schaal).
+   */
+  marginBottom?: BlockMarginLevel;
 }
 
 const {
@@ -43,6 +54,8 @@ const {
   align = 'start',
   maxChars,
   wrap,
+  marginTop,
+  marginBottom,
   class: userClass,
   style: userStyle,
   ...forwardedProps
@@ -53,6 +66,19 @@ const {
 
 const Tag = as;
 const normalizedMaxChars = normalizeMaxChars(maxChars);
+
+const textMarginStyles: string[] = [];
+if (marginTop === 'none') {
+  textMarginStyles.push('--text-margin-top-user: 0;');
+} else if (marginTop) {
+  textMarginStyles.push(`--text-margin-top-user: ${blockMarginCssValue(marginTop)};`);
+}
+if (marginBottom === 'none') {
+  textMarginStyles.push('--text-margin-bottom-user: 0;');
+} else if (marginBottom) {
+  textMarginStyles.push(`--text-margin-bottom-user: ${blockMarginCssValue(marginBottom)};`);
+}
+
 const { className: textClasses, style: textStyle } = buildTypographyRoot({
   baseClass: 'text',
   userClass,
@@ -60,6 +86,7 @@ const { className: textClasses, style: textStyle } = buildTypographyRoot({
   inlineStyles: [
     typeof normalizedMaxChars === 'number' ? `--text-max-chars: ${normalizedMaxChars};` : undefined,
     wrap ? `--text-wrap-override: ${wrap};` : undefined,
+    ...textMarginStyles,
   ],
 });
 ---
@@ -87,7 +114,11 @@ const { className: textClasses, style: textStyle } = buildTypographyRoot({
     font-weight: var(--text-font-weight, var(--text-style-body-font-weight));
     text-transform: var(--text-text-transform, var(--text-style-body-text-transform));
     text-wrap: var(--text-wrap-override, var(--text-text-wrap, var(--text-style-body-text-wrap, pretty)));
-    margin-bottom: var(--text-margin-bottom, var(--text-style-body-margin-bottom, var(--space-3)));
+    margin-top: var(--text-margin-top-user, 0);
+    margin-bottom: var(
+      --text-margin-bottom-user,
+      var(--text-margin-bottom, var(--text-style-body-margin-bottom, var(--space-3)))
+    );
     max-inline-size: calc(var(--text-max-chars, var(--text-max-chars-default, var(--text-style-body-max-chars, 66))) * 1ch);
     display: flow-root;
     --text-trim-top: var(--font-trim-top);

@@ -1,0 +1,62 @@
+---
+import { blockMarginCssValue, type BlockMarginLevel } from '../utils/marginBlock';
+
+interface Props {
+  src: string;
+  alt: string;
+  marginTop?: BlockMarginLevel;
+  marginBottom?: BlockMarginLevel;
+}
+
+const {
+  src,
+  alt,
+  marginTop,
+  marginBottom,
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & {
+  class?: unknown;
+  style?: unknown;
+} & Record<string, unknown>;
+
+const imageClasses = ['image', typeof userClass === 'string' ? userClass : undefined].filter(Boolean).join(' ');
+
+const imageMarginStyles: string[] = [];
+if (marginTop === 'none') {
+  imageMarginStyles.push('--image-margin-top-user: 0;');
+} else if (marginTop) {
+  imageMarginStyles.push(`--image-margin-top-user: ${blockMarginCssValue(marginTop)};`);
+}
+
+if (marginBottom === 'none') {
+  imageMarginStyles.push('--image-margin-bottom-user: 0;');
+} else if (marginBottom) {
+  imageMarginStyles.push(`--image-margin-bottom-user: ${blockMarginCssValue(marginBottom)};`);
+}
+
+if (typeof userStyle === 'string' && userStyle.trim()) {
+  imageMarginStyles.push(userStyle);
+}
+
+const imageStyle = imageMarginStyles.join(' ');
+---
+
+<img
+  {...forwardedProps}
+  src={src}
+  alt={alt}
+  class={imageClasses}
+  style={imageStyle || undefined}
+/>
+
+<style>
+  .image {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+    margin-top: var(--image-margin-top-user, 0);
+    margin-bottom: var(--image-margin-bottom-user, 0);
+  }
+</style>

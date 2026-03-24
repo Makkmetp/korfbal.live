@@ -1,9 +1,8 @@
 /* Design tokens entrypoint */
 
-@import "./tokens.foundation.css";
-@import "./tokens.colors.css";
-@import "./tokens.spacing-layout.css";
-@import "./tokens.theme.css";
-@import "./tokens.typography.css";
-@import "./tokens.responsive.css";
-
+@import "./tokens/tokens.foundation.css";
+@import "./tokens/tokens.colors.css";
+@import "./tokens/tokens.spacing-layout.css";
+@import "./tokens/tokens.theme.css";
+@import "./tokens/tokens.typography.css";
+@import "./tokens/tokens.responsive.css";

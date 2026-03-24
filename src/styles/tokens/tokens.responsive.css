@@ -1,15 +1,8 @@
-/* Responsive container query tokens
- *
- * Breakpoints (container-gebaseerd):
- * - large:   ≥ 50em (default)
- * - medium:  < 50em
- * - small:   < 35em
- * - xsmall:  < 20em
- *
- * Gebruik: var(--column-medium, row) → "row" op large, "column" op medium+
- */
 :root {
   --responsive-large: 1;
+  --responsive-medium: 0;
+  --responsive-small: 0;
+  --responsive-xsmall: 0;
 }
 
 @container (width < 50em) {

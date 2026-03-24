@@ -1,0 +1,96 @@
+---
+type GridAs = 'div' | 'section' | 'article';
+
+interface Props {
+  /**
+   * HTML wrapper-element voor het grid.
+   */
+  as?: GridAs;
+
+  columnsLarge?: number;
+  
+  columnsMedium?: number;
+
+  columnsSmall?: number;
+
+  columnsXSmall?: number;
+}
+
+const {
+  as = 'div',
+  columnsLarge = 3,
+  columnsMedium = 2,
+  columnsSmall = 1,
+  columnsXSmall = 1,
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & {
+  class?: unknown;
+  style?: unknown;
+} & Record<string, unknown>;
+
+const Tag = as;
+const gridClasses = ['grid', typeof userClass === 'string' ? userClass : undefined]
+  .filter(Boolean)
+  .join(' ');
+const gridInlineStyle = [
+  `--_grid-large-columns-count: ${columnsLarge}`,
+  `--_grid-medium-columns-count: ${columnsMedium}`,
+  `--_grid-small-columns-count: ${columnsSmall}`,
+  `--_grid-xsmall-columns-count: ${columnsXSmall}`,
+  typeof userStyle === 'string' ? userStyle : undefined,
+]
+  .filter(Boolean)
+  .join('; ');
+---
+
+<Tag
+  {...forwardedProps}
+  class={gridClasses}
+  style={gridInlineStyle}
+>
+  <div class="grid__content">
+    <slot />
+  </div>
+</Tag>
+
+<style>
+  .grid {
+    --_grid-column-count: var(--_grid-large-columns-count, 3);
+    --_grid-display: grid;
+
+    display: flex;
+    width: 100%;
+    column-gap: var(--space-5);
+    row-gap: var(--space-3);
+  }
+
+  .grid__content {
+    display: var(--_grid-display);
+    width: 100%;
+    flex-flow: column;
+    grid-auto-columns: minmax(0px, 1fr);
+    grid-template-rows: auto;
+    grid-template-columns: repeat(var(--_grid-column-count), minmax(0, 1fr));
+    gap: inherit;
+  }
+
+  @container (width < 50em) {
+    .grid__content {
+      --_grid-column-count: var(--_grid-medium-columns-count, 2);
+    }
+  }
+
+  @container (width < 35em) {
+    .grid__content {
+      --_grid-column-count: var(--_grid-small-columns-count, 1);
+    }
+  }
+
+  @container (width < 20em) {
+    .grid__content {
+      --_grid-column-count: var(--_grid-xsmall-columns-count, 1);
+    }
+  }
+</style>

@@ -9,7 +9,7 @@
   --font-weight-bold: 700;
 
   /* Font-sizes (fluid op basis van viewport-min/max) */
-  --font-size-body-sm: clamp(0.875rem, calc((0.875 - ((1 - 0.875) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((1 - 0.875) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 1rem);
+  --font-size-body-sm: clamp(0.75rem, calc((0.75 - ((0.875 - 0.75) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 0.875rem + ((0.875 - 0.75) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 0.875rem);
   --font-size-body: clamp(1rem, calc((1 - ((1.125 - 1) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((1.125 - 1) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 1.125rem);
   --font-size-body-lg: clamp(1.125rem, calc((1.125 - ((1.25 - 1.125) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((1.25 - 1.125) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 1.25rem);
 
@@ -41,7 +41,7 @@
   /* Body text */
   --text-style-body-sm-font-size: var(--font-size-body-sm);
   --text-style-body-sm-line-height: var(--line-height-loose);
-  --text-style-body-sm-letter-spacing: var(--letter-spacing-tight);
+  --text-style-body-sm-letter-spacing: var(--letter-spacing-normal);
   --text-style-body-sm-font-weight: var(--font-weight-regular);
   --text-style-body-sm-text-transform: var(--text-transform-none);
   --text-style-body-sm-text-wrap: pretty;
@@ -96,8 +96,8 @@
   --text-style-h5-trim-bottom: var(--font-trim-bottom);
 
   --text-style-h4-font-size: var(--font-size-h4);
-  --text-style-h4-line-height: var(--line-height-normal);
-  --text-style-h4-letter-spacing: var(--letter-spacing-normal);
+  --text-style-h4-line-height: var(--line-height-tight);
+  --text-style-h4-letter-spacing: var(--letter-spacing-tight);
   --text-style-h4-font-weight: var(--font-weight-bold);
   --text-style-h4-text-transform: var(--text-transform-none);
   --text-style-h4-text-wrap: balance;
@@ -107,7 +107,7 @@
   --text-style-h4-trim-bottom: var(--font-trim-bottom);
 
   --text-style-h3-font-size: var(--font-size-h3);
-  --text-style-h3-line-height: var(--line-height-normal);
+  --text-style-h3-line-height: var(--line-height-tight);
   --text-style-h3-letter-spacing: var(--letter-spacing-tight);
   --text-style-h3-font-weight: var(--font-weight-bold);
   --text-style-h3-text-transform: var(--text-transform-none);

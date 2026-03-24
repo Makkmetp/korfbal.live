@@ -8,14 +8,16 @@ import Button from "../components/Button.astro";
 import ButtonWrapper from "../components/ButtonWrapper.astro";
 import Background from "../components/Background.astro";
 import Card from "../components/Card.astro";
+import Grid from "../components/Grid.astro";
+import Image from "../components/Image.astro";
 
 const pageTitle = "Korfbal.live";
 ---
 
 <BaseLayout title={pageTitle}>
-  <main>
     <Section
       id="overzicht"
+      containerScope="section"
       paddingBlockStart="page-top"
       paddingBlockEnd="large"
     >
@@ -44,6 +46,7 @@ const pageTitle = "Korfbal.live";
 
     <Section
       id="liveverslag"
+      containerScope="section"
       theme="dark"
       paddingBlockStart="main"
       paddingBlockEnd="large"
@@ -55,12 +58,6 @@ const pageTitle = "Korfbal.live";
           </Heading>
           <Text maxChars={46}
             ><p>
-              Met het liveverslag van korfbal.live krijgt elke wedstrijd een
-              eigen verhaal. Ouders, supporters, opa’s en oma’s kunnen de
-              wedstrijd eenvoudig volgen via één openbare link, zonder dat ze in
-              een aparte WhatsApp-groep hoeven te zitten. Dat maakt het volgen
-              van een wedstrijd laagdrempelig, leuk en voor iedereen bereikbaar.
-            </p><p>
               Met het liveverslag van korfbal.live krijgt elke wedstrijd een
               eigen verhaal. Ouders, supporters, opa’s en oma’s kunnen de
               wedstrijd eenvoudig volgen via één openbare link, zonder dat ze in
@@ -110,235 +107,48 @@ const pageTitle = "Korfbal.live";
           />
         </Fragment>
       </Layout>
+      
     </Section>
-
-    <Section
-      id="styles"
-      theme="light"
-      paddingBlockStart="none"
-      paddingBlockEnd="small"
-    >
-      <Heading as="h2" variant="h3">Buttons</Heading>
-      <ButtonWrapper gap="md" marginTop="sm" marginBottom="md">
-        <Button variant="primary">Primary</Button>
-        <Button variant="secondary">Secondary</Button>
-      </ButtonWrapper>
-      <Heading as="h2" variant="h3"> Zonder background slot </Heading>
-      <Text>
-        <p>
-          Dit is de normale Section; alleen content, geen extra lagen. Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. Ducimus, repellat
-          perspiciatis provident odit obcaecati ipsa dicta illo quidem tempora
-          nemo modi iusto cum in, alias sapiente magnam. Porro, ullam nesciunt.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste incidunt
-          similique error nobis facere earum ipsum officia, ut aspernatur,
-          adipisci sit voluptatum quaerat. Magni laudantium repudiandae
-          necessitatibus unde? Aspernatur, iure!
-        </p>
-      </Text>
-    </Section>
-
-    <Section theme="dark">
-      <Heading as="h2" variant="h2" align="center">
-        Met background slot (gradient)
-      </Heading>
-      <Text as="div" align="center">
-        <p>De background wordt full-bleed achter de content geplaatst.</p>
-      </Text>
-    </Section>
-
-    <Section theme="light" paddingBlockStart="small" paddingBlockEnd="none">
-      <div
-        slot="background"
-        style={`
-          background: repeating-linear-gradient(
-            135deg,
-            color-mix(in srgb, var(--theme-color-text) 6%, transparent) 0px,
-            color-mix(in srgb, var(--theme-color-text) 6%, transparent) 12px,
-            transparent 12px,
-            transparent 24px
-          );
-          mask-image: radial-gradient(closest-side, black 55%, transparent 100%);
-          opacity: 0.6;
-        `}
-      >
-      </div>
-      <Heading as="h2" variant="h4"> Met background slot (pattern) </Heading>
-      <Text as="div">
-        <p>Handig voor een subtiel patroon, foto-overlay of video wrapper.</p>
-      </Text>
-    </Section>
-
-    <Section theme="light" paddingBlockStart="main" paddingBlockEnd="main">
-      <Layout variant="stack">
+    <Section>
+      <Layout>
         <Fragment slot="content-primary">
-          <Heading as="h2" variant="h2">
-            Overzicht heading varianten moet over meerdere regels uitlopen
-          </Heading>
-          <Text as="article" variant="body">
-            <p>
-              Semantiek (`as`) en visuele stijl (`variant`) kun je los van
-              elkaar gebruiken.
-            </p>
-            <p>
-              In een tekstblok kunnen meerdere paragrafen staan zonder ongeldige
-              nested p-structuur.
-            </p>
-          </Text>
-        </Fragment>
-
-        <Fragment slot="content-secondary">
-          <Heading as="h2" variant="display"> Variant: display </Heading>
-          <Heading as="h1" variant="h1"> Variant: h1 </Heading>
-          <Heading as="h2" variant="h2"> Variant: h2 </Heading>
-          <Heading as="h3" variant="h3"> Variant: h3 </Heading>
-          <Heading as="h4" variant="h4"> Variant: h4 </Heading>
-          <Heading as="h5" variant="h5"> Variant: h5 </Heading>
-          <Heading as="h6" variant="h6"> Variant: h6 </Heading>
+          <Grid columnsLarge={3} columnsMedium={1}>
+            <Card>
+              <Image src="images/icons/report.svg" alt="" marginBottom="sm"/>
+              <Heading as="h3" variant="h4" maxChars="8">Snel <em>evalueren</em></Heading>
+              <Text marginBottom="none">
+                <p>
+                  Zie tijdens de wedstrijd direct wat werkt en wat beter kan.
+                  Zo stuur je sneller bij en maak je keuzes met meer
+                  vertrouwen.
+                </p>
+              </Text>
+            </Card>
+            <Card>
+              <Image src="images/icons/settings.svg" alt="" marginBottom="sm"/>
+              <Heading as="h3" variant="h4" maxChars="8">Gericht <em>verbeteren</em></Heading>
+              <Text marginBottom="none">
+                <p>
+                  Zet inzichten uit de wedstrijd om in concrete
+                  trainingskeuzes. Zo train je doelgerichter en werk je aan
+                  echte wedstrijdsituaties.
+                </p>
+              </Text>
+            </Card>
+            <Card>
+              <Image src="images/icons/like.svg" alt="" marginBottom="sm"/>
+              <Heading as="h3" variant="h4" maxChars="8">Samen <em>groeien</em></Heading>
+              <Text marginBottom="none">
+                <p>
+                  Bespreek na afloop samen de cijfers en de belangrijkste
+                  momenten. Zo maak je inzicht onderdeel van samenwerking en
+                  teamontwikkeling.
+                </p>
+              </Text>
+            </Card>
+          </Grid>
         </Fragment>
       </Layout>
     </Section>
 
-    <Section theme="dark" paddingBlockStart="main" paddingBlockEnd="main">
-      <Layout variant="columns">
-        <Fragment slot="content-primary">
-          <Heading as="h2" variant="h2"> Layout variant: columns </Heading>
-          <Text variant="body">
-            <p>
-              Deze kolom bevat de tekstuele content. Op kleinere schermen valt
-              de layout terug naar een verticale stack.
-            </p>
-          </Text>
-        </Fragment>
-
-        <Fragment slot="content-secondary">
-          <Heading as="h3" variant="h4"> Tweede kolom </Heading>
-          <Text variant="body-sm">
-            <p>
-              Hier kan bijvoorbeeld media, een card-lijst of extra context
-              staan.
-            </p>
-          </Text>
-        </Fragment>
-      </Layout>
-    </Section>
-
-    <Section theme="light" paddingBlockStart="main" paddingBlockEnd="main">
-      <Heading as="h2" variant="h3">Card varianten</Heading>
-      <div class="card-grid">
-        <Card>
-          <Heading as="h3" variant="h4">Default card</Heading>
-          <Text variant="body-sm">
-            <p>
-              Dit is de standaard card-variant met een subtiele border en
-              surface achtergrond.
-            </p>
-          </Text>
-        </Card>
-        <Card variant="featured">
-          <Heading as="h3" variant="h4">Featured card</Heading>
-          <Text variant="body-sm">
-            <p>
-              De featured variant valt meer op met een accent-tint als
-              achtergrond en dikkere border.
-            </p>
-          </Text>
-        </Card>
-        <Card>
-          <Heading as="h3" variant="h4">Nog een default</Heading>
-          <Text variant="body-sm">
-            <p>
-              Cards kunnen naast elkaar in een grid staan en passen zich aan de
-              beschikbare ruimte aan.
-            </p>
-          </Text>
-        </Card>
-      </div>
-    </Section>
-
-    <!-- Tijdelijk: color swatches -->
-    <Section theme="light" paddingBlockStart="main" paddingBlockEnd="main">
-      <Heading as="h2" variant="h3"> Color swatches (tijdelijk) </Heading>
-      <div class="swatches-group">
-        <Heading as="h3" variant="h5" class="swatches-group__title"
-          >Primary</Heading
-        >
-        <div class="swatches">
-          {
-            [100, 200, 300, 400, 500, 600, 700, 800, 900].map((n) => (
-              <div
-                class="swatch"
-                style={`--swatch-color: var(--color-primary-${n});`}
-              >
-                <span class="swatch__patch" />
-                <span class="swatch__label">primary-{n}</span>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-      <div class="swatches-group">
-        <Heading as="h3" variant="h5" class="swatches-group__title"
-          >Secondary</Heading
-        >
-        <div class="swatches">
-          {
-            [100, 200, 300, 400, 500, 600, 700, 800, 900].map((n) => (
-              <div
-                class="swatch"
-                style={`--swatch-color: var(--color-secondary-${n});`}
-              >
-                <span class="swatch__patch" />
-                <span class="swatch__label">secondary-{n}</span>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </Section>
-  </main>
 </BaseLayout>
-
-<style>
-  .swatches-group {
-    background: var(--theme-color-surface);
-    border-radius: 0.5rem;
-    padding: var(--space-4);
-    margin-top: var(--space-4);
-  }
-  .swatches-group:first-of-type {
-    margin-top: var(--space-4);
-  }
-  .swatches-group__title {
-    margin: 0 0 var(--space-3);
-    font-size: var(--font-size-body);
-  }
-  .swatches {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
-    gap: var(--space-2);
-  }
-  .swatch {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    font-size: 0.75rem;
-    font-family: var(--font-family-base);
-    color: var(--theme-color-text);
-  }
-  .swatch__patch {
-    width: 100%;
-    aspect-ratio: 1;
-    border-radius: 0.25rem;
-    background: var(--swatch-color);
-    border: 1px solid var(--theme-color-border);
-  }
-  .swatch__label {
-    font-weight: var(--font-weight-medium);
-  }
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-    gap: var(--space-4);
-  }
-</style>

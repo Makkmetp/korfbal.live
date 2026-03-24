@@ -30,6 +30,13 @@ interface Props {
    * Zelfde opties als paddingBlockStart.
    */
   paddingBlockEnd?: 'none' | 'small' | 'main' | 'large' | 'page-top';
+
+  /**
+   * Waar container queries tegen afzetten:
+   * - "inner": alleen `.section__inner` (contentkolom; default).
+   * - "section": `.section` zelf — handig als `background`-slot en content dezelfde breakpoint moeten delen.
+   */
+  containerScope?: 'inner' | 'section';
 }
 
 const {
@@ -37,6 +44,7 @@ const {
   as = 'section',
   paddingBlockStart,
   paddingBlockEnd,
+  containerScope = 'inner',
   class: userClass,
   style: userStyle,
   ...forwardedProps
@@ -58,6 +66,7 @@ const sectionClasses = ['section', typeof userClass === 'string' ? userClass : u
   data-theme={themeAttr}
   data-padding-top={paddingBlockStart}
   data-padding-bottom={paddingBlockEnd}
+  data-container-scope={containerScope}
   style={typeof userStyle === 'string' ? userStyle : undefined}
 >
   {Astro.slots.has("background") && (
@@ -74,6 +83,8 @@ const sectionClasses = ['section', typeof userClass === 'string' ? userClass : u
   .section {
     --_section-padding-block-start: var(--space-section-md);
     --_section-padding-block-end: var(--space-section-md);
+    --_section-container-type-root: normal;
+    --_section-container-type-inner: inline-size;
 
     background: var(--theme-color-bg);
     color: var(--theme-color-text);
@@ -85,7 +96,12 @@ const sectionClasses = ['section', typeof userClass === 'string' ? userClass : u
     isolation: isolate;
     padding-block-start: var(--_section-padding-block-start);
     padding-block-end: var(--_section-padding-block-end);
-    container-type: inline-size;
+    container-type: var(--_section-container-type-root);
+  }
+
+  .section[data-container-scope='section'] {
+    --_section-container-type-root: inline-size;
+    --_section-container-type-inner: normal;
   }
 
   /* Verticale spacing varianten - top */
@@ -163,6 +179,7 @@ const sectionClasses = ['section', typeof userClass === 'string' ? userClass : u
     display: flex;
     position: relative;
     gap: var(--space-8);
+    container-type: var(--_section-container-type-inner);
   }
 
   /* Margin-trim voor content-flow binnen sections */

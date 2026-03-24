@@ -1,4 +1,5 @@
 ---
+import { blockMarginCssValue, type BlockMarginLevel } from '../utils/marginBlock';
 import { normalizeMaxChars, type MaxCharsInput } from '../utils/normalizeMaxChars';
 import { buildTypographyRoot } from '../utils/typographyRoot';
 
@@ -32,6 +33,16 @@ interface Props {
    * - undefined: gebruik variant-token default
    */
   maxChars?: MaxCharsInput;
+
+  /**
+   * Extra marge boven de heading (spacing-schaal, zelfde als ButtonWrapper).
+   */
+  marginTop?: BlockMarginLevel;
+
+  /**
+   * Ondermarge; overschrijft de variant-default als gezet (spacing-schaal).
+   */
+  marginBottom?: BlockMarginLevel;
 }
 
 const {
@@ -39,6 +50,8 @@ const {
   variant = as,
   align = 'start',
   maxChars,
+  marginTop,
+  marginBottom,
   class: userClass,
   style: userStyle,
   ...forwardedProps
@@ -49,12 +62,26 @@ const {
 
 const Tag = as;
 const normalizedMaxChars = normalizeMaxChars(maxChars);
+
+const headingMarginStyles: string[] = [];
+if (marginTop === 'none') {
+  headingMarginStyles.push('--heading-margin-top-user: 0;');
+} else if (marginTop) {
+  headingMarginStyles.push(`--heading-margin-top-user: ${blockMarginCssValue(marginTop)};`);
+}
+if (marginBottom === 'none') {
+  headingMarginStyles.push('--heading-margin-bottom-user: 0;');
+} else if (marginBottom) {
+  headingMarginStyles.push(`--heading-margin-bottom-user: ${blockMarginCssValue(marginBottom)};`);
+}
+
 const { className: headingClasses, style: headingStyle } = buildTypographyRoot({
   baseClass: 'heading',
   userClass,
   userStyle,
   inlineStyles: [
     typeof normalizedMaxChars === 'number' ? `--heading-max-chars: ${normalizedMaxChars};` : undefined,
+    ...headingMarginStyles,
   ],
 });
 ---
@@ -81,7 +108,11 @@ const { className: headingClasses, style: headingStyle } = buildTypographyRoot({
     font-weight: var(--heading-font-weight, var(--font-weight-medium));
     text-transform: var(--heading-text-transform, var(--text-transform-none));
     text-wrap: var(--heading-text-wrap, balance);
-    margin-bottom: var(--heading-margin-bottom, var(--space-3));
+    margin-top: var(--heading-margin-top-user, 0);
+    margin-bottom: var(
+      --heading-margin-bottom-user,
+      var(--heading-margin-bottom, var(--space-3))
+    );
     display: flow-root;
     max-inline-size: calc(var(--heading-max-chars, var(--heading-max-chars-default, 20)) * 1ch);
     --heading-trim-top: var(--font-trim-top);

@@ -1,0 +1,49 @@
+---
+import Text from "./Text.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <a class="footer__brand" href="/" aria-label="Ga naar homepage">
+      <img
+        src="images/kl-logo-vertical.svg"
+        alt="Korfbal.live"
+        width="160"
+        height="32"
+      />
+    </a>
+
+    <nav class="footer__nav" aria-label="Footernavigatie">
+      <ul class="footer__list" role="list">
+        <li><a class="footer__link" href="/">Home</a></li>
+        <li><a class="footer__link" href="/features">Hoe het werkt</a></li>
+        <li><a class="footer__link" href="#">Abonnementen</a></li>
+        <li><a class="footer__link" href="#">Over ons</a></li>
+      </ul>
+    </nav>
+
+    <Text variant="body-sm">
+      <p>
+        © {year} Korfbal.live. Alle rechten voorbehouden.
+      </p>
+    </Text>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--theme-color-bg);
+    color: var(--theme-color-text);
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: var(--space-5);
+    gap: var(--space-4);
+  }
+
+</style>

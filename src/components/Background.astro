@@ -88,7 +88,7 @@ const { color = "primary", location = "top-right" } = Astro.props as Props;
     transform-origin: center;
   }
 
-  @container style(--responsive-medium) {
+  @container (width < 50em) {
     .background[data-location="top-right"] {
       --_background-svg-top: auto;
       --_background-svg-bottom: 0;

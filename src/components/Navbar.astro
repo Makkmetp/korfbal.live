@@ -1,3 +1,7 @@
+---
+import Button from "./Button.astro";
+---
+
 <header class="navbar">
   <div class="navbar__element">
     <a class="navbar__brand" href="/" aria-label="Ga naar homepage">
@@ -13,7 +17,7 @@
       </ul>
     </nav>
 
-    <a class="navbar__cta" href="#overzicht">Start gratis</a>
+    <Button href="#overzicht">Start gratis</Button>
   </div>
 </header>
 
@@ -86,7 +90,6 @@
 
   .navbar__link {
     color: var(--theme-link-text);
-    font-size: var(--font-size-body-sm);
     font-weight: var(--font-weight-medium);
     border-bottom: 2px solid transparent;
     padding-bottom: 0.2em;
