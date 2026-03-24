@@ -1,0 +1,199 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Heading from "../components/Heading.astro";
+import Text from "../components/Text.astro";
+import Button from "../components/Button.astro";
+
+const pageTitle = "Abonnementen | Korfbal.live";
+
+const plans = [
+  {
+    name: "Gratis",
+    subtitle: "Voor trainers die willen kennismaken",
+    price: "€0",
+    features: [
+      "Live wedstrijdregistratie",
+      "Basis tijdlijn",
+      "Live wedstrijd delen",
+      "1 team",
+      "Basis statistieken",
+    ],
+    ctaLabel: "Start gratis",
+    ctaHref: "#",
+    ctaVariant: "primary",
+    featured: false,
+  },
+  {
+    name: "Pro",
+    subtitle: "Meest gekozen door trainers",
+    price: "7,99 / team / maand",
+    features: [
+      "Alles uit Gratis",
+      "Uitgebreide statistieken per speler",
+      "Wedstrijdhistorie & trends",
+      "Meerdere wedstrijden per team",
+      "Export (PDF / CSV)",
+      "E-mail support",
+    ],
+    ctaLabel: "Upgrade naar Pro",
+    ctaHref: "#",
+    ctaVariant: "primary",
+    featured: true,
+  },
+  {
+    name: "Club",
+    subtitle: "Voor verenigingen",
+    price: "Op aanvraag",
+    features: [
+      "Alles uit Pro",
+      "Alle teams binnen de club",
+      "Meerdere trainers per team",
+      "Clubdashboard",
+      "(Toekomst) Sportlink-koppeling",
+      "Prioriteit support",
+    ],
+    ctaLabel: "Neem contact op",
+    ctaHref: "/over-ons#ons-team",
+    ctaVariant: "secondary",
+    featured: false,
+  },
+] as const;
+---
+
+<BaseLayout title={pageTitle}>
+  <Section id="abonnementen" paddingBlockStart="page-top" paddingBlockEnd="large">
+    <div class="pricing">
+      <header class="pricing__intro">
+        <Heading as="h1" variant="h1" maxChars={16}>
+          Kies het abonnement dat bij je team past
+        </Heading>
+        <Text maxChars={58}>
+          <p>
+            Start gratis en groei door wanneer je meer inzichten en clubfunctionaliteit
+            nodig hebt.
+          </p>
+        </Text>
+      </header>
+
+      <div class="pricing__grid">
+        {
+          plans.map((plan) => (
+            <article class="plan-card" data-featured={plan.featured ? "true" : undefined}>
+              <div class="plan-card__content">
+                <h2 class="plan-card__name">
+                  {plan.name}
+                  {plan.featured && <span aria-hidden="true" class="plan-card__star">★</span>}
+                </h2>
+                <p class="plan-card__subtitle">{plan.subtitle}</p>
+                <p class="plan-card__price">{plan.price}</p>
+
+                <ul class="plan-card__list">
+                  {plan.features.map((feature) => <li>{feature}</li>)}
+                </ul>
+
+                <Button href={plan.ctaHref} variant={plan.ctaVariant}>
+                  {plan.ctaLabel}
+                </Button>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  .pricing {
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .pricing__intro {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .pricing__grid {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .plan-card {
+    border: 1px solid var(--theme-color-border);
+    border-radius: 0.6rem;
+    background: var(--theme-color-surface);
+    display: flex;
+  }
+
+  .plan-card[data-featured="true"] {
+    border-color: var(--theme-color-accent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--theme-color-accent) 50%, transparent);
+  }
+
+  .plan-card__content {
+    display: grid;
+    align-content: start;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    width: 100%;
+  }
+
+  .plan-card__name {
+    margin: 0;
+    font-size: var(--font-size-h6);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-small);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .plan-card__star {
+    color: var(--theme-color-accent);
+    line-height: 1;
+    font-size: 0.95em;
+  }
+
+  .plan-card__subtitle {
+    margin: 0;
+    font-size: var(--text-style-body-font-size);
+    line-height: var(--text-style-body-line-height);
+    letter-spacing: var(--text-style-body-letter-spacing);
+    color: color-mix(in srgb, var(--theme-color-text) 80%, transparent);
+    font-style: italic;
+  }
+
+  .plan-card__price {
+    margin: 0;
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-small);
+  }
+
+  .plan-card__list {
+    margin: 0;
+    padding-inline-start: 1.1rem;
+    display: grid;
+    gap: var(--space-1);
+    color: var(--theme-color-text);
+    font-size: var(--text-style-body-font-size);
+    line-height: var(--text-style-body-line-height);
+    letter-spacing: var(--text-style-body-letter-spacing);
+  }
+
+  .plan-card__list li {
+    margin: 0;
+  }
+
+  @container (min-width: 60rem) {
+    .pricing__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

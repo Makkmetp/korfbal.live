@@ -1,0 +1,163 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Layout from "../components/Layout.astro";
+import Heading from "../components/Heading.astro";
+import Text from "../components/Text.astro";
+import Image from "../components/Image.astro";
+
+const pageTitle = "Over ons | Korfbal.live";
+---
+
+<BaseLayout title={pageTitle}>
+  <Section id="wie-zijn-wij" paddingBlockStart="page-top" paddingBlockEnd="large">
+    <Layout>
+      <Fragment slot="content-primary">
+        <Heading as="h1" variant="h1">
+          Wie zijn wij
+        </Heading>
+        <Text maxChars={66}>
+          <p>
+            Korfbal.live is gebouwd met een doel: trainers en verenigingen helpen om wedstrijden beter
+            te volgen, te analyseren en te delen met de mensen langs de lijn.
+          </p>
+        </Text>
+      </Fragment>
+    </Layout>
+  </Section>
+
+  <Section id="ons-team" theme="light" paddingBlockStart="none">
+    <Heading as="h2" variant="h2">Ons team</Heading>
+
+    <div class="team-list">
+      <article class="team-member">
+        <Layout variant="columns-7-5">
+          <Fragment slot="content-primary">
+            <div class="team-member__media">
+              <Image src="images/team/Peter_Makkes.jpg" alt="Portret van Peter Makkes" />
+            </div>
+          </Fragment>
+          <Fragment slot="content-secondary">
+            <Heading as="h3" variant="h3" marginBottom="sm">Peter Makkes</Heading>
+            <Text variant="body-sm" marginBottom="md">
+              <p><strong>Bedenker / doorontwikkeling &amp; contactpersoon</strong></p>
+            </Text>
+            <Text maxChars={66}>
+              <p>
+                Mijn eerste kennismaking met korfbal is al van een tijd geleden. Het zal rond 1982 zijn
+                geweest en we gingen meedoen met de welpentraining. Uiteraard met mijn broer samen en
+                lekker spelen met allemaal nieuwe vriendjes. Fortuna Delft was daarna jaren mijn
+                vereniging en is dat nog steeds. Na jaren in de hogere teams gespeeld te hebben was het
+                tijd voor een maatschappelijke carriere. Maar het bloed kruipt waar het niet gaan kan en
+                inmiddels spelen mijn kinderen ook bij Fortuna. Op die manier ben ik wederom met de sport
+                in aanraking gekomen en heb ik meerdere rollen binnen de vereniging vervuld. Zoals trainer
+                &amp; coach, lid van de Jeugd Technische Commissie en een rol als projectleider.
+              </p>
+              <p>
+                Aan de lijn bij het bijwonen van wedstrijden is het idee voor korfbal.live ook ontstaan.
+                Als ouder vind ik het leuk om de wedstrijden van mijn kinderen te kunnen volgen, ook als
+                ik er niet ben. Daarnaast worden sponsoren steeds belangrijker voor verenigingen. Aan de
+                andere kant is er telkens meer behoefte aan informatie en zie je trainers veelal met pen
+                en papier in de hand alles noteren, of juist achteraf via videobeelden. Deze werelden
+                komen in de korfbal.live-app samen. Doordat een iemand de statistieken bijhoudt, wordt
+                het publiek betrokken via de automatische tijdlijn en hebben sponsoren de kans om zich te
+                tonen. Daarnaast heeft de coach tijdens de wedstrijd real-time statistieken en kan daarop
+                keuzes maken. Het doel is om uiteindelijk korfbal aantrekkelijker te maken voor publiek en
+                sponsoren, mensen meer betrokken te krijgen en het korfbal naar een hoger niveau te
+                tillen.
+              </p>
+            </Text>
+            <Text variant="body-sm" marginTop="sm" marginBottom="none">
+              <p>
+                <a href="mailto:info@korfbal.live">info@korfbal.live</a>
+                ·
+                <a href="mailto:info@korfbal.live?subject=Contact%20via%20korfbal.live">Contact</a>
+              </p>
+            </Text>
+          </Fragment>
+        </Layout>
+      </article>
+
+      <article class="team-member">
+        <Layout variant="columns-7-5" reversed>
+          <Fragment slot="content-primary">
+            <div class="team-member__media">
+              <Image src="images/team/Rogier_Mechielsen.jpg" alt="Portret van Rogier Mechielsen" />
+            </div>
+          </Fragment>
+          <Fragment slot="content-secondary">
+            <Heading as="h3" variant="h3" marginBottom="sm">Rogier Mechielsen</Heading>
+            <Text variant="body-sm" marginBottom="md">
+              <p><strong>Design, ontwikkelaar &amp; sparringspartner</strong></p>
+            </Text>
+            <Text maxChars={66}>
+              <p>
+                Rogier combineert een technische achtergrond met een sterke focus op design en
+                gebruiksvriendelijkheid. Binnen korfbal.live ligt zijn nadruk op performance,
+                betrouwbaarheid en datakwaliteit, zodat trainers en verenigingen op informatie kunnen
+                vertrouwen tijdens en na de wedstrijd. Wat hem drijft is technologie bouwen die in de
+                praktijk echt helpt op het veld en langs de lijn.
+              </p>
+              <p>
+                Korfbal.live bouwen we stap voor stap met privacy, snelheid en eenvoud als uitgangspunt.
+                Clubs mogen verwachten dat de basis stabiel blijft, terwijl we doorontwikkelen op
+                functionaliteiten die direct waarde geven: betere inzichten, een soepelere wedstrijdflow
+                en duidelijke mogelijkheden om wedstrijden met supporters en sponsoren te delen.
+              </p>
+            </Text>
+            <Text variant="body-sm" marginTop="sm" marginBottom="none">
+              <p>
+                <a href="mailto:support@korfbal.live">support@korfbal.live</a>
+                ·
+                <a href="mailto:support@korfbal.live?subject=Abonnementen%20via%20korfbal.live">Abonnementen</a>
+              </p>
+            </Text>
+          </Fragment>
+        </Layout>
+      </article>
+    </div>
+  </Section>
+
+  <Section id="onze-missie" theme="dark">
+    <Layout variant="stack">
+      <Fragment slot="content-primary">
+        <Heading as="h2" variant="h2">Onze missie</Heading>
+        <Text variant="body-lg" maxChars={64} marginBottom="none">
+          <p>
+            Wij maken van elke wedstrijd een verhaal dat verbindt en geven korfbalverenigingen eenvoudig
+            en deelbaar inzicht om als club samen te groeien.
+          </p>
+        </Text>
+      </Fragment>
+    </Layout>
+  </Section>
+</BaseLayout>
+
+<style>
+  .team-list {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .team-member {
+    border-top: 1px solid var(--theme-color-border);
+    padding-top: var(--space-7);
+  }
+
+  .team-member:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .team-member__media {
+    width: min(100%, 30rem);
+    margin-inline: auto;
+  }
+
+  .team-member__media :global(img) {
+    border-radius: 1rem;
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+    width: 100%;
+  }
+</style>

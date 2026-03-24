@@ -5,6 +5,7 @@
   --theme-color-bg: var(--color-bg);
   --theme-color-surface: var(--color-surface);
   --theme-color-text: var(--color-text);
+  --theme-color-text-faded: color-mix(in srgb, var(--theme-color-text) 40%, transparent);
   --theme-color-accent: var(--color-primary-500);
   --theme-color-border: var(--color-border);
 
@@ -34,6 +35,7 @@
   --theme-color-bg: var(--color-bg);
   --theme-color-surface: var(--color-surface);
   --theme-color-text: var(--color-text);
+  --theme-color-text-faded: color-mix(in srgb, var(--theme-color-text) 40%, transparent);
   --theme-color-accent: var(--color-primary-500);
   --theme-color-border: var(--color-border);
 }
@@ -43,6 +45,7 @@
   --theme-color-bg: var(--color-dark-bg);
   --theme-color-surface: var(--color-dark-surface);
   --theme-color-text: var(--color-dark-text);
+  --theme-color-text-faded: color-mix(in srgb, var(--theme-color-text) 40%, transparent);
   --theme-color-accent: var(--color-primary-500);
   --theme-color-border: var(--color-dark-border);
 

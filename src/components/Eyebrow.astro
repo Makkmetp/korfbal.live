@@ -1,0 +1,159 @@
+---
+import { blockMarginCssValue, type BlockMarginLevel } from '../utils/marginBlock';
+import { normalizeMaxChars, type MaxCharsInput } from '../utils/normalizeMaxChars';
+import { buildTypographyRoot } from '../utils/typographyRoot';
+
+type EyebrowAs = 'p' | 'span' | 'div';
+
+interface Props {
+  /**
+   * Semantisch HTML element voor de eyebrow.
+   */
+  as?: EyebrowAs;
+
+  /**
+   * Tekstuitlijning.
+   */
+  align?: 'start' | 'center' | 'end';
+
+  /**
+   * Maximale regelbreedte in aantal karakters (ch).
+   * - number: forceer max breedte, bv. 32 -> 32ch
+   * - "none": geen max breedte
+   * - undefined: gebruik token default
+   */
+  maxChars?: MaxCharsInput;
+
+  /**
+   * Extra marge boven de eyebrow (spacing-schaal, zelfde als ButtonWrapper).
+   */
+  marginTop?: BlockMarginLevel;
+
+  /**
+   * Ondermarge; overschrijft de token-default als gezet (spacing-schaal).
+   */
+  marginBottom?: BlockMarginLevel;
+}
+
+const {
+  as = 'p',
+  align = 'start',
+  maxChars,
+  marginTop,
+  marginBottom,
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & {
+  class?: unknown;
+  style?: unknown;
+} & Record<string, unknown>;
+
+const Tag = as;
+const normalizedMaxChars = normalizeMaxChars(maxChars);
+
+const eyebrowMarginStyles: string[] = [];
+if (marginTop === 'none') {
+  eyebrowMarginStyles.push('--eyebrow-margin-top-user: 0;');
+} else if (marginTop) {
+  eyebrowMarginStyles.push(`--eyebrow-margin-top-user: ${blockMarginCssValue(marginTop)};`);
+}
+if (marginBottom === 'none') {
+  eyebrowMarginStyles.push('--eyebrow-margin-bottom-user: 0;');
+} else if (marginBottom) {
+  eyebrowMarginStyles.push(`--eyebrow-margin-bottom-user: ${blockMarginCssValue(marginBottom)};`);
+}
+
+const { className: eyebrowClasses, style: eyebrowStyle } = buildTypographyRoot({
+  baseClass: 'eyebrow',
+  userClass,
+  userStyle,
+  inlineStyles: [
+    typeof normalizedMaxChars === 'number' ? `--eyebrow-max-chars: ${normalizedMaxChars};` : undefined,
+    ...eyebrowMarginStyles,
+  ],
+});
+---
+
+<Tag
+  {...forwardedProps}
+  class={eyebrowClasses}
+  data-align={align}
+  data-max-chars={normalizedMaxChars === 'none' ? 'none' : undefined}
+  style={eyebrowStyle}
+>
+  <slot />
+</Tag>
+
+<style>
+  .eyebrow {
+    margin: 0;
+    font-family: var(--font-family-base);
+    color: var(--theme-color-text-faded);
+    font-size: var(--text-style-eyebrow-font-size);
+    line-height: var(--text-style-eyebrow-line-height);
+    letter-spacing: var(--text-style-eyebrow-letter-spacing);
+    font-weight: var(--text-style-eyebrow-font-weight);
+    text-transform: var(--text-style-eyebrow-text-transform);
+    text-wrap: var(--text-style-eyebrow-text-wrap, balance);
+    margin-top: var(--eyebrow-margin-top-user, 0);
+    margin-bottom: var(
+      --eyebrow-margin-bottom-user,
+      var(--text-style-eyebrow-margin-bottom, var(--space-3))
+    );
+    display: flow-root;
+    max-inline-size: calc(var(--eyebrow-max-chars, var(--text-style-eyebrow-max-chars, 32)) * 1ch);
+    --eyebrow-trim-top: var(--text-style-eyebrow-trim-top, var(--font-trim-top));
+    --eyebrow-trim-bottom: var(--text-style-eyebrow-trim-bottom, var(--font-trim-bottom));
+  }
+
+  .eyebrow[data-max-chars='none'] {
+    max-inline-size: none;
+  }
+
+  /* Line-height trim (standaard aan) */
+  .eyebrow::before {
+    content: "";
+    display: table;
+    margin-bottom: calc(-0.5lh + var(--eyebrow-trim-top));
+  }
+
+  .eyebrow::after {
+    content: "";
+    display: table;
+    margin-bottom: calc(-0.5lh + var(--eyebrow-trim-bottom));
+  }
+
+  /* Fallback voor browsers zonder lh-unit support */
+  @supports not (margin-bottom: 1lh) {
+    .eyebrow::before {
+      margin-bottom: calc(var(--eyebrow-trim-top) - 0.5em);
+    }
+
+    .eyebrow::after {
+      margin-bottom: calc(var(--eyebrow-trim-bottom) - 0.5em);
+    }
+  }
+
+  /* BEM modifier opt-out */
+  .eyebrow.eyebrow--trim-off::before,
+  .eyebrow.eyebrow--trim-off::after {
+    content: none;
+  }
+
+  .eyebrow[data-align='start'] {
+    text-align: start;
+    margin-inline: 0;
+  }
+
+  .eyebrow[data-align='center'] {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .eyebrow[data-align='end'] {
+    text-align: end;
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+  }
+</style>

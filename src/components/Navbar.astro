@@ -1,28 +1,47 @@
 ---
 import Button from "./Button.astro";
+import { IconClose, IconMenu } from "./icons";
 ---
 
 <header class="navbar">
-  <div class="navbar__element">
+  <div class="navbar__element" data-open="false">
     <a class="navbar__brand" href="/" aria-label="Ga naar homepage">
       <img src="images/kl-logo-horizontal.svg" alt="Korfbal.live">
     </a>
 
-    <nav class="navbar__nav" aria-label="Hoofdnavigatie">
-      <ul class="navbar__list" role="list">
-        <li><a class="navbar__link" href="/">Home</a></li>
-        <li><a class="navbar__link" href="/features">Hoe het werkt</a></li>
-        <li><a class="navbar__link" href="#">Abonnementen</a></li>
-        <li><a class="navbar__link" href="#">Over ons</a></li>
-      </ul>
-    </nav>
+    <button
+      class="navbar__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="navbar-menu"
+      aria-label="Open navigatiemenu"
+    >
+      <span class="navbar__toggle-icon navbar__toggle-icon--menu" aria-hidden="true">
+        <IconMenu size={24} />
+      </span>
+      <span class="navbar__toggle-icon navbar__toggle-icon--close" aria-hidden="true">
+        <IconClose size={24} />
+      </span>
+    </button>
 
-    <Button href="#overzicht">Start gratis</Button>
+    <div class="navbar__panel" id="navbar-menu">
+      <nav class="navbar__nav" aria-label="Hoofdnavigatie">
+        <ul class="navbar__list" role="list">
+          <li><a class="navbar__link" href="/">Home</a></li>
+          <li><a class="navbar__link" href="/features">Hoe het werkt</a></li>
+          <li><a class="navbar__link" href="/abonnementen">Abonnementen</a></li>
+          <li><a class="navbar__link" href="/over-ons">Over ons</a></li>
+        </ul>
+      </nav>
+
+      <div class="navbar__cta-button">
+        <Button href="#overzicht">Start gratis</Button>
+      </div>
+    </div>
   </div>
 </header>
 
 <style>
-
   .navbar {
     position: fixed;
     top: 0;
@@ -32,33 +51,21 @@ import Button from "./Button.astro";
   }
 
   .navbar__element {
-    --_navbar-wrap: nowrap;
-    --_navbar-justify: space-between;
-    --_navbar-row-gap: 0;
-    --_navbar-padding-block: 0;
-    --_navbar-nav-order: 0;
-    --_navbar-nav-width: auto;
-    --_navbar-nav-margin-inline: auto;
-    --_navbar-list-justify: flex-start;
-    --_navbar-list-wrap: nowrap;
-
     width: calc(100% - (var(--nav-padding-x) * 2));
-    max-width: 64rem;
+    max-width: 60rem;
     min-height: var(--nav-height);
     margin-inline: auto;
     display: flex;
     align-items: center;
-    justify-content: var(--_navbar-justify);
+    justify-content: space-between;
     gap: var(--space-3);
-    flex-wrap: var(--_navbar-wrap);
-    row-gap: var(--_navbar-row-gap);
     container-type: inline-size;
     background-color: white;
     border-radius: var(--nav-radius);
     box-shadow: var(--theme-shadow-subtle);
-    margin-top: 3rem;
+    margin-top: var(--space-6);
     padding-inline: var(--nav-padding-x);
-    padding-block: var(--_navbar-padding-block);
+    padding-block: 0;
   }
 
   .navbar__brand {
@@ -71,18 +78,62 @@ import Button from "./Button.astro";
     max-width: 10rem;
   }
 
-  .navbar__nav {
-    order: var(--_navbar-nav-order);
-    width: var(--_navbar-nav-width);
-    margin-inline: var(--_navbar-nav-margin-inline);
+  .navbar__toggle {
+    display: none;
+    position: relative;
+    z-index: 41;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0;
+    border-radius: 0;
+    background: white;
+    color: var(--theme-link-text);
+    cursor: pointer;
+  }
+
+  .navbar__toggle:hover,
+  .navbar__toggle:focus-visible {
+    color: var(--theme-link-text-hover);
+  }
+
+  .navbar__toggle:focus-visible {
+    outline: var(--focus-ring-width) solid var(--theme-button-focus-color);
+    outline-offset: var(--focus-ring-offset-outer);
+  }
+
+  .navbar__toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar__toggle-icon--close {
+    display: none;
+  }
+
+  .navbar__element[data-open="true"] .navbar__toggle-icon--menu {
+    display: none;
+  }
+
+  .navbar__element[data-open="true"] .navbar__toggle-icon--close {
+    display: block;
+  }
+
+  .navbar__panel {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    margin-inline-start: auto;
   }
 
   .navbar__list {
     display: flex;
     align-items: center;
     gap: var(--space-4);
-    justify-content: var(--_navbar-list-justify);
-    flex-wrap: var(--_navbar-list-wrap);
+    justify-content: flex-start;
+    flex-wrap: nowrap;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -104,43 +155,108 @@ import Button from "./Button.astro";
     border-color: var(--theme-link-border-hover);
   }
 
-  .navbar__cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 2.4rem;
-    padding-inline: var(--space-3);
-    border: 1px solid var(--theme-button-primary-border);
-    border-radius: var(--button-radius);
-    background: var(--theme-button-primary-bg);
-    color: var(--theme-button-primary-text);
-    font-size: var(--font-size-body-sm);
-    font-weight: var(--font-weight-medium);
+  .navbar__cta-button {
     white-space: nowrap;
-    transition:
-      background-color 0.2s ease,
-      color 0.2s ease,
-      border-color 0.2s ease;
-  }
-
-  .navbar__cta:hover,
-  .navbar__cta:focus-visible {
-    background: var(--theme-button-primary-bg-hover);
-    color: var(--theme-button-primary-text-hover);
-    border-color: var(--theme-button-primary-bg-hover);
   }
 
   @container (width < 50em) {
     .navbar__element {
-      --_navbar-wrap: wrap;
-      --_navbar-justify: center;
-      --_navbar-row-gap: var(--space-2);
-      --_navbar-padding-block: var(--space-2);
-      --_navbar-nav-order: 3;
-      --_navbar-nav-width: 100%;
-      --_navbar-nav-margin-inline: 0;
-      --_navbar-list-justify: center;
-      --_navbar-list-wrap: wrap;
+      flex-wrap: wrap;
+      row-gap: var(--space-2);
+      padding-block: var(--space-2);
+    }
+
+    .navbar__toggle {
+      display: inline-flex;
+    }
+
+    .navbar__panel {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: var(--space-5);
+      margin-inline-start: 0;
+      padding-block: calc(var(--nav-height) + 3rem) var(--space-5);
+      padding-inline: var(--nav-padding-x);
+      background: white;
+      overflow-y: auto;
+    }
+
+    .navbar__element[data-open="true"] .navbar__panel {
+      display: flex;
+    }
+
+    .navbar__list {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+
+    .navbar__cta-button {
+      width: 100%;
+      white-space: initial;
+    }
+
+    .navbar__cta-button :global(.button) {
+      width: 100%;
     }
   }
 </style>
+
+<script>
+  const navbarElements = document.querySelectorAll<HTMLElement>(".navbar__element");
+  let openOverlayCount = 0;
+
+  const updateBodyScrollLock = () => {
+    if (openOverlayCount > 0) {
+      document.body.style.overflow = "hidden";
+      return;
+    }
+
+    document.body.style.removeProperty("overflow");
+  };
+
+  navbarElements.forEach((navbarElement) => {
+    const toggle = navbarElement.querySelector<HTMLButtonElement>(".navbar__toggle");
+
+    if (!toggle) return;
+
+    let isOverlayOpen = false;
+
+    const setOpenState = (isOpen: boolean) => {
+      const shouldLockScroll = isOpen && window.getComputedStyle(toggle).display !== "none";
+
+      if (shouldLockScroll !== isOverlayOpen) {
+        openOverlayCount += shouldLockScroll ? 1 : -1;
+        isOverlayOpen = shouldLockScroll;
+        updateBodyScrollLock();
+      }
+
+      navbarElement.dataset.open = isOpen ? "true" : "false";
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      toggle.setAttribute(
+        "aria-label",
+        isOpen ? "Sluit navigatiemenu" : "Open navigatiemenu",
+      );
+    };
+
+    toggle.addEventListener("click", () => {
+      const isOpen = navbarElement.dataset.open === "true";
+      setOpenState(!isOpen);
+    });
+
+    navbarElement.querySelectorAll<HTMLAnchorElement>(".navbar__link").forEach((link) => {
+      link.addEventListener("click", () => setOpenState(false));
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.getComputedStyle(toggle).display === "none") {
+        setOpenState(false);
+      }
+    });
+  });
+</script>

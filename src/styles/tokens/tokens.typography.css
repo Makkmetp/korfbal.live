@@ -18,7 +18,7 @@
   --font-size-h4: clamp(1.75rem, calc((1.75 - ((2 - 1.75) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((2 - 1.75) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 2rem);
   --font-size-h3: clamp(2.25rem, calc((2.25 - ((3 - 2.25) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((3 - 2.25) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 3rem);
   --font-size-h2: clamp(2.5rem, calc((2.5 - ((4 - 2.5) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((4 - 2.5) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 4rem);
-  --font-size-h1: clamp(3rem, calc((3 - ((4.5 - 3) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((4.5 - 3) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 4.5rem);
+  --font-size-h1: clamp(2.75rem, calc((2.75 - ((4.5 - 2.75) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((4.5 - 2.75) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 4.5rem);
   --font-size-display: clamp(4rem, calc((4 - ((7 - 4) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((7 - 4) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 7rem);
 
   --line-height-tight: 1;
@@ -26,7 +26,9 @@
   --line-height-loose: 1.5;
 
   --letter-spacing-tight: -0.04em;
+  --letter-spacing-small: -0.02em;
   --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.2em;
 
   --text-transform-none: none;
   --text-transform-uppercase: uppercase;
@@ -41,7 +43,7 @@
   /* Body text */
   --text-style-body-sm-font-size: var(--font-size-body-sm);
   --text-style-body-sm-line-height: var(--line-height-loose);
-  --text-style-body-sm-letter-spacing: var(--letter-spacing-normal);
+  --text-style-body-sm-letter-spacing: var(--letter-spacing-small);
   --text-style-body-sm-font-weight: var(--font-weight-regular);
   --text-style-body-sm-text-transform: var(--text-transform-none);
   --text-style-body-sm-text-wrap: pretty;
@@ -52,7 +54,7 @@
 
   --text-style-body-font-size: var(--font-size-body);
   --text-style-body-line-height: var(--line-height-loose);
-  --text-style-body-letter-spacing: var(--letter-spacing-tight);
+  --text-style-body-letter-spacing: var(--letter-spacing-small);
   --text-style-body-font-weight: var(--font-weight-regular);
   --text-style-body-text-transform: var(--text-transform-none);
   --text-style-body-text-wrap: pretty;
@@ -63,7 +65,7 @@
 
   --text-style-body-lg-font-size: var(--font-size-body-lg);
   --text-style-body-lg-line-height: var(--line-height-loose);
-  --text-style-body-lg-letter-spacing: var(--letter-spacing-tight);
+  --text-style-body-lg-letter-spacing: var(--letter-spacing-small);
   --text-style-body-lg-font-weight: var(--font-weight-regular);
   --text-style-body-lg-text-transform: var(--text-transform-none);
   --text-style-body-lg-text-wrap: pretty;
@@ -71,6 +73,18 @@
   --text-style-body-lg-max-chars: 62;
   --text-style-body-lg-trim-top: var(--font-trim-top);
   --text-style-body-lg-trim-bottom: var(--font-trim-bottom);
+
+  /* Eyebrow */
+  --text-style-eyebrow-font-size: var(--font-size-body-sm);
+  --text-style-eyebrow-line-height: var(--line-height-normal);
+  --text-style-eyebrow-letter-spacing: var(--letter-spacing-wide);
+  --text-style-eyebrow-font-weight: var(--font-weight-bold);
+  --text-style-eyebrow-text-transform: var(--text-transform-uppercase);
+  --text-style-eyebrow-text-wrap: balance;
+  --text-style-eyebrow-margin-bottom: var(--space-3);
+  --text-style-eyebrow-max-chars: 32;
+  --text-style-eyebrow-trim-top: var(--font-trim-top);
+  --text-style-eyebrow-trim-bottom: var(--font-trim-bottom);
 
   /* Headings: H6–Display */
   --text-style-h6-font-size: var(--font-size-h6);

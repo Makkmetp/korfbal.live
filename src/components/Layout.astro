@@ -65,6 +65,7 @@ const layoutClasses = ['layout', typeof userClass === 'string' ? userClass : und
     --_layout-primary-grid-column: span var(--_layout-primary-columns, 1);
     --_layout-secondary-grid-column: span var(--_layout-secondary-columns, 1);
     --_layout-primary-grid-row: auto;
+    --_layout-primary-align: start;
     --_layout-secondary-grid-row: auto;
 
     column-gap: var(--layout-gutter);
@@ -78,12 +79,14 @@ const layoutClasses = ['layout', typeof userClass === 'string' ? userClass : und
   .layout[data-variant='columns'] {
     --_layout-display: grid;
     --_layout-grid-template-columns: repeat(2, minmax(0, 1fr));
+    --_layout-primary-align: center;
   }
 
   .layout[data-variant='columns-7-5'] {
     --_layout-display: grid;
     --_layout-grid-template-columns: repeat(12, minmax(0, 1fr));
     --_layout-primary-columns: 7;
+    --_layout-primary-align: center;
     --_layout-secondary-columns: 5;
   }
 
@@ -105,6 +108,7 @@ const layoutClasses = ['layout', typeof userClass === 'string' ? userClass : und
     --_layout-primary-grid-column: content-start / span 6;
     --_layout-secondary-grid-column: 8 / full-end;
     --_layout-primary-grid-row: 1;
+    --_layout-primary-align: center;
     --_layout-secondary-grid-row: 1;
   }
 
@@ -131,8 +135,7 @@ const layoutClasses = ['layout', typeof userClass === 'string' ? userClass : und
   .layout__content--primary {
     grid-column: var(--_layout-primary-grid-column);
     grid-row: var(--_layout-primary-grid-row);
-    align-self: center;
-    display: block;
+    align-self: var(--_layout-primary-align);
   }
 
   .layout__content--secondary {
