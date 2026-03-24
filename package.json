@@ -3,13 +3,18 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "concurrently -n astro,icons \"astro dev\" \"npm run generate:icons:watch\"",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate:icons": "node scripts/generate-icons.mjs",
+    "generate:icons:watch": "node scripts/generate-icons.mjs --watch"
   },
   "dependencies": {
     "astro": "^5.17.1",
     "gotham-fonts": "^1.0.3"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }
