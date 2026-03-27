@@ -20,6 +20,27 @@ const {
   lang = "nl",
 } = Astro.props;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://korfbal.live/#organization",
+      name: "Korfbal.live",
+      url: "https://korfbal.live/",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://korfbal.live/#website",
+      name: "Korfbal.live",
+      url: "https://korfbal.live/",
+      inLanguage: lang,
+      publisher: {
+        "@id": "https://korfbal.live/#organization",
+      },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -30,6 +51,10 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toStri
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    ></script>
     <title>{title}</title>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="741b78b1-8001-4cd5-9de7-4825b663ede3"></script>
   </head>
