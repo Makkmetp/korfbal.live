@@ -3,9 +3,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "../components/Section.astro";
 
 const pageTitle = "Algemene voorwaarden | Korfbal.live";
+const pageDescription =
+  "Bekijk de algemene voorwaarden van Korfbal.live over gebruik, verantwoordelijkheden, abonnementen en aansprakelijkheid.";
 ---
 
-<BaseLayout title={pageTitle}>
+<BaseLayout title={pageTitle} description={pageDescription}>
   <main>
     <Section id="algemene-voorwaarden" paddingBlockStart="page-top" paddingBlockEnd="large">
       <article class="terms-content">

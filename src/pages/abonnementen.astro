@@ -6,6 +6,8 @@ import Text from "../components/Text.astro";
 import Button from "../components/Button.astro";
 
 const pageTitle = "Abonnementen | Korfbal.live";
+const pageDescription =
+  "Bekijk de abonnementen van Korfbal.live en kies het pakket dat past bij jouw team of vereniging, van gratis tot clubniveau.";
 
 const plans = [
   {
@@ -55,7 +57,7 @@ const plans = [
 ] as const;
 ---
 
-<BaseLayout title={pageTitle}>
+<BaseLayout title={pageTitle} description={pageDescription}>
   <Section
     id="abonnementen"
     paddingBlockStart="page-top"

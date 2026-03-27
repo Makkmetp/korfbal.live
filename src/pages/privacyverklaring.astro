@@ -3,9 +3,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "../components/Section.astro";
 
 const pageTitle = "Privacyverklaring | Korfbal.live";
+const pageDescription =
+  "Lees hoe Korfbal.live persoonsgegevens verwerkt, beveiligt en bewaart, en welke privacyrechten je hebt als gebruiker.";
 ---
 
-<BaseLayout title={pageTitle}>
+<BaseLayout title={pageTitle} description={pageDescription}>
   <main>
     <Section id="privacyverklaring" paddingBlockStart="page-top" paddingBlockEnd="large">
       <article class="privacy-content">
