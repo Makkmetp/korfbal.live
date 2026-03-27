@@ -9,14 +9,17 @@ import Footer from "../components/Footer.astro";
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
   lang?: string;
 }
 
 const {
   title = "Korfbal.live",
   description = "Korfbal.live helpt trainers en coaches wedstrijden live te volgen, te delen en te analyseren met duidelijke statistieken.",
+  canonical,
   lang = "nl",
 } = Astro.props;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -26,6 +29,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="741b78b1-8001-4cd5-9de7-4825b663ede3"></script>
   </head>
