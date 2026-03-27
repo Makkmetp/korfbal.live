@@ -1,0 +1,176 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Layout from "../components/Layout.astro";
+import Heading from "../components/Heading.astro";
+import Text from "../components/Text.astro";
+
+const pageTitle = "Veelgestelde vragen | Korfbal.live";
+const pageDescription =
+  "Antwoorden op de meestgestelde vragen over Korfbal.live, abonnementen en live meekijken.";
+
+const faqItems = [
+  {
+    question: "Voor welke spelvarianten is Korfbal.live geschikt?",
+    answer:
+      "Momenteel is korfbal.live alleen geschikt voor 2-vaks korfbal met automatische functiewissel na 2 doelpunten. Binnenkort zullen andere varianten ook ondersteund worden.",
+  },
+  {
+    question: "Kan ik later upgraden?",
+    answer:
+      "Ja. Je kunt op elk moment overstappen van Gratis naar Pro. Overstappen van Pro naar Club is op aanvraag.",
+  },
+  {
+    question: "Is Pro per trainer of per team?",
+    answer:
+      "Pro wordt afgerekend per team. Trainers kunnen samen werken binnen één team.",
+  },
+  {
+    question: "Kunnen ouders meekijken?",
+    answer:
+      "Ja. Via een live link kunnen ouders en supporters de wedstrijd volgen en de highlights van het liveverslag bekijken.",
+  },
+  {
+    question: "Is korfbal.live een officieel bondsysteem?",
+    answer:
+      "Nee. Korfbal.live is een hulpmiddel voor registratie en analyse, niet voor officiële uitslagen in Sportlink.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Section
+    id="veelgestelde-vragen"
+    paddingBlockStart="page-top"
+    paddingBlockEnd="small"
+    innerMaxWidth="md"
+  >
+    <Layout variant="stack">
+      <Fragment slot="content-primary">
+        <Heading as="h1" variant="h1" align="center"
+          >Veelgestelde vragen</Heading
+        >
+        <Text maxChars={64} align="center">
+          <p>
+            Dit zijn de veelgestelde vragen die eerder op de homepage stonden.
+            Staat je vraag er niet tussen? Neem dan gerust contact op via{" "}
+            <a
+              href="mailto:info@korfbal.live?subject=Vraag via veelgestelde vragen"
+            >
+              info@korfbal.live
+            </a>.
+          </p>
+        </Text>
+      </Fragment>
+      <Fragment slot="content-secondary">
+        <ul class="faq-list" role="list">
+          {
+            faqItems.map((item) => (
+              <li class="faq-item">
+                <details>
+                  <summary>{item.question}</summary>
+                  <p>{item.answer}</p>
+                </details>
+              </li>
+            ))
+          }
+        </ul>
+      </Fragment>
+    </Layout>
+  </Section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>
+
+<style>
+  .faq-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .faq-item details {
+    border: 1px solid
+      color-mix(in srgb, var(--theme-color-text) 14%, transparent);
+    border-radius: var(--nav-radius);
+    padding: var(--space-4);
+    background: color-mix(in srgb, var(--theme-color-bg) 92%, white);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .faq-item details[open] {
+    border-color: color-mix(
+      in srgb,
+      var(--theme-color-accent) 55%,
+      transparent
+    );
+    box-shadow: var(--theme-shadow-subtle);
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-size: var(--text-style-h5-font-size);
+    line-height: var(--text-style-h5-line-height);
+    letter-spacing: var(--text-style-h5-letter-spacing);
+    font-weight: var(--text-style-h5-font-weight);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .faq-item summary::marker,
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: "+";
+    flex-shrink: 0;
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: 100vw;
+    background: color-mix(in srgb, var(--theme-color-accent) 16%, transparent);
+    color: var(--theme-color-accent);
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .faq-item details[open] summary::after {
+    content: "−";
+  }
+
+  .faq-item summary:focus-visible {
+    outline: var(--focus-ring-width) solid var(--theme-button-focus-color);
+    outline-offset: var(--focus-ring-offset-outer);
+    border-radius: 0.25rem;
+  }
+
+  .faq-item p {
+    margin: var(--space-3) 0 0;
+    max-inline-size: 60ch;
+    font-size: var(--text-style-body-font-size);
+    line-height: var(--text-style-body-line-height);
+    letter-spacing: var(--text-style-body-letter-spacing);
+  }
+</style>
