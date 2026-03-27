@@ -11,6 +11,7 @@
     "generate:icons:watch": "node scripts/generate-icons.mjs --watch"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "astro": "^5.17.1",
     "gotham-fonts": "^1.0.3"
   },
