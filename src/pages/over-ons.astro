@@ -1,0 +1,169 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Layout from "../components/Layout.astro";
+import Heading from "../components/Heading.astro";
+import Text from "../components/Text.astro";
+import Image from "../components/Image.astro";
+import Grid from "../components/Grid.astro";
+import Card from "../components/Card.astro";
+
+const pageTitle = "Over ons | Korfbal.live";
+---
+
+<BaseLayout title={pageTitle}>
+  <Section
+    id="wie-zijn-wij"
+    paddingBlockStart="page-top"
+    paddingBlockEnd="large"
+  >
+    <Layout>
+      <Fragment slot="content-primary">
+        <Heading as="h1" variant="h1"
+          >Korfbal draait om meer dan de uitslag</Heading
+        >
+        <Text maxChars={66}>
+          <p>
+            Korfbal is een sport waarin betrokkenheid centraal staat: ouders
+            langs de lijn, coaches die hun team willen verbeteren en spelers die
+            samen groeien. Toch blijft een groot deel van wat er tijdens een
+            wedstrijd gebeurt onzichtbaar voor wie er niet bij is. Wij geloven
+            dat elke wedstrijd een verhaal heeft dat het waard is om gedeeld te
+            worden. Niet alleen achteraf, maar juist op het moment zelf.
+          </p>
+        </Text>
+      </Fragment>
+    </Layout>
+  </Section>
+
+  <Section theme="dark" innerMaxWidth="md">
+    <Layout>
+      <Fragment slot="content-primary">
+        <Heading
+          as="h2"
+          variant="h2"
+          style="text-align: center; margin-inline: auto;">Ons Team</Heading
+        >
+        <Text maxChars={48} align="center">
+          <p>
+            Met jarenlange ervaring in korfbal en productontwikkeling bouwen wij
+            slimme oplossingen die de sport vooruithelpen.
+          </p>
+        </Text>
+      </Fragment>
+      <Fragment slot="content-secondary">
+        <Grid columnsLarge={2} columnsMedium={1}>
+          <Card>
+            <div class="team-member">
+              <img
+                src="images/team/peter-makkes.webp"
+                alt="Portret van Peter Makkes"
+                class="team-member__image"
+              />
+              <div class="team-member__content">
+                <Heading as="h3" variant="h4" marginBottom="none" maxChars="8"
+                  >Peter Makkes</Heading
+                >
+                <p class="team-member__subtitle">Founder & Product Director</p>
+              </div>
+            </div>
+          </Card>
+          <Card>
+            <div class="team-member">
+              <img
+                src="images/team/rogier-mechielsen.webp"
+                alt="Portret van Rogier Mechielsen"
+                class="team-member__image"
+              />
+              <div class="team-member__content">
+                <Heading as="h3" variant="h4" marginBottom="none" maxChars="8"
+                  >Rogier Mechielsen</Heading
+                >
+                <p class="team-member__subtitle">Designer & Developer</p>
+              </div>
+            </div>
+          </Card>
+        </Grid>
+      </Fragment>
+    </Layout>
+  </Section>
+
+  <Section>
+    <Layout variant="columns-7-5" reversed>
+      <Fragment slot="content-primary">
+        <Heading as="h2" variant="h2">Hoe het begon</Heading>
+        <Text maxChars={58}>
+          <p>
+            Korfbal zit al jarenlang in het leven van oprichter Peter Makkes.
+            Zijn eerste kennismaking met de sport gaat terug naar begin jaren
+            tachtig, toen hij samen met zijn broer begon bij Fortuna Delft. Wat
+            begon als spelen met vrienden groeide uit tot jarenlang actief zijn
+            in de sport, zowel op het veld als daarbuiten.
+          </p>
+
+          <p>
+            Later, toen zijn eigen kinderen gingen korfballen bij dezelfde
+            vereniging, kwam hij opnieuw intensief in aanraking met de sport.
+            Vanuit verschillende rollen, als trainer en coach, binnen de
+            jeugdcommissie en als projectleider, zag hij van dichtbij hoe teams
+            functioneren en waar kansen liggen om het spel en de beleving te
+            verbeteren.
+          </p>
+
+          <p>
+            Het idee voor korfbal.live ontstond langs de lijn. Als ouder wilde
+            hij wedstrijden kunnen volgen, ook als hij er zelf niet bij kon
+            zijn. Tegelijkertijd zag hij hoe coaches afhankelijk waren van
+            handmatige notities of videobeelden achteraf, en hoe verenigingen
+            steeds meer behoefte kregen aan betrokkenheid en zichtbaarheid voor
+            sponsoren.
+          </p>
+
+          <p>
+            Met korfbal.live komen die werelden samen. Terwijl één persoon de
+            wedstrijd registreert, ontstaat er automatisch een live verslag voor
+            supporters, krijgen coaches direct inzicht in statistieken en
+            ontstaat er ruimte voor sponsoren om zichtbaar te zijn. Zo draagt
+            het platform bij aan meer betrokkenheid, betere inzichten en een
+            volgende stap in de ontwikkeling van de sport.
+          </p>
+        </Text>
+      </Fragment>
+      <Fragment slot="content-secondary">
+        <blockquote>
+          <Heading as="h3" variant="h3" marginBottom="none" maxChars="16">
+          Meer betrokkenheid. Meer inzicht. <em>Meer korfbal.</em>
+          </Heading>
+        </blockquote>
+      </Fragment>
+    </Layout>
+  </Section>
+</BaseLayout>
+
+<style>
+  .team-member {
+    display: flex;
+    gap: var(--space-5);
+    align-items: center;
+  }
+
+  .team-member__image {
+    width: 8rem;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    border-radius: 100vw;
+  }
+
+  .team-member__content {
+    display: flex;
+    flex-flow: column;
+    gap: var(--space-2);
+    align-items: start;
+  }
+
+  .team-member__subtitle {
+    margin: 0;
+    font-size: var(--text-style---text-style-body-lg-font-size);
+    color: var(--theme-color-accent);
+  }
+</style>

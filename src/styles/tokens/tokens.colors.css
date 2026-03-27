@@ -1,0 +1,48 @@
+/* Kleuren & color-tokens */
+
+:root {
+  /* ========= KLEUREN ========= */
+  /* Light (default) */
+  --color-bg: #f3f3f9;
+  --color-surface: #ffffff;
+  --color-text: #03054D;
+  --color-border: color-mix(in srgb, var(--color-text) 20%, transparent);
+
+  /* Dark */
+  --color-dark-bg: #000125;
+  --color-dark-surface: #070943;
+  --color-dark-text: var(--color-bg);
+  --color-dark-border: color-mix(in srgb, var(--color-dark-text) 20%, transparent);
+
+  /* Primary */
+  --color-primary-500: #DD085F;
+  --color-primary-100: color-mix(in srgb, var(--color-primary-500), var(--color-bg) 80%);
+  --color-primary-200: color-mix(in srgb, var(--color-primary-500), var(--color-bg) 60%);
+  --color-primary-300: color-mix(in srgb, var(--color-primary-500), var(--color-bg) 40%);
+  --color-primary-400: color-mix(in srgb, var(--color-primary-500), var(--color-bg) 20%);
+  --color-primary-600: color-mix(in srgb, var(--color-primary-500), var(--color-dark-bg) 20%);
+  --color-primary-700: color-mix(in srgb, var(--color-primary-500), var(--color-dark-bg) 40%);
+  --color-primary-800: color-mix(in srgb, var(--color-primary-500), var(--color-dark-bg) 60%);
+  --color-primary-900: color-mix(in srgb, var(--color-primary-500), var(--color-dark-bg) 80%);
+  --color-primary-text: var(--color-text);
+
+  /* Secondary */
+  --color-secondary-500: #0c15e7;
+  --color-secondary-100: color-mix(in srgb, var(--color-secondary-500), var(--color-bg) 80%);
+  --color-secondary-200: color-mix(in srgb, var(--color-secondary-500), var(--color-bg) 60%);
+  --color-secondary-300: color-mix(in srgb, var(--color-secondary-500), var(--color-bg) 40%);
+  --color-secondary-400: color-mix(in srgb, var(--color-secondary-500), var(--color-bg) 20%);
+  --color-secondary-600: color-mix(in srgb, var(--color-secondary-500), var(--color-dark-bg) 20%);
+  --color-secondary-700: color-mix(in srgb, var(--color-secondary-500), var(--color-dark-bg) 40%);
+  --color-secondary-800: color-mix(in srgb, var(--color-secondary-500), var(--color-dark-bg) 60%);
+  --color-secondary-900: color-mix(in srgb, var(--color-secondary-500), var(--color-dark-bg) 80%);
+  --color-secondary-text: var(--color-text);
+
+  --color-transparent: transparent;
+
+  /* States */
+  --color-selection-bg: var(--color-primary-300);
+  --color-selection-text: var(--color-primary-text);
+  --color-focus: var(--color-primary-500);
+}
+

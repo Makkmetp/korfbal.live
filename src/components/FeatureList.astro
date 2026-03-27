@@ -1,0 +1,97 @@
+---
+type FeatureListAs = "ul" | "ol";
+type FeatureListGap = "tight" | "normal";
+
+interface Props {
+  /**
+   * Kies tussen ul of ol.
+   */
+  as?: FeatureListAs;
+
+  /**
+   * Snelle helper voor lijstitems op basis van tekst.
+   * Laat leeg als je custom <li> via slot wilt gebruiken.
+   */
+  items?: string[];
+
+  /**
+   * Ruimte tussen de items.
+   */
+  gap?: FeatureListGap;
+}
+
+const {
+  as = "ul",
+  items = [],
+  gap = "tight",
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & {
+  class?: unknown;
+  style?: unknown;
+} & Record<string, unknown>;
+
+const Tag = as;
+const featureListClasses = [
+  "feature-list",
+  typeof userClass === "string" ? userClass : undefined,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<Tag
+  {...forwardedProps}
+  class={featureListClasses}
+  data-gap={gap}
+  style={typeof userStyle === "string" ? userStyle : undefined}
+>
+  {
+    items.length > 0 ? (
+      items.map((item) => <li>{item}</li>)
+    ) : (
+      <slot />
+    )
+  }
+</Tag>
+
+<style>
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: .125rem;
+  }
+
+  .feature-list[data-gap="normal"] {
+    gap: var(--space-2);
+  }
+
+  .feature-list :global(li) {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    background: var(--theme-color-surface);
+  }
+
+  .feature-list :global(li:first-child) {
+    border-radius: 0.875rem 0.875rem 0 0;
+  }
+
+  .feature-list :global(li:last-child) {
+    border-radius: 0 0 0.875rem 0.875rem;
+  }
+
+  .feature-list :global(li)::before {
+    content: "";
+    inline-size: 0.6em;
+    block-size: 0.6em;
+    margin-top: 0.45em;
+    border-radius: 999px;
+    flex-shrink: 0;
+    background: var(--theme-color-accent);
+  }
+</style>

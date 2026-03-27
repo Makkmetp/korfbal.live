@@ -1,0 +1,167 @@
+/* Typografie & text-style tokens */
+
+:root {
+  /* ========= TYPOGRAFIE ========= */
+  --font-family-base: 'Gotham Rounded', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Font-sizes (fluid op basis van viewport-min/max) */
+  --font-size-body-sm: clamp(0.75rem, calc((0.75 - ((0.875 - 0.75) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 0.875rem + ((0.875 - 0.75) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 0.875rem);
+  --font-size-body: clamp(1rem, calc((1 - ((1.125 - 1) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((1.125 - 1) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 1.125rem);
+  --font-size-body-lg: clamp(1.125rem, calc((1.125 - ((1.25 - 1.125) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((1.25 - 1.125) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 1.25rem);
+
+  --font-size-h6: clamp(1rem, calc((1 - ((1.125 - 1) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((1.125 - 1) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 1.125rem);
+  --font-size-h5: clamp(1.375rem, calc((1.375 - ((1.5 - 1.375) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((1.5 - 1.375) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 1.5rem);
+  --font-size-h4: clamp(1.75rem, calc((1.75 - ((2 - 1.75) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((2 - 1.75) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 2rem);
+  --font-size-h3: clamp(2.25rem, calc((2.25 - ((3 - 2.25) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((3 - 2.25) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 3rem);
+  --font-size-h2: clamp(2.5rem, calc((2.5 - ((4 - 2.5) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((4 - 2.5) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 4rem);
+  --font-size-h1: clamp(2.75rem, calc((2.75 - ((4.5 - 2.75) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((4.5 - 2.75) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 4.5rem);
+  --font-size-display: clamp(4rem, calc((4 - ((7 - 4) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) * 1rem + ((7 - 4) / (var(--viewport-max) - var(--viewport-min))) * 100vw), 7rem);
+
+  --line-height-tight: 1;
+  --line-height-normal: 1.3;
+  --line-height-loose: 1.5;
+
+  --letter-spacing-tight: -0.04em;
+  --letter-spacing-small: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.2em;
+
+  --text-transform-none: none;
+  --text-transform-uppercase: uppercase;
+  --text-transform-capitalize: capitalize;
+  --text-transform-lowercase: lowercase;
+
+  /* Font trim voor visuele uitlijning */
+  --font-trim-top: 0.44em;
+  --font-trim-bottom: 0.32em;
+
+  /* ========= TEXT STYLES (BASE MODE) ========= */
+  /* Body text */
+  --text-style-body-sm-font-size: var(--font-size-body-sm);
+  --text-style-body-sm-line-height: var(--line-height-loose);
+  --text-style-body-sm-letter-spacing: var(--letter-spacing-small);
+  --text-style-body-sm-font-weight: var(--font-weight-regular);
+  --text-style-body-sm-text-transform: var(--text-transform-none);
+  --text-style-body-sm-text-wrap: pretty;
+  --text-style-body-sm-margin-bottom: var(--space-3);
+  --text-style-body-sm-max-chars: 70;
+  --text-style-body-sm-trim-top: var(--font-trim-top);
+  --text-style-body-sm-trim-bottom: var(--font-trim-bottom);
+
+  --text-style-body-font-size: var(--font-size-body);
+  --text-style-body-line-height: var(--line-height-loose);
+  --text-style-body-letter-spacing: var(--letter-spacing-small);
+  --text-style-body-font-weight: var(--font-weight-regular);
+  --text-style-body-text-transform: var(--text-transform-none);
+  --text-style-body-text-wrap: pretty;
+  --text-style-body-margin-bottom: var(--space-5);
+  --text-style-body-max-chars: 66;
+  --text-style-body-trim-top: var(--font-trim-top);
+  --text-style-body-trim-bottom: var(--font-trim-bottom);
+
+  --text-style-body-lg-font-size: var(--font-size-body-lg);
+  --text-style-body-lg-line-height: var(--line-height-loose);
+  --text-style-body-lg-letter-spacing: var(--letter-spacing-small);
+  --text-style-body-lg-font-weight: var(--font-weight-regular);
+  --text-style-body-lg-text-transform: var(--text-transform-none);
+  --text-style-body-lg-text-wrap: pretty;
+  --text-style-body-lg-margin-bottom: var(--space-3);
+  --text-style-body-lg-max-chars: 62;
+  --text-style-body-lg-trim-top: var(--font-trim-top);
+  --text-style-body-lg-trim-bottom: var(--font-trim-bottom);
+
+  /* Eyebrow */
+  --text-style-eyebrow-font-size: var(--font-size-body-sm);
+  --text-style-eyebrow-line-height: var(--line-height-normal);
+  --text-style-eyebrow-letter-spacing: var(--letter-spacing-wide);
+  --text-style-eyebrow-font-weight: var(--font-weight-bold);
+  --text-style-eyebrow-text-transform: var(--text-transform-uppercase);
+  --text-style-eyebrow-text-wrap: balance;
+  --text-style-eyebrow-margin-bottom: var(--space-3);
+  --text-style-eyebrow-max-chars: 32;
+  --text-style-eyebrow-trim-top: var(--font-trim-top);
+  --text-style-eyebrow-trim-bottom: var(--font-trim-bottom);
+
+  /* Headings: H6–Display */
+  --text-style-h6-font-size: var(--font-size-h6);
+  --text-style-h6-line-height: var(--line-height-normal);
+  --text-style-h6-letter-spacing: var(--letter-spacing-normal);
+  --text-style-h6-font-weight: var(--font-weight-bold);
+  --text-style-h6-text-transform: var(--text-transform-uppercase);
+  --text-style-h6-text-wrap: balance;
+  --text-style-h6-margin-bottom: var(--space-4);
+  --text-style-h6-max-chars: 36;
+  --text-style-h6-trim-top: var(--font-trim-top);
+  --text-style-h6-trim-bottom: var(--font-trim-bottom);
+
+  --text-style-h5-font-size: var(--font-size-h5);
+  --text-style-h5-line-height: var(--line-height-normal);
+  --text-style-h5-letter-spacing: var(--letter-spacing-normal);
+  --text-style-h5-font-weight: var(--font-weight-bold);
+  --text-style-h5-text-transform: var(--text-transform-none);
+  --text-style-h5-text-wrap: balance;
+  --text-style-h5-margin-bottom: var(--space-4);
+  --text-style-h5-max-chars: 32;
+  --text-style-h5-trim-top: var(--font-trim-top);
+  --text-style-h5-trim-bottom: var(--font-trim-bottom);
+
+  --text-style-h4-font-size: var(--font-size-h4);
+  --text-style-h4-line-height: var(--line-height-tight);
+  --text-style-h4-letter-spacing: var(--letter-spacing-tight);
+  --text-style-h4-font-weight: var(--font-weight-bold);
+  --text-style-h4-text-transform: var(--text-transform-none);
+  --text-style-h4-text-wrap: balance;
+  --text-style-h4-margin-bottom: var(--space-5);
+  --text-style-h4-max-chars: 28;
+  --text-style-h4-trim-top: var(--font-trim-top);
+  --text-style-h4-trim-bottom: var(--font-trim-bottom);
+
+  --text-style-h3-font-size: var(--font-size-h3);
+  --text-style-h3-line-height: var(--line-height-tight);
+  --text-style-h3-letter-spacing: var(--letter-spacing-tight);
+  --text-style-h3-font-weight: var(--font-weight-bold);
+  --text-style-h3-text-transform: var(--text-transform-none);
+  --text-style-h3-text-wrap: balance;
+  --text-style-h3-margin-bottom: var(--space-5);
+  --text-style-h3-max-chars: 24;
+  --text-style-h3-trim-top: var(--font-trim-top);
+  --text-style-h3-trim-bottom: var(--font-trim-bottom);
+
+  --text-style-h2-font-size: var(--font-size-h2);
+  --text-style-h2-line-height: var(--line-height-tight);
+  --text-style-h2-letter-spacing: var(--letter-spacing-tight);
+  --text-style-h2-font-weight: var(--font-weight-bold);
+  --text-style-h2-text-transform: var(--text-transform-none);
+  --text-style-h2-text-wrap: balance;
+  --text-style-h2-margin-bottom: var(--space-6);
+  --text-style-h2-max-chars: 20;
+  --text-style-h2-trim-top: var(--font-trim-top);
+  --text-style-h2-trim-bottom: var(--font-trim-bottom);
+
+  --text-style-h1-font-size: var(--font-size-h1);
+  --text-style-h1-line-height: var(--line-height-tight);
+  --text-style-h1-letter-spacing: var(--letter-spacing-tight);
+  --text-style-h1-font-weight: var(--font-weight-bold);
+  --text-style-h1-text-transform: var(--text-transform-none);
+  --text-style-h1-text-wrap: balance;
+  --text-style-h1-margin-bottom: var(--space-6);
+  --text-style-h1-max-chars: 18;
+  --text-style-h1-trim-top: var(--font-trim-top);
+  --text-style-h1-trim-bottom: var(--font-trim-bottom);
+
+  --text-style-display-font-size: var(--font-size-display);
+  --text-style-display-line-height: var(--line-height-tight);
+  --text-style-display-letter-spacing: var(--letter-spacing-tight);
+  --text-style-display-font-weight: var(--font-weight-bold);
+  --text-style-display-text-transform: var(--text-transform-none);
+  --text-style-display-text-wrap: balance;
+  --text-style-display-margin-bottom: var(--space-6);
+  --text-style-display-max-chars: 16;
+  --text-style-display-trim-top: var(--font-trim-top);
+  --text-style-display-trim-bottom: var(--font-trim-bottom);
+}
+

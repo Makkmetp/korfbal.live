@@ -1,616 +1,692 @@
 ---
-import '../styles/base.css';
-import '../styles/handleiding.css';
-const pageTitle = "Handleiding";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Layout from "../components/Layout.astro";
 
+const pageTitle = "Handleiding | Korfbal.live";
 ---
 
-<html lang="nl">
-  <head>
-    <meta charset="utf-8" />
-    <title>{pageTitle} – korfbal.live</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-
-  <body>
-    <div class="home-page-wrapper">
-      <main class="home-container legal-container">
-                <nav class="site-menu" aria-label="Hoofdmenu">
-          <div class="site-menu-label">Menu</div>
-          <div class="site-menu-links">
-            <a href="/">Home</a>
-            <a href="/handleiding">Handleiding</a>
-            <a href="/contact">Contact</a>
-            <a href="/abonnementen">Abonnementen</a>
+<BaseLayout title={pageTitle}>
+  <main>
+    <Section
+      id="handleiding"
+      paddingBlockStart="page-top"
+      paddingBlockEnd="large"
+    >
+      <div class="guide">
+        <aside class="guide__nav" aria-label="Op deze pagina">
+          <div class="guide__nav-inner">
+            <nav>
+              <details class="guide__nav-dropdown">
+                <summary class="guide__nav-summary">
+                  <span class="guide__nav-summary-label">Ga naar onderdeel</span>
+                  <span class="guide__nav-summary-current">Snel starten</span>
+                </summary>
+                <ul class="guide__nav-dropdown-list">
+                  <li>
+                    <a class="guide__nav-link guide__nav-link--dropdown" href="#snel-starten"
+                      >Snel starten</a
+                    >
+                  </li>
+                  <li>
+                    <a class="guide__nav-link guide__nav-link--dropdown" href="#uitleg-menu"
+                      >Het menu uitgelegd</a
+                    >
+                  </li>
+                  <li>
+                    <a class="guide__nav-link guide__nav-link--dropdown" href="#team-aanmaken"
+                      >Team aanmaken</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="guide__nav-link guide__nav-link--dropdown"
+                      href="#wedstrijd-vastleggen">Wedstrijd vastleggen</a
+                    >
+                  </li>
+                  <li>
+                    <a class="guide__nav-link guide__nav-link--dropdown" href="#wedstrijd-delen"
+                      >Wedstrijd delen</a
+                    >
+                  </li>
+                  <li>
+                    <a class="guide__nav-link guide__nav-link--dropdown" href="#statistieken"
+                      >Statistieken uitgelegd</a
+                    >
+                  </li>
+                </ul>
+              </details>
+              <ul class="guide__nav-list">
+                <li><a class="guide__nav-link" href="#snel-starten">Snel starten</a></li>
+                <li><a class="guide__nav-link" href="#uitleg-menu">Het menu uitgelegd</a></li>
+                <li><a class="guide__nav-link" href="#team-aanmaken">Team aanmaken</a></li>
+                <li>
+                  <a class="guide__nav-link" href="#wedstrijd-vastleggen">Wedstrijd vastleggen</a>
+                </li>
+                <li><a class="guide__nav-link" href="#wedstrijd-delen">Wedstrijd delen</a></li>
+                <li><a class="guide__nav-link" href="#statistieken">Statistieken uitgelegd</a></li>
+              </ul>
+            </nav>
           </div>
-        </nav>
-      <img src="/images/kl-logo-vertical.svg" alt="Logo Korfbal.live" class="home-logo" />
-        <h1>Handleiding korfbal.live</h1>
+        </aside>
+        <article class="guide__content">
+          <h1>Handleiding korfbal.live</h1>
 
-        <div class="help-layout">
-          <!-- ENIGE MENU (mobiel accordion, desktop sidebar) -->
-          <aside class="help-menu" aria-label="Handleiding menu">
-            <details class="help-accordion" id="helpAccordion" open>
-              <div class="help-search">
-  <label class="visually-hidden" for="helpSearch">Zoek in de handleiding</label>
-  <input
-    id="helpSearch"
-    type="search"
-    placeholder="Zoeken… (bijv. time-out, strafworp, wissel)"
-    autocomplete="off"
-  />
-  <button type="button" id="helpSearchClear" class="help-search-clear" aria-label="Wis zoekopdracht">
-    ✕
-  </button>
-</div>
-<p class="help-search-hint" id="helpSearchHint"></p>
-              <summary>Menu</summary>
-              <nav class="help-nav" aria-label="Handleiding menu links">
-                <a href="#snel-starten">Snel starten</a>
-                <a href="#uitleg-menu">Het menu uitgelegd</a>
-                <a href="#team-aanmaken">Team aanmaken</a>
-                <a href="#wedstrijd-vastleggen">Wedstrijd vastleggen</a>
-                <a href="#wedstrijd-delen">Wedstrijd delen</a>
-                <a href="#statistieken">Statistieken uitgelegd</a>
-              </nav>
-            </details>
-          </aside>
+          <section id="snel-starten" class="guide__section">
+            <h2>Snel starten</h2>
+            <p>
+              De snelste manier om een wedstrijd vast te leggen is als volgt:
+            </p>
+            <ol>
+              <li>
+                Team aanmaken en spelers toevoegen via het menu-item <strong
+                  >Team</strong
+                >.
+              </li>
+              <li>
+                Via het menu-item <strong>Wedstrijden</strong> maak je een eerste
+                wedstrijd aan.
+              </li>
+              <li>
+                Wedstrijd vastleggen starten doe je via de aangemaakte wedstrijd
+                onderaan.
+              </li>
+              <li>
+                Nadat de wedstrijd is gestart kunnen acties vastgelegd worden.
+              </li>
+              <li>
+                Via de knop in het scorebord (<strong>Start</strong>) is het
+                volgende deel van de wedstrijd aan te geven: rust, hervat voor
+                de tweede helft en einde.
+              </li>
+            </ol>
+          </section>
 
-          <!-- CONTENT -->
-<div class="help-main">
-  <div id="helpResults" class="help-results" aria-live="polite" hidden>
-    <h2 class="help-results-title">Zoekresultaten</h2>
-    <ul id="helpResultsList" class="help-results-list"></ul>
-  </div>
-          <section class="help-content">
-            <section id="snel-starten" class="help-section">
-              <h2>Snel starten</h2>
-              <p>
-                De snelste manier om een wedstrijd vast te leggen zijn als volgt:
-                </p>
-              <ol>
-                <li>Team aanmaken en spelers toevoegen via het menu-item <strong>Team</strong>.</li>
-                <li>Via het menu-item <strong>Wedstrijden</strong> maak je een eerste wedstrijd aan.</li>
-                <li>Wedstrijd vastleggen starten doe je via de aangemaakte wedstrijd onderaan.</li>
-                <li>Nadat de wedstrijd is gestart kunnen acties vastgelegd worden.</li>
-                <li>Via de knop in het scorebord (Start) is het volgende deel van de wedstrijd aan te geven: Rust, Hervat voor de 2e helft en Einde.</li>
-              </ol>
-            </section>
-            
-            <section id="uitleg-menu" class="help-section">
-              <h2>Het menu uitgelegd</h2>
-              <img src="/images/menu.png" alt="afbeelding van het menu"  class="afbeelding" />
-              <p>Via het menu-item <strong>Team</strong> kunnen spelers worden toegevoegd.</p>
-              <ul>
-                <li><strong>Wedstrijden</strong> - maak een wedstrijd aan om alle acties vast te leggen.</li>
-                <li><strong>Team</strong> - voor het aanmaken van je team en spelers. Vergeet niet om je teamnaam op te voeren.</li>
-                <li><strong>Statistieken</strong> - de plek om alle verzamelde statistieken in te zien. Dit kan over het gehele seizoen, per wedstrijd en per speler.</li>
-                <li><strong>Meer</strong> - Om uit te loggen, de voorwaarden te lezen en de handleiding te openen.</li>
-              </ul>
-            </section>
+          <section id="uitleg-menu" class="guide__section">
+            <h2>Het menu uitgelegd</h2>
+            <img
+              src="/images/menu.png"
+              alt="Afbeelding van het menu"
+              class="guide__image"
+            />
+            <p>
+              Via het menu-item <strong>Team</strong> kunnen spelers worden toegevoegd.
+            </p>
+            <ul>
+              <li>
+                <strong>Wedstrijden</strong> - maak een wedstrijd aan om alle acties
+                vast te leggen.
+              </li>
+              <li>
+                <strong>Team</strong> - voor het aanmaken van je team en spelers.
+                Vergeet niet om je teamnaam op te voeren.
+              </li>
+              <li>
+                <strong>Statistieken</strong> - de plek om alle verzamelde statistieken
+                in te zien. Dit kan over het gehele seizoen, per wedstrijd en per
+                speler.
+              </li>
+              <li>
+                <strong>Meer</strong> - om uit te loggen, de voorwaarden te lezen
+                en de handleiding te openen.
+              </li>
+            </ul>
+          </section>
 
-            <section id="team-aanmaken" class="help-section">
-              <h2>Team aanmaken</h2>
-              <p>Via het menu-item <strong>Team</strong> kunnen spelers worden toegevoegd.</p>
-              <ul>
-                <li>Via het potlood-icoon kan bovenaan een teamnaam worden ingevuld. Deze wordt getoond in het liveverslag.
-                <img src="/images/potlood.png" alt="icoon van een potlood"  class="afbeelding" /></li>
-                <li>Met de knop <strong>Speler toevoegen</strong> voeg je spelers toe. De volgorde bepaalt de weergave in de app. Voeg als je deze weet ook direct reserve spelers toe. Dat maakt het wisselen bij het vastleggen van de wedstrijd makkelijker.</li>
-                <li>Een gastspeler kan tijdens de wedstrijd nog toegevoegd worden via <strong>Wissel</strong>.</li>
-              </ul>
-            </section>
+          <section id="team-aanmaken" class="guide__section">
+            <h2>Team aanmaken</h2>
+            <p>
+              Via het menu-item <strong>Team</strong> kunnen spelers worden toegevoegd.
+            </p>
+            <ul>
+              <li>
+                Via het potlood-icoon kan bovenaan een teamnaam worden ingevuld.
+                Deze wordt getoond in het liveverslag.
+              </li>
+              <li class="guide__list-image">
+                <img
+                  src="/images/potlood.png"
+                  alt="Icoon van een potlood"
+                  class="guide__image guide__image--small"
+                />
+              </li>
+              <li>
+                Met de knop <strong>Speler toevoegen</strong> voeg je spelers toe.
+                De volgorde bepaalt de weergave in de app. Voeg als je deze weet ook
+                direct reservespelers toe. Dat maakt wisselen tijdens de wedstrijd
+                makkelijker.
+              </li>
+              <li>
+                Een gastspeler kan tijdens de wedstrijd nog toegevoegd worden
+                via <strong>Wissel</strong>.
+              </li>
+            </ul>
+          </section>
 
-            <section id="wedstrijd-vastleggen" class="help-section">
-              <h2>Wedstrijd vastleggen</h2>
-              <p>Voor het vastleggen van de wedstrijd zijn twee stappen nodig:</p>
-              <ul>
-                <li>Een wedstrijd aanmaken</li>
-                <li>De acties van de wedstrijd vastleggen</li>
-              </ul>
+          <section id="wedstrijd-vastleggen" class="guide__section">
+            <h2>Wedstrijd vastleggen</h2>
+            <p>Voor het vastleggen van de wedstrijd zijn twee stappen nodig:</p>
+            <ul>
+              <li>Een wedstrijd aanmaken</li>
+              <li>De acties van de wedstrijd vastleggen</li>
+            </ul>
 
-              <h3>Wedstrijd aanmaken</h3>
-              <p>
-                Via het menu-item <strong>Wedstrijden</strong> wordt een nieuwe wedstrijd aangemaakt.
-                <img src="/images/wedstrijd_aanmaken.png" alt="formulier met de acties om een wedstrijd aan te maken"  class="afbeelding" />
-                Geef aan:</p>
-                <ul>
-                <li>Tegen wie de wedstrijd wordt gespeeld.</li>
-                <li>Op welke datum de wedstrijd wordt gespeeld</li>
-                <li>Speel je thuis of uit</li>
-                <li>Is het een wedstrijd op het veld of in de zaal</li>
-                <li>Geef de spelers op die in de aanval starten en de spelers die in de verdediging starten</li>
-                </ul>
-                <p>
-                Nadat op <strong>Wedstrijd registreren</strong> is geklikt kunnen de verschillende acties vastgelegd worden.
-              </p>
+            <h3>Wedstrijd aanmaken</h3>
+            <p>
+              Via het menu-item <strong>Wedstrijden</strong> wordt een nieuwe wedstrijd
+              aangemaakt.
+            </p>
+            <img
+              src="/images/wedstrijd_aanmaken.png"
+              alt="Formulier met acties om een wedstrijd aan te maken"
+              class="guide__image"
+            />
+            <p>Geef aan:</p>
+            <ul>
+              <li>Tegen wie de wedstrijd wordt gespeeld</li>
+              <li>Op welke datum de wedstrijd wordt gespeeld</li>
+              <li>Of je thuis of uit speelt</li>
+              <li>Of het een wedstrijd op het veld of in de zaal is</li>
+              <li>
+                Welke spelers in de aanval starten en welke spelers in de
+                verdediging starten
+              </li>
+            </ul>
+            <p>
+              Nadat op <strong>Wedstrijd registreren</strong> is geklikt, kunnen de
+              verschillende acties vastgelegd worden.
+            </p>
 
-              <h3>Wedstrijd starten</h3>
-              <p>Om acties van de wedstrijd vast te leggen dient de wedstrijd eerst gestart te worden. De wedstrijd start je door op 
-                de knop <strong>Start</strong> die op het scorebord staat, te klikken. </p>
-                <img src="/images/scorebord_start.png" alt="Het inactieve scorebord met een startknop"  class="afbeelding" />
-                <p>Daarna verandert de knop van tekst naar <strong>Rust</strong>.</p>
-                <img src="/images/scorebord_rust.png" alt="Een geactiveerd scorebord met een knop voor de rust"  class="afbeelding" />
-                <p>Het is nu mogelijk om verschillende acties van de wedstrijd vast te leggen.</p>
-              
-              <h3>Time-out</h3>
-                <p>Naast de knop van de <strong>Rust</strong> staat een <strong>Pauze-knop</strong>. Met deze knop worden time-outs vastgelegd.
-                Wanneer je erop klikt, dan opent een venster waarbij je kan aangeven welk team de time-out heeft aangevraagd.</p>
-                <img src="/images/time_out.png" alt="Time-out venster met twee team namen"  class="afbeelding" />
-            
-               <h3>Acties vastleggen</h3>
-                <p>Boven het scorebord staan meerdere knoppen waarmee acties vastgelegd kunnen worden.</p>
-                <p><img src="/images/acties_vastleggen.png" alt="Een geactiveerd scorebord met een knop voor de rust"  class="afbeelding" /></p>
-              
-                <h4>Strafworpen en vrije ballen</h4>
-                  <p>Met <strong>Strafworp</strong> en <strong>Vrije bal</strong> worden deze doelpogingen voor je eigen team vastgelegd. 
-                    Nadat je daarop klikt opent een venster waarmee je een speler uit de aanval selecteert die de doelpoging uitvoert en of deze <strong>Raak, op de Korf of Mis</strong> is.</p>
-                  <p><img src="/images/selecteer_speler.png" alt="Een formulier om spelers te selecteren"  class="afbeelding" /></p>
+            <h3>Wedstrijd starten</h3>
+            <p>
+              Om acties vast te leggen dient de wedstrijd eerst gestart te
+              worden. Dat doe je door op de knop
+              <strong>Start</strong> op het scorebord te klikken. Daarna verandert
+              de knop naar
+              <strong>Rust</strong>.
+            </p>
+            <img
+              src="/images/scorebord_start.png"
+              alt="Inactief scorebord met startknop"
+              class="guide__image"
+            />
+            <img
+              src="/images/scorebord_rust.png"
+              alt="Geactiveerd scorebord met rustknop"
+              class="guide__image"
+            />
+            <p>
+              Het is nu mogelijk om verschillende acties van de wedstrijd vast
+              te leggen.
+            </p>
 
-                <h4>Tegendoelpunten</h4>
-                    <p><strong>Tegendoelpunten</strong> worden vastgelegd met de knop <strong>Tegendoel</strong>. Er opent een venster waarmee je 
-                    de verdediger kan selecteren die het tegendoelpunt heeft doorgelaten.</p>
-                    <p><img src="/images/selecteer_verdediger.png" alt="Een formulier om spelers te selecteren"  class="afbeelding" /></p>
-              
-                <h4>Aantal aanvallen</h4>
-                      <p>Elke keer dat de bal in het bezit komt in het aanvalsvak voor een nieuwe aanval kan je deze vastleggen met <strong>Start nieuwe aanval.</strong>
-                      Dit is niet verplicht, maar levert inzichten op voor het gemiddeld aantal doelpogingen per aanval. Elke keer dat je er tijdens de wedstrijd op klikt, 
-                      gaat het tellertje rechts in de knop met één omhoog.</p>
-              
-              <h4>Doelpogingen vastleggen</h4>
-              <p> Het korfbalveld is verdeelt in meerdere cirkels. Tussen elke cirkels zit 3 meter. 
-                Dit helpt bij het inschatten van de positie waar vandaan de doelpoging is gedaan. Daarnaast is per afstand het type doelpoging
-                anders.
-              </p>
-              <p>
-                Hieronder staat het overzicht van de type doelpogingen binnen de cirkels:</p>
-              <ul>
-                <li><strong>binnen de 6 meter</strong> - doorloop of een korte kans</li>
-                <li><strong>buiten de 6 meter</strong> - afstandsschot</li>
-              </ul>
-              <p>Om een doelpoging vast te leggen, klik je op de positie in het veld waar de doelpoging is genomen. Nadat je in het veld geklikt hebt dan opent een formulier
-                waar een aantal opties opgevoerd kunnen worden. Selecteer daar:</p>
-                <ul>
-                  <li>de speler die de poging heeft gedaan</li>
-                  <li>Het type doelpoging. Deze wordt alleen getoond bij doelpogingen binnen de 6 meter</li>
-                  <li>Wat het resultaat van de doelpoging is: raak, op de korf of mis</li>
-                </ul>               
+            <h3>Time-out</h3>
+            <p>
+              Naast de knop <strong>Rust</strong> staat een <strong
+                >Pauze-knop</strong
+              >. Met deze knop worden time-outs vastgelegd. Wanneer je erop
+              klikt, opent een venster waarin je aangeeft welk team de time-out
+              heeft aangevraagd.
+            </p>
+            <img
+              src="/images/time_out.png"
+              alt="Time-out venster met twee teamnamen"
+              class="guide__image"
+            />
 
-                <p>Hieronder staat een voorbeeld van een formulier voor het vastleggen van de doelpoging.
-                  <img src="/images/vastleggen_doelpoging.png" alt="Bovenaanzicht van een korfbalveld"  class="afbeelding" /></p>
-                <p>Nadat het formulier sluit komt er een icoon op de plek waar zojuist de doelpoging is vastgelegd. De iconen tonen aan wat het resultaat is geweest
-                  van de doelpoging van die positie. De iconen die voorkomen zijn:
-                </p>
-                
-              <ul class="icon-lijst">
-                <li><img src="/images/groen_rondje_wit_vinkje.png" alt="groen rondje met wit vinkje"  class="afbeelding" />Groen rondje met wit vinkje = doelpunt</li>
-                <li><img src="/images/oranje_rondje_witte_cirkel.png" alt="oranje rondje met witte cirkel"  class="afbeelding" />Oranje rondje met witte cirkel = korf geraakt</li>
-                <li><img src="/images/rode_cirkel_wit_kruis.png" alt="Bovenaanzicht van een korfbalveld"  class="afbeelding" />Rood rondje met wit kruis = mis</li>
-              </ul>
- 
-                <p><img src="/images/veld_uitleg.png" alt="Bovenaanzicht van een korfbalveld"  class="afbeelding" /></p>
+            <h3>Acties vastleggen</h3>
+            <p>
+              Boven het scorebord staan meerdere knoppen waarmee acties
+              vastgelegd kunnen worden.
+            </p>
+            <img
+              src="/images/acties_vastleggen.png"
+              alt="Knoppen om acties vast te leggen"
+              class="guide__image"
+            />
 
-              <h3>Wedstrijd beïndigen</h3>
-              <p><img src="/images/scorebord_rust.png" alt="scorebord met knop voor de rust"  class="afbeelding" /></p>
-              <p><img src="/images/scorebord_hervat.png" alt="scorebord met knop voor het hervatten van de tweede helft"  class="afbeelding" /></p>
-              <p><img src="/images/scorebord_einde.png" alt="scorebord met knop voor einde wedstrijd"  class="afbeelding" /></p>
-            </section>
+            <h4>Strafworpen en vrije ballen</h4>
+            <p>
+              Met <strong>Strafworp</strong> en <strong>Vrije bal</strong> worden
+              deze doelpogingen voor je eigen team vastgelegd. Daarna kies je de speler
+              uit de aanval en het resultaat:
+              <strong>raak</strong>, <strong>op de korf</strong> of <strong
+                >mis</strong
+              >.
+            </p>
+            <img
+              src="/images/selecteer_speler.png"
+              alt="Formulier om speler te selecteren"
+              class="guide__image"
+            />
 
-            <section id="wedstrijd-delen" class="help-section">
-              <h2>Wedstrijd delen</h2>
-              <p> Via de optie <strong>Delen</strong> is het mogelijk om informatie over de wedstrijd live te delen. De twee opties zijn:</p>
-                <ul>
-                  <li><strong>Liveverslag</strong> - een tijdlijn met live updates over de wedstrijd voor volgers</li>
-                  <li><strong>Live dashboard</strong> - een live overzicht met statistieken voor coaches</li>
-                </ul>
-                <p>De links die bij het liveverslag en het live dashboard staan kunnen worden gekopieerd en gedeeld worden. Bijvoorbeeld via Signal of WhatsApp.
-              </p>
+            <h4>Tegendoelpunten</h4>
+            <p>
+              <strong>Tegendoelpunten</strong> worden vastgelegd met de knop <strong
+                >Tegendoel</strong
+              >. Je selecteert vervolgens de verdediger die het tegendoelpunt
+              heeft doorgelaten.
+            </p>
+            <img
+              src="/images/selecteer_verdediger.png"
+              alt="Formulier om verdediger te selecteren"
+              class="guide__image"
+            />
 
-              <h3>Liveverslag</h3>
-              <p>Wanneer de link wordt geopend van het liveverslag verschijnt er een tijdlijn met daarop verschillende acties van de wedstrijd.
-                Zo komen de volgende acties in de tijdlijn terug:</p>
-                <ul>
-                  <li>Doelpunten</li>
-                  <li>Doelpogingen</li>
-                  <li>Wissels</li>
-                  <li>Functiewissel (vakwissel na twee doelpunten)</li>
-                </ul>
-               <p> Nadat een actie wordt vastgelegd, volgt er direct een update van de tijdlijn.
-              </p>
-              <p><img src="/images/liveverslag.png" alt="scorebord met knop voor einde wedstrijd"  class="afbeelding" /></p>
-              
-              <h3>Live dashboard</h3>
-              <p>Het live dashboard is gemaakt voor coaches om tijdens een wedstrijd inzicht te krijgen in wat er cijfermatig gebeurt.
-                Het is verdeeld in twee delen:</p>
-                <ul>
-                  <li>De linkerkant zijn statistieken van de eerste aanval</li>
-                  <li>De rechter kant zijn statistieken van de eerste verdediging</li>
-                </ul>
-              <p>In de tabel bovenaan staan de verschillende doelpogingen, de daarbij behorende doelpunten en het percentage van doelpunten / doelpunten per vak.
-              </p>
-              <p>Daaronder staat de schotmap per vak. Dat is het veld met de doelpogingen die raak, mis of op de korf zijn.</p>
-              <p>En onderaan staan tegendoelpunten en wie ze heeft doorgelaten.</p>
-              <p><img src="/images/live_dashbord.png" alt="dashboard voor coaches tijdens de wedstrijd"  class="afbeelding" /></p>
-              <p>Via het logo keer je altijd terug naar het beginscherm van de app.</p>
-            </section>
+            <h4>Aantal aanvallen</h4>
+            <p>
+              Elke keer dat de bal in het aanvalsvak in bezit komt voor een
+              nieuwe aanval kun je dit registreren met
+              <strong>Start nieuwe aanval</strong>. Dit is niet verplicht, maar
+              levert inzicht op in het gemiddeld aantal doelpogingen per aanval.
+            </p>
 
-            <section id="statistieken" class="help-section">
-              <h2>Statistieken uitgelegd</h2>
-              <p>
-                Op de pagina met de statistieken zijn verschillende filter opties beschikbaar waarmee je kan inzoomen spelers, wedstrijden of alle wedstrijden.
-                Het filteren gebeurt bovenaan de pagina. Via het dropdown veld onder <strong>Alle spelers</strong> en <strong>Alle wedstrijden</strong> zijn er verschillende statistieken te bekijken. Namelijk:
-                </p>
-                <ul>
-                  <li>Alle spelers over alle wedstrijden</li>
-                  <li>Een enkele speler over alle wedstrijden</li>
-                  <li>Alle spelers over één enkele wedstrijd</li>
-                  <li>Een enkele speler over één wedstrijd</li>
-                </ul>
-                <p><img src="/images/statistieken_filters.png" alt="filter opties voor statistieken"  class="afbeelding" /></p>
-                        
-              <p>Bovenaan staat de tabel met <strong>Schotverdeling & rendement</strong>. Deze bestaat uit:</p>
-              <ul>
-                <li>Type doelpoging</li>
-                <li>Aantal pogingen</li>
-                <li>Aantal gescoord</li>
-                <li>Percentage</li>
-              </ul>
-              <p>Onder <strong>Aanvalsprestaties</strong> worden het totaal vastgelegde aanvallen, het gemiddeld aantal doelpogingen per aanval en 
-              het percentage succesvolle aanvallen getoond. Het percentage succesvolle aanvallen wordt berekend door het aantal doelpunten / aantal aanvallen.</p>
-              <p><img src="/images/statistieken_aanvalsprestaties.png" alt="tabel met aanvalsprestaties"  class="afbeelding" /></p>
+            <h4>Doelpogingen vastleggen</h4>
+            <p>
+              Het korfbalveld is verdeeld in meerdere cirkels. Tussen de cirkels
+              zit drie meter. Dit helpt bij het inschatten van de positie van de
+              doelpoging.
+            </p>
+            <p>Overzicht van de typen doelpogingen binnen de cirkels:</p>
+            <ul>
+              <li>
+                <strong>Binnen de 6 meter</strong> - doorloop of korte kans
+              </li>
+              <li><strong>Buiten de 6 meter</strong> - afstandsschot</li>
+            </ul>
+            <p>Na een klik op het veld selecteer je in het formulier:</p>
+            <ul>
+              <li>De speler die de poging heeft gedaan</li>
+              <li>Het type doelpoging (alleen bij pogingen binnen 6 meter)</li>
+              <li>Het resultaat van de doelpoging: raak, op de korf of mis</li>
+            </ul>
+            <img
+              src="/images/vastleggen_doelpoging.png"
+              alt="Formulier voor vastleggen doelpoging"
+              class="guide__image"
+            />
+            <p>
+              Na het opslaan verschijnt een icoon op de positie van de
+              doelpoging:
+            </p>
+            <ul class="guide__icon-list">
+              <li>
+                <img
+                  src="/images/groen_rondje_wit_vinkje.png"
+                  alt="Groen rondje met wit vinkje"
+                  class="guide__icon"
+                />
+                <span
+                  ><strong>Groen rondje met wit vinkje</strong> - doelpunt</span
+                >
+              </li>
+              <li>
+                <img
+                  src="/images/oranje_rondje_witte_cirkel.png"
+                  alt="Oranje rondje met witte cirkel"
+                  class="guide__icon"
+                />
+                <span
+                  ><strong>Oranje rondje met witte cirkel</strong> - korf geraakt</span
+                >
+              </li>
+              <li>
+                <img
+                  src="/images/rode_cirkel_wit_kruis.png"
+                  alt="Rood rondje met wit kruis"
+                  class="guide__icon"
+                />
+                <span><strong>Rood rondje met wit kruis</strong> - mis</span>
+              </li>
+            </ul>
+            <img
+              src="/images/veld_uitleg.png"
+              alt="Veld met uitleg van doelpogingen"
+              class="guide__image"
+            />
 
-              <p>Het volgende is de <strong>schotmap</strong> waarop alle doelpogingen en doelpunten zijn vastgelegd tijdens de wedstrijd.</p>
-              <p><img src="/images/statistieken_schotmap.png" alt="veld met doelpogingen"  class="afbeelding" /></p>
-              <p>In de tabel met <strong>tegendoelpunten</strong> worden de spelers getoond en het aantal tegendoelpunten deze tegen heeft gekregen. </p>
-              <p><img src="/images/statistieken_tegendoelpunten.png" alt="tabel met het aantal tegendoelpunten"  class="afbeelding" /></p>
-</section>  <!-- sluit #statistieken -->
-</section>  <!-- sluit .help-content -->
+            <h3>Wedstrijd beindigen</h3>
+            <p>
+              Via de scorebordknop ga je door de fases van de wedstrijd: <strong
+                >Rust</strong
+              >,
+              <strong>Hervat</strong> en <strong>Einde</strong>.
+            </p>
+            <img
+              src="/images/scorebord_rust.png"
+              alt="Scorebord met rustknop"
+              class="guide__image"
+            />
+            <img
+              src="/images/scorebord_hervat.png"
+              alt="Scorebord met hervatknop"
+              class="guide__image"
+            />
+            <img
+              src="/images/scorebord_einde.png"
+              alt="Scorebord met eindeknop"
+              class="guide__image"
+            />
+          </section>
 
-</div>      <!-- sluit .help-main -->
-</div>      <!-- ✅ toevoegen: sluit .help-layout -->
-<footer class="site-footer" aria-label="Juridische links">
-  <p>
-    <a href="/privacy">Privacy</a>
-    <span aria-hidden="true"> · </span>
-    <a href="/voorwaarden">Voorwaarden</a>
-  </p>
-</footer>
-</main>
-</div>      <!-- sluit .home-page-wrapper -->
+          <section id="wedstrijd-delen" class="guide__section">
+            <h2>Wedstrijd delen</h2>
+            <p>
+              Via de optie <strong>Delen</strong> is het mogelijk om informatie over
+              de wedstrijd live te delen. De twee opties zijn:
+            </p>
+            <ul>
+              <li>
+                <strong>Liveverslag</strong> - een tijdlijn met live updates over
+                de wedstrijd
+              </li>
+              <li>
+                <strong>Live dashboard</strong> - een live overzicht met statistieken
+                voor coaches
+              </li>
+            </ul>
+            <p>
+              De links bij het liveverslag en het live dashboard kunnen
+              gekopieerd en gedeeld worden, bijvoorbeeld via Signal of WhatsApp.
+            </p>
 
-    <style>
-      /* Layout */
-      .help-layout {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        width: 100%;
-      }
+            <h3>Liveverslag</h3>
+            <p>
+              Wanneer de link van het liveverslag wordt geopend verschijnt een
+              tijdlijn met acties van de wedstrijd, zoals doelpunten,
+              doelpogingen, wissels en functiewissels.
+            </p>
+            <p>
+              Nadat een actie wordt vastgelegd, volgt direct een update in de
+              tijdlijn.
+            </p>
+            <img
+              src="/images/liveverslag.png"
+              alt="Voorbeeld van liveverslag"
+              class="guide__image"
+            />
 
-      /* Mobiel accordion */
-      .help-accordion {
-        position: sticky;
-        top: 0.75rem;
-        z-index: 20;
-        background: var(--color-bg);
-        border: 1px solid rgba(0,0,0,0.10);
-        border-radius: 0.75rem;
-        padding: 0.5rem 0.75rem;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      }
+            <h3>Live dashboard</h3>
+            <p>
+              Het live dashboard is gemaakt voor coaches om tijdens een
+              wedstrijd direct inzicht te krijgen in wat er cijfermatig gebeurt.
+            </p>
+            <ul>
+              <li>Linkerkant: statistieken van de eerste aanval</li>
+              <li>Rechterkant: statistieken van de eerste verdediging</li>
+            </ul>
+            <p>
+              In de tabel bovenaan staan doelpogingen, doelpunten en percentages
+              per vak. Daaronder staan de schotmap en de tegendoelpunten met de
+              spelers die ze hebben doorgelaten.
+            </p>
+            <img
+              src="/images/live_dashbord.png"
+              alt="Live dashboard voor coaches"
+              class="guide__image"
+            />
+          </section>
 
-      .help-accordion summary {
-        cursor: pointer;
-        font-weight: 700;
-        list-style: none;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.75rem;
-        padding: 0.25rem 0;
-      }
+          <section id="statistieken" class="guide__section">
+            <h2>Statistieken uitgelegd</h2>
+            <p>
+              Op de pagina met statistieken zijn meerdere filters beschikbaar om
+              in te zoomen op spelers, wedstrijden of alle wedstrijden.
+            </p>
+            <p>
+              Via de dropdowns bij <strong>Alle spelers</strong> en <strong
+                >Alle wedstrijden</strong
+              > kun je bekijken:
+            </p>
+            <ul>
+              <li>Alle spelers over alle wedstrijden</li>
+              <li>Een enkele speler over alle wedstrijden</li>
+              <li>Alle spelers over een enkele wedstrijd</li>
+              <li>Een enkele speler over een wedstrijd</li>
+            </ul>
+            <img
+              src="/images/statistieken_filters.png"
+              alt="Filteropties voor statistieken"
+              class="guide__image"
+            />
+            <p>
+              Bovenaan staat de tabel <strong
+                >Schotverdeling en rendement</strong
+              >, met:
+            </p>
+            <ul>
+              <li>Type doelpoging</li>
+              <li>Aantal pogingen</li>
+              <li>Aantal gescoord</li>
+              <li>Percentage</li>
+            </ul>
+            <p>
+              Onder <strong>Aanvalsprestaties</strong> zie je het totaal aantal aanvallen,
+              gemiddeld aantal doelpogingen per aanval en het percentage succesvolle
+              aanvallen.
+            </p>
+            <img
+              src="/images/statistieken_aanvalsprestaties.png"
+              alt="Tabel met aanvalsprestaties"
+              class="guide__image"
+            />
+            <p>
+              Daarna volgen de schotmap met alle doelpogingen en de tabel met <strong
+                >tegendoelpunten</strong
+              > per speler.
+            </p>
+            <img
+              src="/images/statistieken_schotmap.png"
+              alt="Schotmap met doelpogingen"
+              class="guide__image"
+            />
+            <img
+              src="/images/statistieken_tegendoelpunten.png"
+              alt="Tabel met tegendoelpunten"
+              class="guide__image"
+            />
+          </section>
+        </article>
+      </div>
+    </Section>
+  </main>
+</BaseLayout>
 
-      .help-accordion summary::-webkit-details-marker { display: none; }
-
-      .help-accordion summary::after {
-        content: "▾";
-        opacity: 0.7;
-        transition: transform 120ms ease;
-      }
-      .help-accordion[open] summary::after { transform: rotate(180deg); }
-
-      .help-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-        margin-top: 0.5rem;
-        padding-bottom: 0.25rem;
-      }
-
-      .help-nav a {
-        display: block;
-        padding: 0.5rem 0.75rem;
-        border-radius: 0.5rem;
-        text-decoration: none;
-        color: var(--color-text);
-      }
-
-      .help-nav a:hover { background: rgba(0,0,0,0.05); }
-
-      /* Section anchor offset */
-      .help-section {
-        margin-bottom: 2.5rem;
-        scroll-margin-top: 120px;
-      }
-
-      .help-content ul,
-      .help-content ol { padding-left: 1.25rem; }
-
-      /* Desktop: maak van dezelfde details een vaste sidebar */
-      @media (min-width: 900px) {
-        .help-layout {
-          grid-template-columns: 260px 1fr;
-          gap: 2rem;
-          align-items: start;
-        }
-
-        /* Sidebar look: geen kaart/box, wel sticky */
-        .help-accordion {
-          position: sticky;
-          top: 2rem;
-          box-shadow: none;
-          border: none;
-          padding: 0;
-          background: transparent;
-        }
-
-        /* Geen "Menu" header op desktop */
-        .help-accordion summary { display: none; }
-
-        /* Zorg dat menu altijd zichtbaar is (ook als details dicht zou staan) */
-        .help-accordion[open] .help-nav,
-        .help-accordion .help-nav {
-          margin-top: 0;
-          padding-bottom: 0;
-          gap: 0.5rem;
-        }
-
-        .help-nav a {
-          padding: 0.5rem 0.75rem;
-          border-radius: 0.5rem;
-        }
-
-        .help-section { scroll-margin-top: 40px; }
-      }
-    </style>
-
-    <script>
-      // Mobiel: na klikken op menu-link -> accordion dicht (sticky ingeklapt bovenaan).
-      (() => {
-        const details = document.getElementById("helpAccordion");
-        if (!details) return;
-
-        const isMobile = () => window.matchMedia("(max-width: 899px)").matches;
-
-        const closeOnMobile = () => {
-          if (isMobile()) details.open = false;
-        };
-
-        details.querySelectorAll('a[href^="#"]').forEach((a) => {
-          a.addEventListener("click", () => setTimeout(closeOnMobile, 0));
-        });
-
-        window.addEventListener("load", () => {
-          if (location.hash) closeOnMobile();
-        });
-
-        window.addEventListener("hashchange", () => {
-          if (location.hash) closeOnMobile();
-        });
-      })();
-    </script>
 <script>
-  (() => {
-    const input = document.getElementById("helpSearch");
-    const clearBtn = document.getElementById("helpSearchClear");
-    const hint = document.getElementById("helpSearchHint");
-    const sections = Array.from(document.querySelectorAll(".help-content .help-section"));
-    const accordion = document.getElementById("helpAccordion");
-
-    // ✅ results refs horen client-side hier
-    const resultsBox = document.getElementById("helpResults");
-    const resultsList = document.getElementById("helpResultsList");
-
-    if (!input || !clearBtn || sections.length === 0) return;
-
-    const strip = (s) =>
-      (s || "").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
-
-    const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
-    // Bewaar originele HTML voor highlight reset
-    const originals = new Map();
-    sections.forEach((sec) => originals.set(sec, sec.innerHTML));
-
-    const setHint = (text) => {
-      if (hint) hint.textContent = text || "";
-    };
-
-    const resetResultsUI = () => {
-      if (resultsList) resultsList.innerHTML = "";
-      if (resultsBox) resultsBox.hidden = true;
-    };
-
-    const reset = () => {
-      input.value = "";
-      sections.forEach((sec) => {
-        sec.classList.remove("is-hidden");
-        sec.innerHTML = originals.get(sec);
-      });
-      setHint("");
-      resetResultsUI();
-    };
-
-const highlightInSection = (sec, query) => {
-  // reset naar originele HTML
-  sec.innerHTML = originals.get(sec);
-  if (!query) return;
-
-  const q = query.trim();
-  if (!q) return;
-
-  const re = new RegExp(escapeRegExp(q), "ig");
-
-  // Highlight ALLEEN in zichtbare tekst (text nodes), niet in HTML attributen
-  const walker = document.createTreeWalker(
-    sec,
-    NodeFilter.SHOW_TEXT,
-    {
-      acceptNode(node) {
-        // skip lege nodes
-        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-
-        // skip text in script/style/noscript
-        const p = node.parentElement;
-        if (!p) return NodeFilter.FILTER_REJECT;
-        const tag = p.tagName;
-        if (tag === "SCRIPT" || tag === "STYLE" || tag === "NOSCRIPT") {
-          return NodeFilter.FILTER_REJECT;
-        }
-
-        // skip als al gemarkeerd
-        if (p.closest("mark.help-hit")) return NodeFilter.FILTER_REJECT;
-
-        return NodeFilter.FILTER_ACCEPT;
-      },
-    },
-    false
+  const sections = document.querySelectorAll<HTMLElement>(".guide__section");
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>(".guide__nav-link");
+  const navSummaryCurrent = document.querySelector<HTMLElement>(".guide__nav-summary-current");
+  const navDropdown = document.querySelector<HTMLDetailsElement>(".guide__nav-dropdown");
+  const navDropdownLinks = document.querySelectorAll<HTMLAnchorElement>(
+    ".guide__nav-link--dropdown",
   );
+  const OFFSET = 168;
 
-  const textNodes = [];
-  while (walker.nextNode()) textNodes.push(walker.currentNode);
-
-  textNodes.forEach((node) => {
-    const text = node.nodeValue;
-    if (!re.test(text)) return;
-
-    // Rebuild: split tekst in stukjes + mark
-    re.lastIndex = 0;
-    const frag = document.createDocumentFragment();
-    let last = 0;
-    let m;
-
-    while ((m = re.exec(text)) !== null) {
-      const start = m.index;
-      const end = start + m[0].length;
-
-      if (start > last) frag.appendChild(document.createTextNode(text.slice(last, start)));
-
-      const mark = document.createElement("mark");
-      mark.className = "help-hit";
-      mark.textContent = text.slice(start, end);
-      frag.appendChild(mark);
-
-      last = end;
+  function updateActiveLink() {
+    if (sections.length === 0) {
+      return;
     }
 
-    if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+    let activeId: string | null = null;
 
-    node.parentNode.replaceChild(frag, node);
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= OFFSET) {
+        activeId = section.id;
+      }
+    }
+
+    const atBottom =
+      window.innerHeight + Math.ceil(window.scrollY) >=
+      document.documentElement.scrollHeight;
+
+    if (atBottom) {
+      activeId = sections[sections.length - 1].id;
+    }
+
+    if (!activeId) {
+      activeId = sections[0].id;
+    }
+
+    for (const link of navLinks) {
+      link.classList.toggle(
+        "is-active",
+        link.getAttribute("href") === `#${activeId}`,
+      );
+    }
+
+    if (navSummaryCurrent && activeId) {
+      const activeDesktopLink = document.querySelector<HTMLAnchorElement>(
+        `.guide__nav-list .guide__nav-link[href="#${activeId}"]`,
+      );
+      navSummaryCurrent.textContent = activeDesktopLink?.textContent?.trim() ?? "";
+    }
+  }
+
+  for (const link of navDropdownLinks) {
+    link.addEventListener("click", () => {
+      navDropdown?.removeAttribute("open");
+    });
+  }
+
+  window.addEventListener("hashchange", () => {
+    updateActiveLink();
   });
-};
 
-    const getSectionTitle = (sec) => {
-      const h2 = sec.querySelector("h2");
-      return h2 ? h2.textContent.trim() : sec.id;
-    };
-
-    const getSnippet = (sec, query) => {
-      const txt = sec.textContent.replace(/\s+/g, " ").trim();
-      if (!txt) return "";
-      const idx = strip(txt).indexOf(strip(query));
-      if (idx === -1) return txt.slice(0, 140) + (txt.length > 140 ? "…" : "");
-      const start = Math.max(0, idx - 50);
-      const end = Math.min(txt.length, idx + 90);
-      const snippet = txt.slice(start, end);
-      return (start > 0 ? "…" : "") + snippet + (end < txt.length ? "…" : "");
-    };
-
-    // ✅ Werkende applyFilter met resultaten bovenaan
-    const applyFilter = () => {
-      const raw = input.value.trim();
-      const q = strip(raw);
-
-      resetResultsUI();
-
-      if (!q) {
-        reset();
-        return;
-      }
-
-      let shown = 0;
-      const matches = [];
-
-      sections.forEach((sec) => {
-        const text = strip(sec.textContent);
-        const match = text.includes(q);
-
-        if (match) {
-          shown++;
-          sec.classList.remove("is-hidden");
-          highlightInSection(sec, raw);
-          matches.push(sec);
-        } else {
-          sec.classList.add("is-hidden");
-          sec.innerHTML = originals.get(sec);
-        }
-      });
-
-      setHint(`${shown} onderdeel${shown === 1 ? "" : "en"} gevonden`);
-
-      // Bouw resultaatlijst
-      if (resultsBox && resultsList && shown > 0) {
-        resultsBox.hidden = false;
-
-        matches.forEach((sec) => {
-          const li = document.createElement("li");
-
-          const a = document.createElement("a");
-          a.href = `#${sec.id}`;
-          a.textContent = getSectionTitle(sec);
-
-          const sn = document.createElement("span");
-          sn.className = "help-results-snippet";
-          sn.textContent = getSnippet(sec, raw);
-
-          a.addEventListener("click", () => {
-            const isMobile = window.matchMedia("(max-width: 899px)").matches;
-            if (isMobile && accordion) accordion.open = false;
-          });
-
-          li.appendChild(a);
-          li.appendChild(sn);
-          resultsList.appendChild(li);
-        });
-      }
-
-      // Op mobiel: bij zoeken menu open zodat je snel kan wisselen
-      const isMobile = window.matchMedia("(max-width: 899px)").matches;
-      if (isMobile && accordion) accordion.open = true;
-    };
-
-    // ✅ events (die miste je)
-    input.addEventListener("input", applyFilter);
-    clearBtn.addEventListener("click", reset);
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") reset();
-    });
-
-    // ✅ als je met een hash binnenkomt: menu mag dicht (zoals je al had)
-    window.addEventListener("load", () => {
-      const isMobile = window.matchMedia("(max-width: 899px)").matches;
-      if (isMobile && location.hash && accordion) accordion.open = false;
-    });
-  })();
+  window.addEventListener("scroll", updateActiveLink, { passive: true });
+  updateActiveLink();
 </script>
-  </body>
-</html>
+
+<style>
+  .guide {
+    display: var(--flex-medium, grid);
+    grid-template-columns: 4fr 8fr;
+    gap: var(--space-8);
+    flex-flow: column;
+  }
+
+  .guide__nav-inner {
+    position: sticky;
+    top: 10rem;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 0.9rem;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    padding: 0.85rem;
+  }
+
+  .guide__nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .guide__nav-list li + li {
+    margin-top: 0.15rem;
+  }
+
+  .guide__nav-dropdown {
+    display: none;
+    margin: 0;
+    border: 1px solid rgba(15, 23, 42, 0.14);
+    border-radius: 0.8rem;
+    background: #fff;
+    overflow: clip;
+  }
+
+  .guide__nav-summary {
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    padding: 0.65rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    position: relative;
+    transition: background-color 160ms ease;
+  }
+
+  .guide__nav-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .guide__nav-summary::after {
+    content: "";
+    position: absolute;
+    right: 0.9rem;
+    top: 50%;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 2px solid color-mix(in srgb, var(--theme-color-text) 75%, #0f172a);
+    border-bottom: 2px solid color-mix(in srgb, var(--theme-color-text) 75%, #0f172a);
+    transform: translateY(-65%) rotate(45deg);
+    transition: transform 160ms ease;
+  }
+
+  .guide__nav-dropdown[open] .guide__nav-summary::after {
+    transform: translateY(-35%) rotate(-135deg);
+  }
+
+  .guide__nav-summary:hover {
+    background: color-mix(in srgb, #ffffff 70%, var(--theme-color-text) 8%);
+  }
+
+  .guide__nav-summary-label {
+    font-size: 0.78rem;
+    color: color-mix(in srgb, var(--theme-color-text) 62%, #475569);
+  }
+
+  .guide__nav-summary-current {
+    font-weight: 600;
+    color: color-mix(in srgb, var(--theme-color-text) 94%, #0f172a);
+    padding-inline-end: 1.15rem;
+  }
+
+  .guide__nav-dropdown-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.45rem;
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .guide__nav-link {
+    display: block;
+    text-decoration: none;
+    color: color-mix(in srgb, var(--theme-color-text) 90%, #0f172a);
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.55rem;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease;
+  }
+
+  .guide__nav-link:hover {
+    background: color-mix(in srgb, #ffffff 70%, var(--theme-color-text) 8%);
+  }
+
+  .guide__nav-link.is-active {
+    background: color-mix(in srgb, var(--theme-color-text) 9%, #ffffff);
+    color: color-mix(in srgb, var(--theme-color-text) 95%, #0f172a);
+    font-weight: 600;
+  }
+
+  .guide__section {
+    padding-block-start: 10rem;
+  }
+
+  @media (max-width: 56rem) {
+    .guide__nav-inner {
+      position: static;
+      margin-block-end: var(--space-4);
+    }
+
+    .guide__nav-list {
+      display: none;
+    }
+
+    .guide__nav-dropdown {
+      display: block;
+    }
+  }
+</style>

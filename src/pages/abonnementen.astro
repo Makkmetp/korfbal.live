@@ -1,225 +1,214 @@
 ---
-import '../styles/base.css';
-import '../styles/abonnementen.css';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Heading from "../components/Heading.astro";
+import Text from "../components/Text.astro";
+import Button from "../components/Button.astro";
+
+const pageTitle = "Abonnementen | Korfbal.live";
+
+const plans = [
+  {
+    name: "Gratis",
+    subtitle: "Voor trainers die willen kennismaken",
+    price: "€ 0",
+    features: [
+      "1 Team",
+      "Basis wedstrijdregistratie",
+      "Live Stream",
+      "Max. 10 spelers per team",
+      "Max. 3 wedstrijden",
+      "Basis statistieken",
+    ],
+    ctaLabel: "Start gratis",
+    ctaHref: "https://app.korfbal.live/registreren",
+    featured: false,
+  },
+  {
+    name: "Pro",
+    subtitle: "Meest gekozen door trainers",
+    price: "€ 7,99 / team / maand",
+    features: [
+      "Alles uit Gratis",
+      "Uitgebreide wedstrijdregistratie",
+      "Live Dashboard",
+      "Max. 20 spelers per team",
+      "Onbeperkt aantal wedstrijden",
+      "Uitgebreide statistieken per speler",
+    ],
+    ctaLabel: "Upgrade naar Pro",
+    ctaHref: "https://app.korfbal.live/more",
+    featured: true,
+  },
+  {
+    name: "Club",
+    subtitle: "Voor verenigingen",
+    price: "Op aanvraag",
+    features: [
+      "Alles uit Pro",
+      "Onbeperkt aantal teams",
+    ],
+    ctaLabel: "Neem contact op",
+    ctaHref: "mailto:info@korfbal.live?subject=Clubabonnement",
+    featured: false,
+  },
+] as const;
 ---
 
-<html lang="nl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Abonnementen – Korfbal.live</title>
-  </head>
+<BaseLayout title={pageTitle}>
+  <Section
+    id="abonnementen"
+    paddingBlockStart="page-top"
+    paddingBlockEnd="large"
+  >
+    <div class="pricing">
+      <header class="pricing__intro">
+        <Heading as="h1" variant="h1" maxChars={16}>
+          Kies het abonnement dat bij je team past
+        </Heading>
+        <Text maxChars={58}>
+          <p>
+            Start gratis en groei door wanneer je meer inzichten en
+            clubfunctionaliteit nodig hebt.
+          </p>
+        </Text>
+      </header>
 
-  <body>
-    <div class="home-page-wrapper">
-      <main class="home-container legal-container">
-                <nav class="site-menu" aria-label="Hoofdmenu">
-          <div class="site-menu-label">Menu</div>
-          <div class="site-menu-links">
-            <a href="/">Home</a>
-            <a href="/handleiding">Handleiding</a>
-            <a href="/contact">Contact</a>
-            <a href="/abonnementen">Abonnementen</a>
-          </div>
-        </nav>
-        <img src="/images/kl-logo-vertical.svg" alt="Logo Korfbal.live" class="home-logo" />
+      <div class="pricing__grid">
+        {
+          plans.map((plan) => (
+            <article
+              class="plan-card"
+              data-featured={plan.featured ? "true" : undefined}
+            >
+              <div class="plan-card__content">
+                <div class="plan-card__header">
+                  <Heading as="h2" variant="h4" marginBottom="sm">
+                    {plan.name}
+                  </Heading>
+                  <Text maxChars={58}>
+                    <p>{plan.subtitle}</p>
+                  </Text>
+                  <p class="plan-card__price">{plan.price}</p>
+                  <Button href={plan.ctaHref}>
+                  {plan.ctaLabel}
+                </Button>
+                </div>
+                <ul class="plan-card__list">
+                  {plan.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))}
+                </ul>
 
-        <h1>Abonnementen</h1>
-        <p>
-          Start gratis en kies het abonnement dat past bij jouw team of vereniging.
-          Opschalen kan op elk moment.
-        </p>
-
-        <hr />
-
-        <!-- ================= Abonnementen ================= -->
-
-        <section aria-labelledby="prijzen">
-          <h2 id="prijzen">Kies jouw abonnement</h2>
-
-          <div class="pricing-grid">
-
-            <!-- Gratis -->
-            <div class="pricing-card">
-              <h3>Gratis</h3>
-              <p><em>Voor trainers die willen kennismaken</em></p>
-              <p class="pricing-price">€0</p>
-
-              <ul>
-                <li>Live wedstrijdregistratie</li>
-                <li>Basis tijdlijn</li>
-                <li>Live wedstrijd delen</li>
-                <li>1 team</li>
-                <li>Basis statistieken</li>
-              </ul>
-
-              <div class="pricing-cta">
-                <a href="https://app.korfbal.live">Start gratis</a>
+                
               </div>
-            </div>
-
-            <!-- Pro -->
-            <div class="pricing-card featured">
-              <h3>Pro ⭐</h3>
-              <p><em>Meest gekozen door trainers</em></p>
-              <p class="pricing-price">7,99 <small>/ team / maand</small></p>
-
-              <ul>
-                <li>Alles uit Gratis</li>
-                <li>Uitgebreide statistieken per speler</li>
-                <li>Wedstrijdhistorie & trends</li>
-                <li>Meerdere wedstrijden per team</li>
-                <li>Export (PDF / CSV)</li>
-                <li>E-mail support</li>
-              </ul>
-
-              <div class="pricing-cta">
-                <a href="https://app.korfbal.live">Upgrade naar Pro</a>
-              </div>
-            </div>
-
-            <!-- Club -->
-            <div class="pricing-card">
-              <h3>Club</h3>
-              <p><em>Voor verenigingen</em></p>
-              <p class="pricing-price">Op aanvraag</p>
-
-              <ul>
-                <li>Alles uit Pro</li>
-                <li>Alle teams binnen de club</li>
-                <li>Meerdere trainers per team</li>
-                <li>Clubdashboard</li>
-                <li>(Toekomst) Sportlink-koppeling</li>
-                <li>Prioriteit support</li>
-              </ul>
-
-              <div class="pricing-cta">
-                <a href="/contact" class="secondary">Neem contact op</a>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <hr />
-
-        <!-- ================= Vergelijking ================= -->
-
-<section aria-labelledby="vergelijking">
-  <h2 id="vergelijking">Vergelijk abonnementen</h2>
-
-  <div class="pricing-table-wrapper">
-    <table class="pricing-table">
-      <thead>
-        <tr>
-          <th>Functionaliteit</th>
-          <th>Gratis</th>
-          <th>Pro</th>
-          <th>Club</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Live wedstrijdregistratie</td>
-          <td>✅</td>
-          <td>✅</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Live wedstrijd delen</td>
-          <td>✅</td>
-          <td>✅</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Statistieken</td>
-          <td>Basis</td>
-          <td>Uitgebreid</td>
-          <td>Uitgebreid</td>
-        </tr>
-        <tr>
-          <td>Wedstrijdhistorie</td>
-          <td>❌</td>
-          <td>✅</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Export (PDF / CSV)</td>
-          <td>❌</td>
-          <td>✅</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Meerdere teams</td>
-          <td>❌</td>
-          <td>❌</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Clubdashboard</td>
-          <td>❌</td>
-          <td>❌</td>
-          <td>✅</td>
-        </tr>
-        <tr>
-          <td>Support</td>
-          <td>–</td>
-          <td>E-mail</td>
-          <td>Prioriteit</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-        <!-- ================= FAQ ================= -->
-
-        <section aria-labelledby="faq">
-          <h2 id="faq">Veelgestelde vragen</h2>
-
-          <div class="faq-item">
-            <strong>Kan ik later upgraden?</strong>
-            <p>Ja. Je kunt op elk moment overstappen van Gratis naar Pro. Overstappen van Pro naar Club is (nog) niet mogelijk. </p>
-          </div>
-
-          <div class="faq-item">
-            <strong>Is Pro per trainer of per team?</strong>
-            <p>Pro wordt afgerekend per team. Trainers kunnen samen werken binnen één team. Hiervoor kan gebruik gemaakt worden van één account.</p>
-          </div>
-
-          <div class="faq-item">
-            <strong>Kunnen ouders meekijken?</strong>
-            <p>Ja. Via een live link kunnen ouders en supporters de wedstrijd volgen. Ze volgen daarin de hoogtepunten van de wedstrijd. Het is aan de coaches en trainers om het live dashboard met statistieken te delen. </p>
-          </div>
-
-          <div class="faq-item">
-            <strong>Is korfbal.live een officieel bondsysteem?</strong>
-            <p>Nee. Korfbal.live is een hulpmiddel voor registratie en analyse, niet voor officiële uitslagen in Sportlink.</p>
-          </div>
-        </section>
-
-        <hr />
-
-        <!-- ================= Vertrouwen ================= -->
-
-        <section aria-labelledby="zekerheid">
-          <h2 id="zekerheid">Zekerheid & vertrouwen</h2>
-          <ul>
-            <li>Geen creditcard nodig voor het gratis abonnement</li>
-            <li>Op elk moment opzegbaar</li>
-            <li>AVG- en privacyproof</li>
-            <li>Speciaal ontwikkeld voor korfbal</li>
-          </ul>
-        </section>
-
-<footer class="site-footer" aria-label="Juridische links">
-  <p>
-    <a href="/privacy">Privacy</a>
-    <span aria-hidden="true"> · </span>
-    <a href="/voorwaarden">Voorwaarden</a>
-  </p>
-</footer>
-      </main>
+            </article>
+          ))
+        }
+      </div>
     </div>
-  </body>
-</html>
+  </Section>
+</BaseLayout>
+
+<style>
+  .pricing {
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .pricing__intro {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .pricing__grid {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .plan-card {
+    border: 1px solid var(--theme-color-border);
+    border-radius: 1.5rem;
+    background: var(--theme-color-surface);
+    display: flex;
+  }
+
+  .plan-card[data-featured="true"] {
+    border-color: var(--theme-color-accent);
+    box-shadow: 0 0 0 1px
+      color-mix(in srgb, var(--theme-color-accent) 50%, transparent);
+  }
+
+  .plan-card__header {
+    display: grid;
+    gap: var(--space-1);
+    border-bottom: 1px solid var(--theme-color-border);
+    padding-block-end: var(--space-5);
+  }
+
+  .plan-card__content {
+    display: grid;
+    align-content: start;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    width: 100%;
+  }
+
+  .plan-card__name {
+    margin: 0;
+    font-size: var(--font-size-h6);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-small);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .plan-card__star {
+    color: var(--theme-color-accent);
+    line-height: 1;
+    font-size: 0.95em;
+  }
+
+  .plan-card__subtitle {
+    margin: 0;
+    font-size: var(--text-style-body-font-size);
+    line-height: var(--text-style-body-line-height);
+    letter-spacing: var(--text-style-body-letter-spacing);
+    color: color-mix(in srgb, var(--theme-color-text) 80%, transparent);
+    font-style: italic;
+  }
+
+  .plan-card__price {
+    margin: 0;
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-small);
+  }
+
+  .plan-card__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: var(--space-1);
+    color: var(--theme-color-text);
+    font-size: var(--text-style-body-font-size);
+    line-height: var(--text-style-body-line-height);
+    letter-spacing: var(--text-style-body-letter-spacing);
+  }
+
+  .plan-card__list li {
+    margin: 0;
+  }
+
+  @container (min-width: 60rem) {
+    .pricing__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

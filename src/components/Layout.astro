@@ -1,0 +1,161 @@
+---
+type LayoutVariant = 'stack' | 'columns' | 'columns-7-5' | 'columns-5-7' | 'breakout';
+
+interface Props {
+  /**
+   * Layout variant.
+   * Ondersteunt "stack", "columns", "columns-7-5", "columns-5-7" en "breakout".
+   */
+  variant?: LayoutVariant;
+
+  /**
+   * Keer de visuele volgorde van primary en secondary om.
+   * Bij variant "breakout": spiegelt de grid (breakout links/rechts); op small/medium stack blijft `order` de volgorde sturen.
+   */
+  reversed?: boolean;
+}
+
+const {
+  variant = 'stack',
+  reversed = false,
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & {
+  class?: unknown;
+  style?: unknown;
+} & Record<string, unknown>;
+
+const _hasContentPrimary = Astro.slots.has('content-primary') || Astro.slots.has('column-1');
+const _hasContentSecondary = Astro.slots.has('content-secondary') || Astro.slots.has('column-2');
+const layoutClasses = ['layout', typeof userClass === 'string' ? userClass : undefined]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<div
+  {...forwardedProps}
+  class={layoutClasses}
+  data-variant={variant}
+  data-reversed={reversed}
+  style={typeof userStyle === 'string' ? userStyle : undefined}
+>
+  <div class="layout__inner">
+    <div class="layout__content layout__content--primary">
+      {_hasContentPrimary ? (
+        Astro.slots.has('content-primary') ? <slot name="content-primary" /> : <slot name="column-1" />
+      ) : (
+        <slot />
+      )}
+    </div>
+    {_hasContentSecondary && (
+      <div class="layout__content layout__content--secondary">
+        {Astro.slots.has('content-secondary') ? <slot name="content-secondary" /> : <slot name="column-2" />}
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .layout {
+    --_layout-display: flex;
+    --_layout-grid-template-columns: 1fr;
+    --_layout-inner-width: 100%;
+    --_layout-inner-margin-inline: 0;
+    --_layout-primary-grid-column: span var(--_layout-primary-columns, 1);
+    --_layout-secondary-grid-column: span var(--_layout-secondary-columns, 1);
+    --_layout-primary-grid-row: auto;
+    --_layout-primary-align: start;
+    --_layout-secondary-grid-row: auto;
+
+    column-gap: var(--layout-gutter);
+    row-gap: var(--space-8);
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    display: flex;
+  }
+
+  .layout[data-variant='columns'] {
+    --_layout-display: grid;
+    --_layout-grid-template-columns: repeat(2, minmax(0, 1fr));
+    --_layout-primary-align: center;
+  }
+
+  .layout[data-variant='columns-7-5'] {
+    --_layout-display: grid;
+    --_layout-grid-template-columns: repeat(12, minmax(0, 1fr));
+    --_layout-primary-columns: 7;
+    --_layout-primary-align: center;
+    --_layout-secondary-columns: 5;
+  }
+
+  .layout[data-variant='columns-5-7'] {
+    --_layout-display: grid;
+    --_layout-grid-template-columns: repeat(12, minmax(0, 1fr));
+    --_layout-primary-columns: 5;
+    --_layout-primary-align: center;
+    --_layout-secondary-columns: 7;
+  }
+
+  .layout[data-variant='breakout'] {
+    --_layout-display: grid;
+    --_layout-content-column-width: calc(
+      (
+        min(var(--layout-max-width), calc(100vw - (var(--layout-page-margin) * 2)))
+        - (var(--layout-gutter) * (var(--layout-column-count) - 1))
+      ) / var(--layout-column-count)
+    );
+    --_layout-grid-template-columns:
+      [full-start] minmax(0, 1fr)
+      [content-start] repeat(var(--layout-column-count), minmax(0, var(--_layout-content-column-width)))
+      [content-end] minmax(0, 1fr)
+      [full-end];
+    --_layout-inner-width: calc(100% + ((100vw - 100%) * var(--responsive-large, 0)));
+    --_layout-inner-margin-inline: calc((50% - 50vw) * var(--responsive-large, 0));
+    --_layout-primary-grid-column: content-start / span 6;
+    --_layout-secondary-grid-column: 8 / full-end;
+    --_layout-primary-grid-row: 1;
+    --_layout-primary-align: center;
+    --_layout-secondary-grid-row: 1;
+  }
+
+  .layout[data-variant='breakout'][data-reversed='true'] {
+    --_layout-primary-grid-column: 8 / content-end;
+    --_layout-secondary-grid-column: full-start / 8;
+  }
+
+  .layout[data-reversed='true'] {
+    --_layout-secondary-order: -1
+  }
+
+  .layout__inner {
+    column-gap: inherit;
+    row-gap: inherit;
+    flex-flow: column;
+    align-items: stretch;
+    grid-template-columns: var(--_layout-grid-template-columns);
+    width: var(--_layout-inner-width);
+    margin-inline: var(--_layout-inner-margin-inline);
+    display: var(--flex-medium, var(--_layout-display));
+  }
+
+
+  .layout__content {
+    width: 100%;
+  }
+  
+  .layout__content--primary {
+    grid-column: var(--_layout-primary-grid-column);
+    grid-row: var(--_layout-primary-grid-row);
+    align-self: var(--_layout-primary-align);
+  }
+
+  .layout__content--secondary {
+    grid-column: var(--_layout-secondary-grid-column);
+    grid-row: var(--_layout-secondary-grid-row);
+    text-align: center;
+    order: calc(var(--_layout-secondary-order, 0) * var(--responsive-large, 0));
+  }
+</style>
+

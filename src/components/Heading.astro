@@ -1,0 +1,271 @@
+---
+import { blockMarginCssValue, type BlockMarginLevel } from '../utils/marginBlock';
+import { normalizeMaxChars, type MaxCharsInput } from '../utils/normalizeMaxChars';
+import { buildTypographyRoot } from '../utils/typographyRoot';
+
+type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+type HeadingVariant = 'display' | HeadingLevel;
+
+interface Props {
+  /**
+   * Semantisch HTML element.
+   * Bepaalt de heading-hiërarchie voor SEO en a11y.
+   */
+  as?: HeadingLevel;
+
+  /**
+   * Visuele stijl van de heading, los van het HTML-level.
+   * Gebaseerd op de typografie-schaal uit de tokens:
+   * - "display" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+   */
+  variant?: HeadingVariant;
+
+  /**
+   * Tekstuitlijning.
+   */
+  align?: 'start' | 'center' | 'end';
+
+  /**
+   * Maximale regelbreedte in aantal karakters (ch).
+   * - number: forceer max breedte, bv. 20 -> 20ch
+   * - "none": geen max breedte
+   * - undefined: gebruik variant-token default
+   */
+  maxChars?: MaxCharsInput;
+
+  /**
+   * Extra marge boven de heading (spacing-schaal, zelfde als ButtonWrapper).
+   */
+  marginTop?: BlockMarginLevel;
+
+  /**
+   * Ondermarge; overschrijft de variant-default als gezet (spacing-schaal).
+   */
+  marginBottom?: BlockMarginLevel;
+}
+
+const {
+  as = 'h2',
+  variant = as,
+  align = 'start',
+  maxChars,
+  marginTop,
+  marginBottom,
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & {
+  class?: unknown;
+  style?: unknown;
+} & Record<string, unknown>;
+
+const Tag = as;
+const normalizedMaxChars = normalizeMaxChars(maxChars);
+
+const headingMarginStyles: string[] = [];
+if (marginTop === 'none') {
+  headingMarginStyles.push('--heading-margin-top-user: 0;');
+} else if (marginTop) {
+  headingMarginStyles.push(`--heading-margin-top-user: ${blockMarginCssValue(marginTop)};`);
+}
+if (marginBottom === 'none') {
+  headingMarginStyles.push('--heading-margin-bottom-user: 0;');
+} else if (marginBottom) {
+  headingMarginStyles.push(`--heading-margin-bottom-user: ${blockMarginCssValue(marginBottom)};`);
+}
+
+const { className: headingClasses, style: headingStyle } = buildTypographyRoot({
+  baseClass: 'heading',
+  userClass,
+  userStyle,
+  inlineStyles: [
+    typeof normalizedMaxChars === 'number' ? `--heading-max-chars: ${normalizedMaxChars};` : undefined,
+    ...headingMarginStyles,
+  ],
+});
+---
+
+<Tag
+  {...forwardedProps}
+  class={headingClasses}
+  data-variant={variant}
+  data-align={align}
+  data-max-chars={normalizedMaxChars === 'none' ? 'none' : undefined}
+  style={headingStyle}
+>
+  <slot />
+</Tag>
+
+<style>
+  .heading {
+    margin: 0;
+    font-family: var(--font-family-base);
+    color: inherit;
+    font-size: var(--heading-font-size, var(--font-size-h2));
+    line-height: var(--heading-line-height, var(--line-height-normal));
+    letter-spacing: var(--heading-letter-spacing, var(--letter-spacing-normal));
+    font-weight: var(--heading-font-weight, var(--font-weight-medium));
+    text-transform: var(--heading-text-transform, var(--text-transform-none));
+    text-wrap: var(--heading-text-wrap, balance);
+    margin-top: var(--heading-margin-top-user, 0);
+    margin-bottom: var(
+      --heading-margin-bottom-user,
+      var(--heading-margin-bottom, var(--space-3))
+    );
+    display: flow-root;
+    max-inline-size: calc(var(--heading-max-chars, var(--heading-max-chars-default, 20)) * 1ch);
+    --heading-trim-top: var(--font-trim-top);
+    --heading-trim-bottom: var(--font-trim-bottom);
+
+    em {
+      font-style: normal;
+      color: var(--theme-color-accent);
+    }
+  }
+
+  .heading[data-max-chars='none'] {
+    max-inline-size: none;
+  }
+
+  /* Line-height trim (standaard aan) */
+  .heading::before {
+    content: "";
+    display: table;
+    margin-bottom: calc(-0.5lh + var(--heading-trim-top));
+  }
+
+  .heading::after {
+    content: "";
+    display: table;
+    margin-bottom: calc(-0.5lh + var(--heading-trim-bottom));
+  }
+
+  /* Fallback voor browsers zonder lh-unit support */
+  @supports not (margin-bottom: 1lh) {
+    .heading::before {
+      margin-bottom: calc(var(--heading-trim-top) - 0.5em);
+    }
+
+    .heading::after {
+      margin-bottom: calc(var(--heading-trim-bottom) - 0.5em);
+    }
+  }
+
+  /* BEM modifier opt-out */
+  .heading.heading--trim-off::before,
+  .heading.heading--trim-off::after {
+    content: none;
+  }
+
+  /* Align varianten */
+  .heading[data-align='start'] {
+    text-align: start;
+    margin-inline: 0;
+  }
+
+  .heading[data-align='center'] {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .heading[data-align='end'] {
+    text-align: end;
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+  }
+
+  /* Display stijl (grootste) */
+  .heading[data-variant='display'] {
+    --heading-font-size: var(--text-style-display-font-size);
+    --heading-line-height: var(--text-style-display-line-height);
+    --heading-letter-spacing: var(--text-style-display-letter-spacing);
+    --heading-font-weight: var(--text-style-display-font-weight);
+    --heading-text-transform: var(--text-style-display-text-transform);
+    --heading-text-wrap: var(--text-style-display-text-wrap);
+    --heading-margin-bottom: var(--text-style-display-margin-bottom);
+    --heading-max-chars-default: var(--text-style-display-max-chars);
+    --heading-trim-top: var(--text-style-display-trim-top);
+    --heading-trim-bottom: var(--text-style-display-trim-bottom);
+  }
+
+  /* H1–H6 stijlen op basis van text-style variabelen */
+  .heading[data-variant='h1'] {
+    --heading-font-size: var(--text-style-h1-font-size);
+    --heading-line-height: var(--text-style-h1-line-height);
+    --heading-letter-spacing: var(--text-style-h1-letter-spacing);
+    --heading-font-weight: var(--text-style-h1-font-weight);
+    --heading-text-transform: var(--text-style-h1-text-transform);
+    --heading-text-wrap: var(--text-style-h1-text-wrap);
+    --heading-margin-bottom: var(--text-style-h1-margin-bottom);
+    --heading-max-chars-default: var(--text-style-h1-max-chars);
+    --heading-trim-top: var(--text-style-h1-trim-top);
+    --heading-trim-bottom: var(--text-style-h1-trim-bottom);
+  }
+
+  .heading[data-variant='h2'] {
+    --heading-font-size: var(--text-style-h2-font-size);
+    --heading-line-height: var(--text-style-h2-line-height);
+    --heading-letter-spacing: var(--text-style-h2-letter-spacing);
+    --heading-font-weight: var(--text-style-h2-font-weight);
+    --heading-text-transform: var(--text-style-h2-text-transform);
+    --heading-text-wrap: var(--text-style-h2-text-wrap);
+    --heading-margin-bottom: var(--text-style-h2-margin-bottom);
+    --heading-max-chars-default: var(--text-style-h2-max-chars);
+    --heading-trim-top: var(--text-style-h2-trim-top);
+    --heading-trim-bottom: var(--text-style-h2-trim-bottom);
+  }
+
+  .heading[data-variant='h3'] {
+    --heading-font-size: var(--text-style-h3-font-size);
+    --heading-line-height: var(--text-style-h3-line-height);
+    --heading-letter-spacing: var(--text-style-h3-letter-spacing);
+    --heading-font-weight: var(--text-style-h3-font-weight);
+    --heading-text-transform: var(--text-style-h3-text-transform);
+    --heading-text-wrap: var(--text-style-h3-text-wrap);
+    --heading-margin-bottom: var(--text-style-h3-margin-bottom);
+    --heading-max-chars-default: var(--text-style-h3-max-chars);
+    --heading-trim-top: var(--text-style-h3-trim-top);
+    --heading-trim-bottom: var(--text-style-h3-trim-bottom);
+  }
+
+  .heading[data-variant='h4'] {
+    --heading-font-size: var(--text-style-h4-font-size);
+    --heading-line-height: var(--text-style-h4-line-height);
+    --heading-letter-spacing: var(--text-style-h4-letter-spacing);
+    --heading-font-weight: var(--text-style-h4-font-weight);
+    --heading-text-transform: var(--text-style-h4-text-transform);
+    --heading-text-wrap: var(--text-style-h4-text-wrap);
+    --heading-margin-bottom: var(--text-style-h4-margin-bottom);
+    --heading-max-chars-default: var(--text-style-h4-max-chars);
+    --heading-trim-top: var(--text-style-h4-trim-top);
+    --heading-trim-bottom: var(--text-style-h4-trim-bottom);
+  }
+
+  .heading[data-variant='h5'] {
+    --heading-font-size: var(--text-style-h5-font-size);
+    --heading-line-height: var(--text-style-h5-line-height);
+    --heading-letter-spacing: var(--text-style-h5-letter-spacing);
+    --heading-font-weight: var(--text-style-h5-font-weight);
+    --heading-text-transform: var(--text-style-h5-text-transform);
+    --heading-text-wrap: var(--text-style-h5-text-wrap);
+    --heading-margin-bottom: var(--text-style-h5-margin-bottom);
+    --heading-max-chars-default: var(--text-style-h5-max-chars);
+    --heading-trim-top: var(--text-style-h5-trim-top);
+    --heading-trim-bottom: var(--text-style-h5-trim-bottom);
+  }
+
+  .heading[data-variant='h6'] {
+    --heading-font-size: var(--text-style-h6-font-size);
+    --heading-line-height: var(--text-style-h6-line-height);
+    --heading-letter-spacing: var(--text-style-h6-letter-spacing);
+    --heading-font-weight: var(--text-style-h6-font-weight);
+    --heading-text-transform: var(--text-style-h6-text-transform);
+    --heading-text-wrap: var(--text-style-h6-text-wrap);
+    --heading-margin-bottom: var(--text-style-h6-margin-bottom);
+    --heading-max-chars-default: var(--text-style-h6-max-chars);
+    --heading-trim-top: var(--text-style-h6-trim-top);
+    --heading-trim-bottom: var(--text-style-h6-trim-bottom);
+  }
+</style>
+

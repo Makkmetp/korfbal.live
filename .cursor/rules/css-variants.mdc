@@ -1,0 +1,66 @@
+---
+description: Architectuurregels voor component properties via custom properties
+globs: **/*.{astro,css}
+alwaysApply: false
+---
+
+# Style Architectuur
+
+## Doel
+
+Houd componentvarianten voorspelbaar en onderhoudbaar door styling via root-level custom properties en CSS inheritance te laten verlopen.
+
+## Richtlijnen
+
+- Gebruik component-scoped custom properties voor varianten.
+- Definieer alle property-specifieke styling op het root element van het component.
+- Laat child elements deze waarden consumeren via `var(...)`.
+- Gebruik geen property modifier classes op child elementen.
+- Centraliseer property logica op het root element.
+- Gebruik CSS inheritance als primair mechanisme voor styling propagation.
+
+### Naming
+
+- Gebruik underscore naming voor lokale properties:
+  - `--_card-padding`
+  - `--_card-gap`
+  - `--_card-title-color`
+
+### Vermijden
+
+- Property styling modifiers verspreiden over meerdere child selectors.
+- Duplicate styling per child element.
+- Component-specifieke variabelen op `:root` definiëren.
+
+## Voorbeelden
+
+```astro
+<!-- ❌ Slecht: property styling op child -->
+<style>
+  .card__title--featured { color: red; }
+</style>
+```
+
+```astro
+<!-- ❌ Slecht: directe child overrides -->
+<style>
+  .card.featured .card__title { color: red; }
+</style>
+```
+
+```astro
+<!-- ✅ Goed: variant via root + custom properties -->
+<style>
+  .card {
+    --_card-title-color: var(--color-text);
+  }
+
+  .card[data-variant="featured"] {
+    --_card-title-color: var(--color-accent);
+  }
+
+  .card__title {
+    color: var(--_card_title_color);
+  }
+</style>
+```

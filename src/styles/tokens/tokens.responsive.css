@@ -1,0 +1,48 @@
+:root {
+  --responsive-large: 1;
+  --responsive-medium: 0;
+  --responsive-small: 0;
+  --responsive-xsmall: 0;
+}
+
+@container (width < 50em) {
+  * {
+    --responsive-large: 0;
+    --responsive-medium: 1;
+    --flex-medium: flex;
+    --none-medium: none;
+    --column-medium: column;
+    --row-medium: row;
+    --start-medium: start;
+    --center-medium: center;
+    --end-medium: end;
+  }
+}
+
+@container (width < 35em) {
+  * {
+    --responsive-medium: 0;
+    --responsive-small: 1;
+    --flex-small: flex;
+    --none-small: none;
+    --column-small: column;
+    --row-small: row;
+    --start-small: start;
+    --center-small: center;
+    --end-small: end;
+  }
+}
+
+@container (width < 20em) {
+  * {
+    --responsive-small: 0;
+    --responsive-xsmall: 1;
+    --flex-xsmall: flex;
+    --none-xsmall: none;
+    --column-xsmall: column;
+    --row-xsmall: row;
+    --start-xsmall: start;
+    --center-xsmall: center;
+    --end-xsmall: end;
+  }
+}

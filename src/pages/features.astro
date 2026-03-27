@@ -1,0 +1,197 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Heading from "../components/Heading.astro";
+import Layout from "../components/Layout.astro";
+import Text from "../components/Text.astro";
+import Eyebrow from "../components/Eyebrow.astro";
+import FeatureList from "../components/FeatureList.astro";
+
+const pageTitle = "Features | Korfbal.live";
+---
+
+<BaseLayout title={pageTitle}>
+  <Section
+      id="features-overview"
+      paddingBlockStart="page-top"
+      paddingBlockEnd="small"
+    >
+      <Layout variant="stack">
+        <Fragment slot="content-primary">
+          <Heading as="h1" variant="h1">
+            <em>Van registratie tot inzicht</em> in één platform
+          </Heading>
+          <Text maxChars={58}>
+            <p>
+              Met korfbal.live leg je wedstrijden eenvoudig vast, deel je ze
+              live met volgers en krijg je direct inzicht in prestaties. Van
+              eerste opstelling tot analyse achteraf: alles komt samen in één
+              overzichtelijke flow.
+            </p>
+          </Text>
+        </Fragment>
+      </Layout>
+    </Section>
+    <Section
+      id="features-registration"
+      paddingBlockStart="small"
+      paddingBlockEnd="small"
+    >
+      <Layout variant="columns-7-5">
+        <Fragment slot="content-primary">
+          <Eyebrow marginBottom="md">Wedstrijdregistratie</Eyebrow>
+          <Heading as="h2" variant="h2" maxChars={12}
+            >Leg de wedstrijd vast terwijl deze gebeurt</Heading
+          >
+          <Text maxChars={58}>
+            <p>
+              Tijdens de wedstrijd registreer je eenvoudig alles wat er gebeurt.
+              Van de opstelling tot doelpunten, wissels en doelpogingen: je
+              bouwt stap voor stap een compleet wedstrijdverhaal op. Je begint
+              met de basis, wie staat er in het veld, en legt vervolgens alle
+              belangrijke momenten vast. De interface is zo ingericht dat je
+              snel kunt handelen. Zo ontstaat er automatisch een gestructureerd
+              en bruikbaar overzicht van de wedstrijd, zonder extra werk
+              achteraf.
+            </p>
+            <FeatureList
+              items={[
+                "Opstellingen en wissels",
+                "Doelpunten en doelpogingen",
+                "Belangrijke wedstrijdmomenten",
+                "Verloop van de wedstrijd in tijd",
+              ]}
+            />
+          </Text>
+        </Fragment>
+        <Fragment slot="content-secondary">
+          <img
+            src="images/screenshot-1.png"
+            alt="Korfbal.live"
+            style="max-width: 28rem; margin-inline: auto; width: 100%;"
+          />
+        </Fragment>
+      </Layout>
+    </Section>
+    <Section
+      id="features-live-stream"
+      paddingBlockStart="small"
+      paddingBlockEnd="small"
+    >
+      <Layout variant="columns-7-5">
+        <Fragment slot="content-primary">
+          <Eyebrow marginBottom="md">Live Stream</Eyebrow>
+          <Heading as="h2" variant="h2" maxChars={14}
+            >Deel de wedstrijd met iedereen die wil meekijken</Heading
+          >
+          <Text maxChars={58}>
+            <p>
+              Elke wedstrijd krijgt optioneel een eigen openbare link. Via deze
+              link kunnen ouders, supporters en andere betrokkenen de wedstrijd
+              live volgen zonder account of extra apps. Het liveverslag groeit mee
+              met de wedstrijd. Terwijl jij registreert, zien volgers direct wat
+              er gebeurt. Dat maakt het volgen laagdrempelig en zorgt voor meer
+              betrokkenheid rond het team. Geen losse WhatsApp-updates meer, maar
+              één centrale plek waar alles samenkomt.
+            </p>
+            <FeatureList
+              items={[
+                "Eén openbare link voor alle volgers",
+                "Geen account of installatie nodig",
+                "Direct live updates tijdens de wedstrijd",
+                "Toegankelijk voor ouders, familie en supporters",
+              ]}
+            />
+          </Text>
+        </Fragment>
+        <Fragment slot="content-secondary">
+          <img
+            src="images/live-stream-1.png"
+            alt="Korfbal.live"
+            style="max-width: 28rem; margin-inline: auto; width: 100%;"
+          />
+        </Fragment>
+      </Layout>
+    </Section>
+    <Section
+      id="features-live-dashboard"
+      paddingBlockStart="small"
+      paddingBlockEnd="small"
+    >
+      <Layout variant="columns-7-5">
+        <Fragment slot="content-primary">
+          <Eyebrow marginBottom="md">Live Dashboard</Eyebrow>
+          <Heading as="h2" variant="h2" maxChars={16}
+            >Stuur bij tijdens de wedstrijd met live inzichten</Heading
+          >
+          <Text maxChars={58}>
+            <p>
+              Het live dashboard geeft coaches direct inzicht in wat er op het veld
+              gebeurt. Terwijl de wedstrijd bezig is, zie je in één overzicht hoe
+              het team presteert en waar kansen liggen. Waar komen de doelpogingen
+              vandaan? Hoe vaak wordt er geschoten? En waar liggen de kansen die nog
+              niet benut worden? Door deze inzichten live beschikbaar te hebben, kun
+              je tijdens de wedstrijd gerichter bijsturen. Je maakt onderbouwde
+              keuzes in plaats van te vertrouwen op gevoel alleen.
+            </p>
+            <FeatureList
+              items={[
+                "Aantal en type doelpogingen",
+                "Schotverdeling over het veld",
+                "Belangrijke wedstrijdmomenten in realtime",
+                "Inzicht per team, vak of speler",
+              ]}
+            />
+          </Text>
+        </Fragment>
+        <Fragment slot="content-secondary">
+          <img
+            src="images/live-dashboard.png"
+            alt="Korfbal.live"
+            style="max-width: 28rem; margin-inline: auto; width: 100%;"
+          />
+        </Fragment>
+      </Layout>
+    </Section>
+    <Section
+      id="features-statistics"
+      paddingBlockStart="small"
+      paddingBlockEnd="small"
+    >
+      <Layout variant="columns-7-5">
+        <Fragment slot="content-primary">
+          <Eyebrow marginBottom="md">Statistieken</Eyebrow>
+          <Heading as="h2" variant="h2" maxChars={16}
+            >Krijg inzicht dat je helpt gerichter te trainen</Heading
+          >
+          <Text maxChars={58}>
+            <p>
+              Na de wedstrijd blijft alle data beschikbaar en wordt deze omgezet in
+              waardevolle inzichten. Je ziet niet alleen wat er is gebeurd, maar ook
+              waarom. Ontdek van welke posities doelpogingen worden genomen, waar
+              kansen ontstaan en welke keuzes het meeste rendement opleveren. Dit
+              helpt om gerichter te trainen en beter te coachen. Je kijkt verder dan
+              alleen raak of mis. Je krijgt inzicht in patronen, keuzes en
+              effectiviteit.
+            </p>
+            <FeatureList
+              items={[
+                "Inzicht in schotlocaties en kansen",
+                "Analyse per team, vak en speler",
+                "Begrip van waar kansen ontstaan",
+                "Concrete input voor training en coaching",
+                "Betere aansluiting op speelstijl en visie",
+              ]}
+            />
+          </Text>
+        </Fragment>
+        <Fragment slot="content-secondary">
+          <img
+            src="images/statistics.png"
+            alt="Korfbal.live"
+            style="max-width: 28rem; margin-inline: auto; width: 100%;"
+          />
+        </Fragment>
+      </Layout>
+    </Section>
+</BaseLayout>

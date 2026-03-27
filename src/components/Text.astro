@@ -1,0 +1,257 @@
+---
+import { blockMarginCssValue, type BlockMarginLevel } from '../utils/marginBlock';
+import { normalizeMaxChars, type MaxCharsInput } from '../utils/normalizeMaxChars';
+import { buildTypographyRoot } from '../utils/typographyRoot';
+
+type TextAs = 'div' | 'article' | 'section';
+type TextVariant = 'body-sm' | 'body' | 'body-lg';
+type TextWrap = 'pretty' | 'balance' | 'wrap';
+
+interface Props {
+  /**
+   * Wrapper element voor een tekstblok.
+   * Let op: bewust geen "p", zodat nested <p> nooit kan ontstaan.
+   */
+  as?: TextAs;
+
+  /**
+   * Visuele tekstvariant.
+   */
+  variant?: TextVariant;
+
+  /**
+   * Tekstuitlijning.
+   */
+  align?: 'start' | 'center' | 'end';
+
+  /**
+   * Maximale regelbreedte in aantal karakters (ch).
+   * - number: forceer max breedte, bv. 66 -> 66ch
+   * - "none": geen max breedte
+   * - undefined: gebruik variant-token default
+   */
+  maxChars?: MaxCharsInput;
+
+  /**
+   * Overschrijf text-wrap gedrag per tekstblok.
+   */
+  wrap?: TextWrap;
+
+  /**
+   * Extra marge boven het tekstblok (spacing-schaal, zelfde als ButtonWrapper).
+   */
+  marginTop?: BlockMarginLevel;
+
+  /**
+   * Ondermarge; overschrijft de variant-default als gezet (spacing-schaal).
+   */
+  marginBottom?: BlockMarginLevel;
+}
+
+const {
+  as = 'div',
+  variant = 'body',
+  align = 'start',
+  maxChars,
+  wrap,
+  marginTop,
+  marginBottom,
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & {
+  class?: unknown;
+  style?: unknown;
+} & Record<string, unknown>;
+
+const Tag = as;
+const normalizedMaxChars = normalizeMaxChars(maxChars);
+
+const textMarginStyles: string[] = [];
+if (marginTop === 'none') {
+  textMarginStyles.push('--text-margin-top-user: 0;');
+} else if (marginTop) {
+  textMarginStyles.push(`--text-margin-top-user: ${blockMarginCssValue(marginTop)};`);
+}
+if (marginBottom === 'none') {
+  textMarginStyles.push('--text-margin-bottom-user: 0;');
+} else if (marginBottom) {
+  textMarginStyles.push(`--text-margin-bottom-user: ${blockMarginCssValue(marginBottom)};`);
+}
+
+const { className: textClasses, style: textStyle } = buildTypographyRoot({
+  baseClass: 'text',
+  userClass,
+  userStyle,
+  inlineStyles: [
+    typeof normalizedMaxChars === 'number' ? `--text-max-chars: ${normalizedMaxChars};` : undefined,
+    wrap ? `--text-wrap-override: ${wrap};` : undefined,
+    ...textMarginStyles,
+  ],
+});
+---
+
+<Tag
+  {...forwardedProps}
+  class={textClasses}
+  data-variant={variant}
+  data-align={align}
+  data-max-chars={normalizedMaxChars === 'none' ? 'none' : undefined}
+  style={textStyle}
+>
+  <slot />
+</Tag>
+
+<style>
+  .text {
+    margin: 0;
+    --text-flow-space: var(--space-5);
+    font-family: var(--font-family-base);
+    color: inherit;
+    font-size: var(--text-font-size, var(--text-style-body-font-size));
+    line-height: var(--text-line-height, var(--text-style-body-line-height));
+    letter-spacing: var(--text-letter-spacing, var(--text-style-body-letter-spacing));
+    font-weight: var(--text-font-weight, var(--text-style-body-font-weight));
+    text-transform: var(--text-text-transform, var(--text-style-body-text-transform));
+    text-wrap: var(--text-wrap-override, var(--text-text-wrap, var(--text-style-body-text-wrap, pretty)));
+    margin-top: var(--text-margin-top-user, 0);
+    margin-bottom: var(
+      --text-margin-bottom-user,
+      var(--text-margin-bottom, var(--text-style-body-margin-bottom, var(--space-3)))
+    );
+    max-inline-size: calc(var(--text-max-chars, var(--text-max-chars-default, var(--text-style-body-max-chars, 66))) * 1ch);
+    display: flow-root;
+    --text-trim-top: var(--font-trim-top);
+    --text-trim-bottom: var(--font-trim-bottom);
+  }
+
+  .text[data-max-chars='none'] {
+    max-inline-size: none;
+  }
+
+  .text[data-align='start'] {
+    text-align: start;
+    margin-inline: 0;
+  }
+
+  .text[data-align='center'] {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .text[data-align='end'] {
+    text-align: end;
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+  }
+
+  .text[data-variant='body-sm'] {
+    --text-font-size: var(--text-style-body-sm-font-size);
+    --text-line-height: var(--text-style-body-sm-line-height);
+    --text-letter-spacing: var(--text-style-body-sm-letter-spacing);
+    --text-font-weight: var(--text-style-body-sm-font-weight);
+    --text-text-transform: var(--text-style-body-sm-text-transform);
+    --text-text-wrap: var(--text-style-body-sm-text-wrap);
+    --text-margin-bottom: var(--text-style-body-sm-margin-bottom);
+    --text-max-chars-default: var(--text-style-body-sm-max-chars);
+    --text-trim-top: var(--text-style-body-sm-trim-top);
+    --text-trim-bottom: var(--text-style-body-sm-trim-bottom);
+  }
+
+  .text[data-variant='body'] {
+    --text-font-size: var(--text-style-body-font-size);
+    --text-line-height: var(--text-style-body-line-height);
+    --text-letter-spacing: var(--text-style-body-letter-spacing);
+    --text-font-weight: var(--text-style-body-font-weight);
+    --text-text-transform: var(--text-style-body-text-transform);
+    --text-text-wrap: var(--text-style-body-text-wrap);
+    --text-margin-bottom: var(--text-style-body-margin-bottom);
+    --text-max-chars-default: var(--text-style-body-max-chars);
+    --text-trim-top: var(--text-style-body-trim-top);
+    --text-trim-bottom: var(--text-style-body-trim-bottom);
+  }
+
+  .text[data-variant='body-lg'] {
+    --text-font-size: var(--text-style-body-lg-font-size);
+    --text-line-height: var(--text-style-body-lg-line-height);
+    --text-letter-spacing: var(--text-style-body-lg-letter-spacing);
+    --text-font-weight: var(--text-style-body-lg-font-weight);
+    --text-text-transform: var(--text-style-body-lg-text-transform);
+    --text-text-wrap: var(--text-style-body-lg-text-wrap);
+    --text-margin-bottom: var(--text-style-body-lg-margin-bottom);
+    --text-max-chars-default: var(--text-style-body-lg-max-chars);
+    --text-trim-top: var(--text-style-body-lg-trim-top);
+    --text-trim-bottom: var(--text-style-body-lg-trim-bottom);
+  }
+
+  .text > :global(p),
+  .text :global(p),
+  .text > :global(blockquote),
+  .text > :global(label),
+  .text > :global(ul),
+  .text > :global(ol),
+  .text > :global(li) {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    text-wrap: inherit;
+    margin: 0;
+  }
+
+  /* Zelfde principe als bij Heading: flow-root op trim-doelen voorkomt instabiele marges */
+  .text > :global(p),
+  .text > :global(blockquote) {
+    display: flow-root;
+  }
+
+  /* Line-height trim (BEM modifier opt-out) */
+  .text:not(.text--trim-off) > :global(p):not(.text--trim-off)::before,
+  .text:not(.text--trim-off) > :global(blockquote):not(.text--trim-off)::before {
+    content: "";
+    display: table;
+    margin-bottom: calc(-0.5lh + var(--text-trim-top));
+  }
+
+  .text:not(.text--trim-off) > :global(p):not(.text--trim-off)::after,
+  .text:not(.text--trim-off) > :global(blockquote):not(.text--trim-off)::after {
+    content: "";
+    display: table;
+    margin-bottom: calc(-0.5lh + var(--text-trim-bottom));
+  }
+
+  /* Fallback voor browsers zonder lh-unit support */
+  @supports not (margin-bottom: 1lh) {
+    .text:not(.text--trim-off) > :global(p):not(.text--trim-off)::before,
+    .text:not(.text--trim-off) > :global(blockquote):not(.text--trim-off)::before {
+      margin-bottom: calc(var(--text-trim-top) - 0.5em);
+    }
+
+    .text:not(.text--trim-off) > :global(p):not(.text--trim-off)::after,
+    .text:not(.text--trim-off) > :global(blockquote):not(.text--trim-off)::after {
+      margin-bottom: calc(var(--text-trim-bottom) - 0.5em);
+    }
+  }
+
+  .text > :global(:is(p, blockquote, ul, ol, figure, pre, table, h1, h2, h3, h4, h5, h6))
+    + :global(:is(p, blockquote, ul, ol, figure, pre, table, h1, h2, h3, h4, h5, h6)) {
+    margin-top: var(--text-flow-space, var(--space-3));
+  }
+
+  .text > :global(p + p),
+  .text :global(p + p) {
+    margin-top: var(--text-flow-space, var(--space-3));
+  }
+
+  .text > :first-child {
+    margin-top: 0;
+  }
+
+  .text > :last-child,
+  .text :global(:is(p, blockquote, ul, ol, figure, pre, table, h1, h2, h3, h4, h5, h6):last-child) {
+    margin-bottom: 0;
+  }
+</style>
+

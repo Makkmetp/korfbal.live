@@ -1,0 +1,128 @@
+---
+/**
+ * Button component met primary en secondary varianten.
+ * Gebruikt theme-tokens voor kleuren; reset en focus/hover states volgens best practices.
+ *
+ * Gebruik:
+ * - <Button variant="primary">Label</Button>
+ * - <Button variant="secondary" href="/page">Link als button</Button>
+ */
+
+type ButtonVariant = 'primary' | 'secondary';
+
+interface Props {
+  /**
+   * Visuele variant: primary (gevuld) of secondary (outline/ghost).
+   */
+  variant?: ButtonVariant;
+
+  /**
+   * Als href is gezet, wordt een <a> gerenderd met role="button" (zelfde styling).
+   */
+  href?: string;
+
+  /**
+   * type voor <button> (genegeerd bij href).
+   */
+  type?: 'button' | 'submit' | 'reset';
+
+}
+
+const {
+  variant = 'primary',
+  href,
+  type = 'button',
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & {
+  class?: string;
+  style?: string | Record<string, string>;
+} & Record<string, unknown>;
+
+const isLink = typeof href === 'string' && href.length > 0;
+const Tag = isLink ? 'a' : 'button';
+
+const buttonClasses = [
+  'button',
+  typeof userClass === 'string' ? userClass : undefined,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Tag
+  {...forwardedProps}
+  class={buttonClasses}
+  data-variant={variant}
+  style={typeof userStyle === 'string' ? userStyle : undefined}
+  {...(isLink
+    ? { href, role: 'button' }
+    : { type })}
+>
+  <span class="button__label">
+    <slot />
+  </span>
+</Tag>
+
+<style>
+  /* Base: reset + layout */
+  .button {
+    --_button-bg: var(--theme-button-primary-bg);
+    --_button-text: var(--theme-button-primary-text);
+    --_button-bg-hover: var(--theme-button-primary-bg-hover);
+    --_button-text-hover: var(--theme-button-primary-text-hover);
+
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: var(--button-height-md);
+    padding-inline: var(--button-padding-x);
+    padding-block: var(--button-padding-y);
+    border: none;
+    border-radius: var(--button-radius);
+    background-color: var(--_button-bg);
+    color: var(--_button-text);
+    font: inherit;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-body);
+    font-weight: var(--button-font-weight);
+    line-height: var(--line-height-normal);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      outline-color 0.2s ease;
+    outline-offset: var(--focus-ring-offset-outer);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .button:hover {
+    background-color: var(--_button-bg-hover);
+    color: var(--_button-text-hover);
+  }
+
+  .button:focus-visible {
+    outline: var(--focus-ring-width) solid var(--theme-button-focus-color);
+    outline-offset: var(--focus-ring-offset-outer);
+  }
+
+  /* Secondary variant */
+  .button[data-variant='secondary'] {
+    --_button-bg: var(--theme-button-secondary-bg);
+    --_button-text: var(--theme-button-secondary-text);
+    --_button-bg-hover: var(--theme-button-secondary-bg-hover);
+    --_button-text-hover: var(--theme-button-secondary-text-hover);
+  }
+
+  .button__label {
+    display: inline-flex;
+    align-items: center;
+    gap: inherit;
+  }
+</style>
