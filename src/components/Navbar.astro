@@ -35,7 +35,7 @@ import { IconClose, IconMenu } from "./icons";
       </nav>
 
       <div class="navbar__cta-button">
-        <Button href="#overzicht">Start gratis</Button>
+        <Button href="https://app.korfbal.live/registreren">Start gratis</Button>
       </div>
     </div>
   </div>
@@ -48,6 +48,7 @@ import { IconClose, IconMenu } from "./icons";
     left: 0;
     right: 0;
     z-index: 20;
+    pointer-events: none;
   }
 
   .navbar__element {
@@ -66,6 +67,7 @@ import { IconClose, IconMenu } from "./icons";
     margin-top: var(--space-6);
     padding-inline: var(--nav-padding-x);
     padding-block: 0;
+    pointer-events: auto;
   }
 
   .navbar__brand {

@@ -1,10 +1,10 @@
 ---
-type LayoutVariant = 'stack' | 'columns' | 'columns-7-5' | 'breakout';
+type LayoutVariant = 'stack' | 'columns' | 'columns-7-5' | 'columns-5-7' | 'breakout';
 
 interface Props {
   /**
    * Layout variant.
-   * Ondersteunt "stack", "columns", "columns-7-5" en "breakout".
+   * Ondersteunt "stack", "columns", "columns-7-5", "columns-5-7" en "breakout".
    */
   variant?: LayoutVariant;
 
@@ -90,6 +90,14 @@ const layoutClasses = ['layout', typeof userClass === 'string' ? userClass : und
     --_layout-secondary-columns: 5;
   }
 
+  .layout[data-variant='columns-5-7'] {
+    --_layout-display: grid;
+    --_layout-grid-template-columns: repeat(12, minmax(0, 1fr));
+    --_layout-primary-columns: 5;
+    --_layout-primary-align: center;
+    --_layout-secondary-columns: 7;
+  }
+
   .layout[data-variant='breakout'] {
     --_layout-display: grid;
     --_layout-content-column-width: calc(
@@ -132,6 +140,11 @@ const layoutClasses = ['layout', typeof userClass === 'string' ? userClass : und
     display: var(--flex-medium, var(--_layout-display));
   }
 
+
+  .layout__content {
+    width: 100%;
+  }
+  
   .layout__content--primary {
     grid-column: var(--_layout-primary-grid-column);
     grid-row: var(--_layout-primary-grid-row);

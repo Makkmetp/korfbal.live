@@ -11,34 +11,33 @@ const plans = [
   {
     name: "Gratis",
     subtitle: "Voor trainers die willen kennismaken",
-    price: "€0",
+    price: "€ 0",
     features: [
-      "Live wedstrijdregistratie",
-      "Basis tijdlijn",
-      "Live wedstrijd delen",
-      "1 team",
+      "1 Team",
+      "Basis wedstrijdregistratie",
+      "Live Stream",
+      "Max. 10 spelers per team",
+      "Max. 3 wedstrijden",
       "Basis statistieken",
     ],
     ctaLabel: "Start gratis",
-    ctaHref: "#",
-    ctaVariant: "primary",
+    ctaHref: "https://app.korfbal.live/registreren",
     featured: false,
   },
   {
     name: "Pro",
     subtitle: "Meest gekozen door trainers",
-    price: "7,99 / team / maand",
+    price: "€ 7,99 / team / maand",
     features: [
       "Alles uit Gratis",
+      "Uitgebreide wedstrijdregistratie",
+      "Live Dashboard",
+      "Max. 20 spelers per team",
+      "Onbeperkt aantal wedstrijden",
       "Uitgebreide statistieken per speler",
-      "Wedstrijdhistorie & trends",
-      "Meerdere wedstrijden per team",
-      "Export (PDF / CSV)",
-      "E-mail support",
     ],
     ctaLabel: "Upgrade naar Pro",
-    ctaHref: "#",
-    ctaVariant: "primary",
+    ctaHref: "https://app.korfbal.live/more",
     featured: true,
   },
   {
@@ -47,22 +46,21 @@ const plans = [
     price: "Op aanvraag",
     features: [
       "Alles uit Pro",
-      "Alle teams binnen de club",
-      "Meerdere trainers per team",
-      "Clubdashboard",
-      "(Toekomst) Sportlink-koppeling",
-      "Prioriteit support",
+      "Onbeperkt aantal teams",
     ],
     ctaLabel: "Neem contact op",
-    ctaHref: "/over-ons#ons-team",
-    ctaVariant: "secondary",
+    ctaHref: "mailto:info@korfbal.live?subject=Clubabonnement",
     featured: false,
   },
 ] as const;
 ---
 
 <BaseLayout title={pageTitle}>
-  <Section id="abonnementen" paddingBlockStart="page-top" paddingBlockEnd="large">
+  <Section
+    id="abonnementen"
+    paddingBlockStart="page-top"
+    paddingBlockEnd="large"
+  >
     <div class="pricing">
       <header class="pricing__intro">
         <Heading as="h1" variant="h1" maxChars={16}>
@@ -70,8 +68,8 @@ const plans = [
         </Heading>
         <Text maxChars={58}>
           <p>
-            Start gratis en groei door wanneer je meer inzichten en clubfunctionaliteit
-            nodig hebt.
+            Start gratis en groei door wanneer je meer inzichten en
+            clubfunctionaliteit nodig hebt.
           </p>
         </Text>
       </header>
@@ -79,22 +77,30 @@ const plans = [
       <div class="pricing__grid">
         {
           plans.map((plan) => (
-            <article class="plan-card" data-featured={plan.featured ? "true" : undefined}>
+            <article
+              class="plan-card"
+              data-featured={plan.featured ? "true" : undefined}
+            >
               <div class="plan-card__content">
-                <h2 class="plan-card__name">
-                  {plan.name}
-                  {plan.featured && <span aria-hidden="true" class="plan-card__star">★</span>}
-                </h2>
-                <p class="plan-card__subtitle">{plan.subtitle}</p>
-                <p class="plan-card__price">{plan.price}</p>
-
-                <ul class="plan-card__list">
-                  {plan.features.map((feature) => <li>{feature}</li>)}
-                </ul>
-
-                <Button href={plan.ctaHref} variant={plan.ctaVariant}>
+                <div class="plan-card__header">
+                  <Heading as="h2" variant="h4" marginBottom="sm">
+                    {plan.name}
+                  </Heading>
+                  <Text maxChars={58}>
+                    <p>{plan.subtitle}</p>
+                  </Text>
+                  <p class="plan-card__price">{plan.price}</p>
+                  <Button href={plan.ctaHref}>
                   {plan.ctaLabel}
                 </Button>
+                </div>
+                <ul class="plan-card__list">
+                  {plan.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))}
+                </ul>
+
+                
               </div>
             </article>
           ))
@@ -124,14 +130,22 @@ const plans = [
 
   .plan-card {
     border: 1px solid var(--theme-color-border);
-    border-radius: 0.6rem;
+    border-radius: 1.5rem;
     background: var(--theme-color-surface);
     display: flex;
   }
 
   .plan-card[data-featured="true"] {
     border-color: var(--theme-color-accent);
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--theme-color-accent) 50%, transparent);
+    box-shadow: 0 0 0 1px
+      color-mix(in srgb, var(--theme-color-accent) 50%, transparent);
+  }
+
+  .plan-card__header {
+    display: grid;
+    gap: var(--space-1);
+    border-bottom: 1px solid var(--theme-color-border);
+    padding-block-end: var(--space-5);
   }
 
   .plan-card__content {
@@ -178,7 +192,8 @@ const plans = [
 
   .plan-card__list {
     margin: 0;
-    padding-inline-start: 1.1rem;
+    padding: 0;
+    list-style: none;
     display: grid;
     gap: var(--space-1);
     color: var(--theme-color-text);

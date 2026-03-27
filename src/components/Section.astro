@@ -37,6 +37,14 @@ interface Props {
    * - "section": `.section` zelf — handig als `background`-slot en content dezelfde breakpoint moeten delen.
    */
   containerScope?: 'inner' | 'section';
+
+  /**
+   * Maximale breedte voor `.section__inner`.
+   * - "default": gebruikt `--layout-max-width` (default).
+   * - "sm": gebruikt `--layout-max-width-sm`.
+   * - "md": gebruikt `--layout-max-width-md`.
+   */
+  innerMaxWidth?: 'default' | 'sm' | 'md';
 }
 
 const {
@@ -45,6 +53,7 @@ const {
   paddingBlockStart,
   paddingBlockEnd,
   containerScope = 'inner',
+  innerMaxWidth = 'default',
   class: userClass,
   style: userStyle,
   ...forwardedProps
@@ -67,6 +76,7 @@ const sectionClasses = ['section', typeof userClass === 'string' ? userClass : u
   data-padding-top={paddingBlockStart}
   data-padding-bottom={paddingBlockEnd}
   data-container-scope={containerScope}
+  data-inner-max-width={innerMaxWidth}
   style={typeof userStyle === 'string' ? userStyle : undefined}
 >
   {Astro.slots.has("background") && (
@@ -85,6 +95,7 @@ const sectionClasses = ['section', typeof userClass === 'string' ? userClass : u
     --_section-padding-block-end: var(--space-section-md);
     --_section-container-type-root: normal;
     --_section-container-type-inner: inline-size;
+    --_section-inner-max-width: var(--layout-max-width);
 
     background: var(--theme-color-bg);
     color: var(--theme-color-text);
@@ -102,6 +113,14 @@ const sectionClasses = ['section', typeof userClass === 'string' ? userClass : u
   .section[data-container-scope='section'] {
     --_section-container-type-root: inline-size;
     --_section-container-type-inner: normal;
+  }
+
+  .section[data-inner-max-width='sm'] {
+    --_section-inner-max-width: var(--layout-max-width-sm);
+  }
+
+  .section[data-inner-max-width='md'] {
+    --_section-inner-max-width: var(--layout-max-width-md, var(--layout-max-width));
   }
 
   /* Verticale spacing varianten - top */
@@ -172,7 +191,7 @@ const sectionClasses = ['section', typeof userClass === 'string' ? userClass : u
   .section__inner {
     z-index: 1;
     margin-inline: auto;
-    max-width: var(--layout-max-width);
+    max-width: var(--_section-inner-max-width);
     width: calc(100% - (var(--section-padding-x, var(--layout-page-margin)) * 2));
     flex-flow: column;
     justify-content: center;
