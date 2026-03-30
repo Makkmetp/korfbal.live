@@ -1,0 +1,121 @@
+---
+interface Props {
+  /**
+   * Kleurvariant van het device-frame: light gebruikt `--color-surface`, dark `--color-dark-surface`. Standaard: dark.
+   */
+  color?: "light" | "dark";
+
+  /**
+   * Formaat: telefoon of tablet (visueel nog niet toegepast). Standaard: phone.
+   */
+  type?: "phone" | "tablet";
+
+  /**
+   * URL of pad naar de afbeelding (verplicht).
+   */
+  src: string;
+
+  /**
+   * Alternatieve tekst voor toegankelijkheid.
+   */
+  alt?: string;
+
+  class?: string;
+  style?: string;
+}
+
+const {
+  color = "dark",
+  type = "phone",
+  src,
+  alt = "",
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & Record<string, unknown>;
+
+const rootClasses = [
+  "device-image",
+  typeof userClass === "string" ? userClass : undefined,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div
+  class={rootClasses}
+  data-device-color={color}
+  data-device-type={type}
+  style={typeof userStyle === "string" ? userStyle : undefined}
+>
+  <img {...forwardedProps} src={src} alt={alt} class="device-image__img" />
+</div>
+
+<style>
+  .device-image[data-device-type="tablet"] {
+    --_device-frame-max-width: 78rem;
+    --_device-frame-aspect-ratio: 1.45 / 1;
+    --_device-frame-notch-display: none;
+    --_device-frame-shine-clip-path: polygon(100% 0%, 100% 100%, 60% 100%, 35% 0%);
+  }
+
+  .device-image {
+    --_device-frame-aspect-ratio: 1 / 1.85;
+    --_device-frame-max-width: 26rem;
+    --_device-frame-notch-display: block;
+    --_device-frame-color: var(--color-dark-surface);
+    --_device-frame-max-border-width: 1rem;
+    --_device-frame-border-width: min(
+      var(--_device-frame-max-border-width),
+      calc(
+        var(--_device-frame-max-border-width) / var(--_device-frame-max-width) *
+          100cqw
+      )
+    );
+    --_device-frame-shine-clip-path: polygon(100% 0%, 100% 100%, 60% 100%, 20% 0%);
+
+    aspect-ratio: var(--_device-frame-aspect-ratio);
+    background-color: #000;
+    max-width: var(--_device-frame-max-width);
+    border: var(--_device-frame-border-width) solid var(--_device-frame-color);
+    border-radius: calc(var(--_device-frame-border-width) * 3);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+    container-type: inline-size;
+
+    &:before {
+      display: var(--_device-frame-notch-display);
+      content: "";
+      background-color: var(--_device-frame-color);
+      width: 40cqw;
+      aspect-ratio: 4.5 / 1;
+      position: absolute;
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      background-color: white;
+      opacity: 0.1;
+      position: absolute;
+      inset: 0;
+      clip-path: var(--_device-frame-shine-clip-path);
+      z-index: 1;
+    }
+  }
+
+  .device-image[data-device-color="light"] {
+    --_device-frame-color: var(--color-surface);
+  }
+
+  .device-image__img {
+    display: block;
+    width: 100%;
+  }
+</style>
