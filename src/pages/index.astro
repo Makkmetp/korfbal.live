@@ -10,6 +10,7 @@ import Background from "../components/Background.astro";
 import Card from "../components/Card.astro";
 import Grid from "../components/Grid.astro";
 import Image from "../components/Image.astro";
+import DeviceImage from "../components/DeviceImage.astro";
 
 const pageTitle = "Korfbal.live";
 const pageDescription =
@@ -36,11 +37,7 @@ const pageDescription =
           </ButtonWrapper>
         </Fragment>
         <Fragment slot="content-secondary">
-          <img
-            src="/images/screenshot-1.png"
-            alt="Korfbal.live"
-            style="max-width: 28rem; margin-inline: auto; width: 100%;"
-          />
+          <DeviceImage src="/images/screens/screen-registration.webp" style="margin-inline: auto;" />
         </Fragment>
       </Layout>
       <Background slot="background" />
@@ -72,11 +69,7 @@ const pageDescription =
           </Button>
         </Fragment>
         <Fragment slot="content-secondary">
-          <img
-            src="/images/screenshot-2.png"
-            alt="Korfbal.live"
-            style="max-width: 28rem; margin-inline: auto; width: 100%;"
-          />
+          <DeviceImage src="/images/screens/screen-live-stream.webp" color="light" style="margin-inline: auto;" />
         </Fragment>
       </Layout>
       <Background slot="background" color="secondary" location="bottom-left" />
@@ -152,5 +145,7 @@ const pageDescription =
         </Fragment>
       </Layout>
     </Section>
-
+    <Section>
+      <DeviceImage src="/images/screens/screen-registration.webp" />
+    </Section>
 </BaseLayout>

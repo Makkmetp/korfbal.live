@@ -1,0 +1,99 @@
+---
+interface Props {
+  /**
+   * Kleurvariant van het device-frame: light gebruikt `--color-surface`, dark `--color-dark-surface`. Standaard: dark.
+   */
+  color?: 'light' | 'dark';
+
+  /**
+   * Formaat: telefoon of tablet (visueel nog niet toegepast). Standaard: phone.
+   */
+  type?: 'phone' | 'tablet';
+
+  /**
+   * URL of pad naar de afbeelding (verplicht).
+   */
+  src: string;
+
+  /**
+   * Alternatieve tekst voor toegankelijkheid.
+   */
+  alt?: string;
+
+  class?: string;
+  style?: string;
+}
+
+const {
+  color = 'dark',
+  type = 'phone',
+  src,
+  alt = '',
+  class: userClass,
+  style: userStyle,
+  ...forwardedProps
+} = Astro.props as Props & Record<string, unknown>;
+
+const rootClasses = ['device-image', typeof userClass === 'string' ? userClass : undefined]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<div
+  class={rootClasses}
+  data-device-color={color}
+  data-device-type={type}
+  style={typeof userStyle === 'string' ? userStyle : undefined}
+>
+  <img {...forwardedProps} src={src} alt={alt} class="device-image__img" />
+  
+</div>
+
+<style>
+  .device-image {
+    --_device-frame-color: var(--color-dark-surface);
+
+    aspect-ratio: 1 / 1.85;
+    background-color: #000;
+    max-width: 26rem;
+    border: 1rem solid var(--_device-frame-color);
+    border-radius: 3rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.10);
+
+    &:before {
+      content: '';
+      display: block;
+      background-color: var(--_device-frame-color);
+      height: 2rem;
+      width: 10rem;
+      position: absolute;
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      background-color: white;
+      opacity: .1;
+      position: absolute;
+      inset: 0;
+      clip-path: polygon(100% 0%, 100% 100%, 60% 100%, 20% 0%);
+      z-index: 1;
+    }
+  }
+
+  .device-image[data-device-color='light'] {
+    --_device-frame-color: var(--color-surface);
+  }
+
+  .device-image__img {
+    display: block;
+    width: 100%;
+  }
+</style>
