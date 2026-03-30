@@ -1,0 +1,4 @@
+Contact: mailto:info@korfbal.live
+Expires: 2027-03-30T23:59:59.000Z
+Preferred-Languages: nl, en
+Canonical: https://korfbal.live/.well-known/security.txt
