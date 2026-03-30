@@ -6,10 +6,11 @@ import Layout from "../components/Layout.astro";
 import Text from "../components/Text.astro";
 import Eyebrow from "../components/Eyebrow.astro";
 import FeatureList from "../components/FeatureList.astro";
+import DeviceImage from "../components/DeviceImage.astro";
 
-const pageTitle = "Features | Korfbal.live";
+const pageTitle = "Functionaliteiten | Korfbal.live";
 const pageDescription =
-  "Ontdek alle features van Korfbal.live: wedstrijdregistratie, live stream, live dashboard en statistieken voor betere coaching.";
+  "Ontdek alle functionaliteiten van Korfbal.live: wedstrijdregistratie, live stream, live dashboard en statistieken voor betere coaching.";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -67,11 +68,7 @@ const pageDescription =
           </Text>
         </Fragment>
         <Fragment slot="content-secondary">
-          <img
-            src="/images/screenshot-1.png"
-            alt="Korfbal.live"
-            style="max-width: 28rem; margin-inline: auto; width: 100%;"
-          />
+          <DeviceImage src="/images/screens/screen-registration.webp" style="margin-inline: auto;" />
         </Fragment>
       </Layout>
     </Section>
@@ -107,11 +104,7 @@ const pageDescription =
           </Text>
         </Fragment>
         <Fragment slot="content-secondary">
-          <img
-            src="/images/live-stream-1.png"
-            alt="Korfbal.live"
-            style="max-width: 28rem; margin-inline: auto; width: 100%;"
-          />
+          <DeviceImage src="/images/screens/screen-live-stream.webp" style="margin-inline: auto;" />
         </Fragment>
       </Layout>
     </Section>
@@ -147,11 +140,7 @@ const pageDescription =
           </Text>
         </Fragment>
         <Fragment slot="content-secondary">
-          <img
-            src="/images/live-dashboard.png"
-            alt="Korfbal.live"
-            style="max-width: 28rem; margin-inline: auto; width: 100%;"
-          />
+          <DeviceImage src="/images/screens/screen-live-dashboard-small.webp" style="margin-inline: auto;" />
         </Fragment>
       </Layout>
     </Section>
@@ -188,11 +177,7 @@ const pageDescription =
           </Text>
         </Fragment>
         <Fragment slot="content-secondary">
-          <img
-            src="/images/statistics.png"
-            alt="Korfbal.live"
-            style="max-width: 28rem; margin-inline: auto; width: 100%;"
-          />
+          <DeviceImage src="/images/screens/screen-statistics.webp" style="margin-inline: auto;" />
         </Fragment>
       </Layout>
     </Section>

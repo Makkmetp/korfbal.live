@@ -95,11 +95,11 @@ const pageDescription =
           </Button>
         </Fragment>
         <Fragment slot="content-secondary">
-          <img
-            src="/images/screenshot-3.png"
-            alt="Korfbal.live"
-            style="margin-inline: auto; width: 100%;"
-          />
+          <div style="overflow: hidden;">
+            <div style="min-width: min(64rem, calc(100vw - var(--layout-page-margin) * 2));">
+              <DeviceImage src="/images/screens/screen-live-dashboard.webp" type="tablet" />
+            </div>
+          </div>
         </Fragment>
       </Layout>
       
@@ -144,8 +144,5 @@ const pageDescription =
           </Grid>
         </Fragment>
       </Layout>
-    </Section>
-    <Section>
-      <DeviceImage src="/images/screens/screen-registration.webp" />
     </Section>
 </BaseLayout>
