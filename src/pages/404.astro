@@ -1,11 +1,34 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Layout from "../components/Layout.astro";
+import Heading from "../components/Heading.astro";
+import Text from "../components/Text.astro";
+
+const pageTitle = "404 | Korfbal.live";
+const pageDescription = "Deze pagina kon niet worden gevonden.";
 ---
 
-<BaseLayout title="404 - Pagina niet gevonden">
-  <main class="container">
-    <h1>Oeps! Sorry, we kunnen deze pagina niet meer vinden</h1>
-    <p>We hebben ons best gedaan, maar het lijkt erop dat deze pagina niet (meer) bestaat of 
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Section
+    id="not-found"
+    paddingBlockStart="page-top"
+    paddingBlockEnd="large"
+  >
+    <Layout>
+      <Fragment slot="content-primary">
+        <Heading as="h1" variant="h1">
+          Oeps! Sorry, we kunnen deze pagina niet meer vinden
+        </Heading>
+
+        <Text maxChars={60}>
+ <p>We hebben ons best gedaan, maar het lijkt erop dat deze pagina niet (meer) bestaat of 
         misschien verhuisd is. Je kunt natuurlijk altijd naar de <a href="/">homepage</a>.</p>
-  </main>
+          <p>
+            <a href="/">Ga terug naar de homepage</a>
+          </p>
+        </Text>
+      </Fragment>
+    </Layout>
+  </Section>
 </BaseLayout>
