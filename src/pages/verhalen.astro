@@ -10,84 +10,124 @@ import DeviceImage from "../components/DeviceImage.astro";
 
 const pageTitle = "Verhalen | Korfbal.live";
 const pageDescription =
-  "Ontdek verhalen van Korfbal.live: welke statistieken helpen, wat vinden coachers en clubs ervan.";
+  "Ontdek verhalen van Korfbal.live: welke statistieken helpen, wat vinden coaches en clubs ervan.";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Section
-      id="features-overview"
-      paddingBlockStart="page-top"
-      paddingBlockEnd="small"
-    >
-      <Layout variant="stack">
-        <Fragment slot="content-primary">
-          <Heading as="h1" variant="h1">
-            <em>Wedstrijdverhalen die verder gaan</em> dan de stand
-          </Heading>
-          <Text maxChars={58}>
-            <p>
-            Op deze pagina delen we wedstrijdverhalen waarin statistieken helpen om beter te begrijpen wat er gebeurt in het veld. 
-            Tijdens de wedstrijd geven ze richting om bij te sturen, en achteraf zorgen ze voor scherpere analyses.
-            Niet leidend, maar wel precies wat je nodig hebt om als team beter te worden.
-            </p>
-          </Text>
-        </Fragment>
-      </Layout>
-    </Section>
-    <Section
-      id="features-registration"
-      paddingBlockStart="small"
-      paddingBlockEnd="small"
-    >
-          <Heading as="h2" variant="h2" maxChars={12}
-            >Van achterstand naar kampioen: het verhaal achter Fortuna/Ruitenheer U15-1</Heading
-          >
-      <Layout variant="columns-7-5">
-        <Fragment slot="content-primary">
-          <Eyebrow marginBottom="md">Kampioenschap U15-1 2026</Eyebrow>
-          <Heading as="h2" variant="h2" maxChars={12}
-            >Van achterstand naar kampioen: het verhaal achter Fortuna/Ruitenheer U15-1</Heading
-          >
-          <Text maxChars={58}>
-        <p>De finale in de Maaspoort begon niet zoals Fortuna/Ruitenheer U15-1 had gehoopt. Nieuwekerk schoot uit de startblokken en stond al snel met 0-3 voor. Bij Fortuna zagen we spanning in het veld en dat zagen we ook terug in de cijfers: er waren pas 6 doelpogingen van Fortuna/Ruitenheer gedaan toen de achterstand al op het bord stond. </p>
-        <p>
-        Vanaf het eerste doelpunt van Fortuna veranderde het beeld. De rust kwam terug, het spel werd zorgvuldiger en er werd bewuster gezocht naar de juiste kansen. Nog vóór rust draaide de wedstrijd volledig om naar een 8-4 voorsprong.
-        </p>
-        <p>
-        Die omslag zie je duidelijk terug in de statistieken. Het aantal kansen nam toe en de schotselectie werd beter. Dat resulteerde uiteindelijk in een schotpercentage van 22% (8 uit 36). Waar Fortuna dichter bij de korf kansen creëerde, werd Nieuwekerk vaker gedwongen tot verre afstandsschoten met een lager rendement.
-        </p>
-        <p>
-        Dat verschil werd ook zichtbaar binnen de vakken. In één vak zorgden de dames met een schotpercentage van 33% (6 uit 18) ervoor dat het mee vangen van een lange tegenstander werd teruggedrongen. Zij moest zelf meer één op één gaan verdedigen, waardoor de rebounddruk afnam. In het andere vak hield de aanvoerder het overzicht en nam het initiatief, met een schotpercentage van 30% (7 uit 23) als resultaat.
-        </p>
-        <p>
-        Tijdens de wedstrijd werd dit beeld continu ondersteund door korfbal.live. De statistieken en het liveverslag hielpen de coaches om hun gevoel te bevestigen. Vlak voor rust stonden de trainers bij het dashboard en bespraken ze de schotselectie en de percentages. Op basis daarvan werd het plan voor de tweede helft bepaald: rust bewaren, de organisatie goed neerzetten en blijven zoeken naar de beste kansen.
-        </p>
-        <p>
-        In de tweede helft hield Fortuna die lijn vast. Door tempo af te wisselen en geduldig te blijven, bleef het team in controle. Nieuwekerk kwam moeilijk tot uitgespeelde kansen en moest blijven schieten van afstand. De voorsprong kwam daardoor niet meer in gevaar.
-        </p>
-        <p>
-        Van een zenuwachtige start naar controle en overtuiging: Fortuna/Ruitenheer U15-1 is Nederlands kampioen.
-        </p>
-        <p>
-        Namens Korfbal.live: Gefeliciteerd!
-        </p>
+    id="features-overview"
+    paddingBlockStart="page-top"
+    paddingBlockEnd="small"
+  >
+    <Layout variant="stack">
+      <Fragment slot="content-primary">
+        <Heading as="h1" variant="h1">
+          <em>Wedstrijdverhalen die verder gaan</em> dan de stand
+        </Heading>
+        <Text maxChars={58}>
+          <p>
+            Op deze pagina delen we wedstrijdverhalen waarin statistieken helpen
+            om beter te begrijpen wat er gebeurt in het veld. Tijdens de
+            wedstrijd geven ze richting om bij te sturen, en achteraf zorgen ze
+            voor scherpere analyses. Niet leidend, maar wel precies wat je nodig
+            hebt om als team beter te worden.
+          </p>
+        </Text>
+      </Fragment>
+    </Layout>
+  </Section>
 
-          </Text>
-        </Fragment>
-        <Fragment slot="content-secondary">
-          <DeviceImage src="/images/screens/screen-registration.webp" style="margin-inline: auto;" />
-          <br>
-          <br>
-          <br>
-          <FeatureList
-              items={[
-                "Schotpercentage: 22%",
-                "Korte kansen: 30%",
-                "Doelpunten: 18",
-                "Doelpogingen: 82",
-              ]}
-            />
-        </Fragment>
-      </Layout>
-    </Section>
+  <Section
+    id="features-registration"
+    paddingBlockStart="small"
+    paddingBlockEnd="small"
+  >
+    <Eyebrow marginBottom="md">Kampioenschap U15-1 2026</Eyebrow>
+
+    <Heading as="h2" variant="h2">
+      Van achterstand naar kampioen: het verhaal achter Fortuna/Ruitenheer U15-1
+    </Heading>
+
+    <Layout variant="columns-7-5">
+      <Fragment slot="content-primary">
+        <Text maxChars={58}>
+          <p>
+            De finale in de Maaspoort begon niet zoals Fortuna/Ruitenheer U15-1
+            had gehoopt. Nieuwekerk schoot uit de startblokken en stond al snel
+            met 0-3 voor. Bij Fortuna zagen we spanning in het veld en dat zagen
+            we ook terug in de cijfers: er waren pas 6 doelpogingen van
+            Fortuna/Ruitenheer gedaan toen de achterstand al op het bord stond.
+          </p>
+
+          <p>
+            Vanaf het eerste doelpunt van Fortuna veranderde het beeld. De rust
+            kwam terug, het spel werd zorgvuldiger en er werd bewuster gezocht
+            naar de juiste kansen. Nog vóór rust draaide de wedstrijd volledig
+            om naar een 8-4 voorsprong.
+          </p>
+
+          <p>
+            Die omslag zie je duidelijk terug in de statistieken. Het aantal
+            kansen nam toe en de schotselectie werd beter. Dat resulteerde
+            uiteindelijk in een schotpercentage van 22% (8 uit 36). Waar
+            Fortuna dichter bij de korf kansen creëerde, werd Nieuwekerk vaker
+            gedwongen tot verre afstandsschoten met een lager rendement.
+          </p>
+
+          <p>
+            Dat verschil werd ook zichtbaar binnen de vakken. In één vak zorgden
+            de dames met een schotpercentage van 33% (6 uit 18) ervoor dat het
+            meevangen van een lange tegenstander werd teruggedrongen. Zij moest
+            zelf meer één op één gaan verdedigen, waardoor de rebounddruk
+            afnam. In het andere vak hield de aanvoerder het overzicht en nam
+            het initiatief, met een schotpercentage van 30% (7 uit 23) als
+            resultaat.
+          </p>
+
+          <p>
+            Tijdens de wedstrijd werd dit beeld continu ondersteund door
+            korfbal.live. De statistieken en het liveverslag hielpen de coaches
+            om hun gevoel te bevestigen. Vlak voor rust stonden de trainers bij
+            het dashboard en bespraken ze de schotselectie en de percentages. Op
+            basis daarvan werd het plan voor de tweede helft bepaald: rust
+            bewaren, de organisatie goed neerzetten en blijven zoeken naar de
+            beste kansen.
+          </p>
+
+          <p>
+            In de tweede helft hield Fortuna die lijn vast. Door tempo af te
+            wisselen en geduldig te blijven, bleef het team in controle.
+            Nieuwekerk kwam moeilijk tot uitgespeelde kansen en moest blijven
+            schieten van afstand. De voorsprong kwam daardoor niet meer in
+            gevaar.
+          </p>
+
+          <p>
+            Van een zenuwachtige start naar controle en overtuiging:
+            Fortuna/Ruitenheer U15-1 is Nederlands kampioen.
+          </p>
+
+          <p>Namens Korfbal.live: gefeliciteerd!</p>
+        </Text>
+      </Fragment>
+
+      <Fragment slot="content-secondary">
+        <DeviceImage
+          src="/images/screens/screen-registration.webp"
+          style="margin-inline: auto;"
+        />
+        <br />
+        <br />
+        <br />
+        <FeatureList
+          items={[
+            "Schotpercentage: 22%",
+            "Korte kansen: 30%",
+            "Doelpunten: 18",
+            "Doelpogingen: 82",
+          ]}
+        />
+      </Fragment>
+    </Layout>
+  </Section>
 </BaseLayout>
