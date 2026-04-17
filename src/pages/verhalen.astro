@@ -9,23 +9,44 @@ import FeatureList from "../components/FeatureList.astro";
 import DeviceImage from "../components/DeviceImage.astro";
 
 const pageTitle = "Verhalen | Korfbal.live";
-const pageDescription = "Verschillende verhalen over wedstrijden.";
+const pageDescription =
+  "Ontdek verhalen van Korfbal.live: welke statistieken helpen, wat vinden coachers en clubs ervan.";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Section
-    id="not-found"
-    paddingBlockStart="page-top"
-    paddingBlockEnd="large"
-  >
-    <Layout>
-      <Fragment slot="content-primary">
-        <Heading as="h1" variant="h1">
-          Kampioenschap U15-1 2026
-        </Heading>
-
-        <Text maxChars={60}>
-        <p>WDe finale in de Maaspoort begon niet zoals Fortuna/Ruitenheer U15-1 had gehoopt. Nieuwekerk schoot uit de startblokken en stond al snel met 0-3 voor. Bij Fortuna zagen we spanning in het veld en dat zagen we ook terug in de cijfers: er waren pas 6 doelpogingen van Fortuna/Ruitenheer gedaan toen de achterstand al op het bord stond. </p>
+      id="features-overview"
+      paddingBlockStart="page-top"
+      paddingBlockEnd="small"
+    >
+      <Layout variant="stack">
+        <Fragment slot="content-primary">
+          <Heading as="h1" variant="h1">
+            <em>Wedstrijdverhalen die verder gaan</em> dan de stand
+          </Heading>
+          <Text maxChars={58}>
+            <p>
+            Op deze pagina delen we wedstrijdverhalen waarin statistieken helpen om beter te begrijpen wat er gebeurt in het veld. 
+            Tijdens de wedstrijd geven ze richting om bij te sturen, en achteraf zorgen ze voor scherpere analyses.
+            Niet leidend, maar wel precies wat je nodig hebt om als team beter te worden.
+            </p>
+          </Text>
+        </Fragment>
+      </Layout>
+    </Section>
+    <Section
+      id="features-registration"
+      paddingBlockStart="small"
+      paddingBlockEnd="small"
+    >
+      <Layout variant="columns-7-5">
+        <Fragment slot="content-primary">
+          <Eyebrow marginBottom="md">Kampioenschap U15-1 2026</Eyebrow>
+          <Heading as="h2" variant="h2" maxChars={12}
+            >Van achterstand naar kampioen: het verhaal achter Fortuna/Ruitenheer U15-1</Heading
+          >
+          <Text maxChars={58}>
+<p>WDe finale in de Maaspoort begon niet zoals Fortuna/Ruitenheer U15-1 had gehoopt. Nieuwekerk schoot uit de startblokken en stond al snel met 0-3 voor. Bij Fortuna zagen we spanning in het veld en dat zagen we ook terug in de cijfers: er waren pas 6 doelpogingen van Fortuna/Ruitenheer gedaan toen de achterstand al op het bord stond. </p>
         <p>
         Vanaf het eerste doelpunt van Fortuna veranderde het beeld. De rust kwam terug, het spel werd zorgvuldiger en er werd bewuster gezocht naar de juiste kansen. Nog vóór rust draaide de wedstrijd volledig om naar een 8-4 voorsprong.
         </p>
@@ -47,30 +68,6 @@ const pageDescription = "Verschillende verhalen over wedstrijden.";
         <p>
         Namens Korfbal.live: Gefeliciteerd!
         </p>
-        </Text>
-      </Fragment>
-      <Section
-      id="features-registration"
-      paddingBlockStart="small"
-      paddingBlockEnd="small"
-    >
-      <Layout variant="columns-7-5">
-        <Fragment slot="content-primary">
-          <Eyebrow marginBottom="md">Wedstrijdregistratie</Eyebrow>
-          <Heading as="h2" variant="h2" maxChars={12}
-            >Leg de wedstrijd vast terwijl deze gebeurt</Heading
-          >
-          <Text maxChars={58}>
-            <p>
-              Tijdens de wedstrijd registreer je eenvoudig alles wat er gebeurt.
-              Van de opstelling tot doelpunten, wissels en doelpogingen: je
-              bouwt stap voor stap een compleet wedstrijdverhaal op. Je begint
-              met de basis, wie staat er in het veld, en legt vervolgens alle
-              belangrijke momenten vast. De interface is zo ingericht dat je
-              snel kunt handelen. Zo ontstaat er automatisch een gestructureerd
-              en bruikbaar overzicht van de wedstrijd, zonder extra werk
-              achteraf.
-            </p>
             <FeatureList
               items={[
                 "Opstellingen en wissels",
@@ -85,6 +82,5 @@ const pageDescription = "Verschillende verhalen over wedstrijden.";
           <DeviceImage src="/images/screens/screen-registration.webp" style="margin-inline: auto;" />
         </Fragment>
       </Layout>
-    </Layout>
-  </Section>
+    </Section>
 </BaseLayout>
