@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Layout from "../components/Layout.astro";
+import Heading from "../components/Heading.astro";
+import Text from "../components/Text.astro";
+
+const pageTitle = "Verhalen | Korfbal.live";
+const pageDescription = "Verschillende verhalen over wedstrijden.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Section
+    id="not-found"
+    paddingBlockStart="page-top"
+    paddingBlockEnd="large"
+  >
+    <Layout>
+      <Fragment slot="content-primary">
+        <Heading as="h1" variant="h1">
+          Kampioenschap U15-1 2026
+        </Heading>
+
+        <Text maxChars={60}>
+        <p>WDe finale in de Maaspoort begon niet zoals Fortuna/Ruitenheer U15-1 had gehoopt. Nieuwekerk schoot uit de startblokken en stond al snel met 0-3 voor. Bij Fortuna zagen we spanning in het veld en dat zagen we ook terug in de cijfers: er waren pas 6 doelpogingen van Fortuna/Ruitenheer gedaan toen de achterstand al op het bord stond. </p>
+        <p>
+        Vanaf het eerste doelpunt van Fortuna veranderde het beeld. De rust kwam terug, het spel werd zorgvuldiger en er werd bewuster gezocht naar de juiste kansen. Nog vóór rust draaide de wedstrijd volledig om naar een 8-4 voorsprong.
+        </p>
+        <p>
+        Die omslag zie je duidelijk terug in de statistieken. Het aantal kansen nam toe en de schotselectie werd beter. Dat resulteerde uiteindelijk in een schotpercentage van 22% (8 uit 36). Waar Fortuna dichter bij de korf kansen creëerde, werd Nieuwekerk vaker gedwongen tot verre afstandsschoten met een lager rendement.
+        </p>
+        <p>
+        Dat verschil werd ook zichtbaar binnen de vakken. In één vak zorgden de dames met een schotpercentage van 33% (6 uit 18) ervoor dat het mee vangen van een lange tegenstander werd teruggedrongen. Zij moest zelf meer één op één gaan verdedigen, waardoor de rebounddruk afnam. In het andere vak hield de aanvoerder het overzicht en nam het initiatief, met een schotpercentage van 30% (7 uit 23) als resultaat.
+        </p>
+        <p>
+        Tijdens de wedstrijd werd dit beeld continu ondersteund door korfbal.live. De statistieken en het liveverslag hielpen de coaches om hun gevoel te bevestigen. Vlak voor rust stonden de trainers bij het dashboard en bespraken ze de schotselectie en de percentages. Op basis daarvan werd het plan voor de tweede helft bepaald: rust bewaren, de organisatie goed neerzetten en blijven zoeken naar de beste kansen.
+        </p>
+        <p>
+        In de tweede helft hield Fortuna die lijn vast. Door tempo af te wisselen en geduldig te blijven, bleef het team in controle. Nieuwekerk kwam moeilijk tot uitgespeelde kansen en moest blijven schieten van afstand. De voorsprong kwam daardoor niet meer in gevaar.
+        </p>
+        <p>
+        Van een zenuwachtige start naar controle en overtuiging: Fortuna/Ruitenheer U15-1 is Nederlands kampioen.
+        </p>
+        <p>
+        Namens Korfbal.live: Gefeliciteerd!
+        </p>
+        </Text>
+      </Fragment>
+      <Section
+      id="features-registration"
+      paddingBlockStart="small"
+      paddingBlockEnd="small"
+    >
+      <Layout variant="columns-7-5">
+        <Fragment slot="content-primary">
+          <Eyebrow marginBottom="md">Wedstrijdregistratie</Eyebrow>
+          <Heading as="h2" variant="h2" maxChars={12}
+            >Leg de wedstrijd vast terwijl deze gebeurt</Heading
+          >
+          <Text maxChars={58}>
+            <p>
+              Tijdens de wedstrijd registreer je eenvoudig alles wat er gebeurt.
+              Van de opstelling tot doelpunten, wissels en doelpogingen: je
+              bouwt stap voor stap een compleet wedstrijdverhaal op. Je begint
+              met de basis, wie staat er in het veld, en legt vervolgens alle
+              belangrijke momenten vast. De interface is zo ingericht dat je
+              snel kunt handelen. Zo ontstaat er automatisch een gestructureerd
+              en bruikbaar overzicht van de wedstrijd, zonder extra werk
+              achteraf.
+            </p>
+            <FeatureList
+              items={[
+                "Opstellingen en wissels",
+                "Doelpunten en doelpogingen",
+                "Belangrijke wedstrijdmomenten",
+                "Verloop van de wedstrijd in tijd",
+              ]}
+            />
+          </Text>
+        </Fragment>
+        <Fragment slot="content-secondary">
+          <DeviceImage src="/images/screens/screen-registration.webp" style="margin-inline: auto;" />
+        </Fragment>
+      </Layout>
+    </Layout>
+  </Section>
+</BaseLayout>
